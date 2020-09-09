@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/react-store/static/css/main.6233df15.chunk.css",
+    "main.js": "/react-store/static/js/main.eaa6a927.chunk.js",
+    "main.js.map": "/react-store/static/js/main.eaa6a927.chunk.js.map",
+    "runtime-main.js": "/react-store/static/js/runtime-main.777764d0.js",
+    "runtime-main.js.map": "/react-store/static/js/runtime-main.777764d0.js.map",
+    "static/js/2.77b1440c.chunk.js": "/react-store/static/js/2.77b1440c.chunk.js",
+    "static/js/2.77b1440c.chunk.js.map": "/react-store/static/js/2.77b1440c.chunk.js.map",
+    "index.html": "/react-store/index.html",
+    "precache-manifest.afa8a35463726823b1a8404708fbb30d.js": "/react-store/precache-manifest.afa8a35463726823b1a8404708fbb30d.js",
+    "service-worker.js": "/react-store/service-worker.js",
+    "static/css/main.6233df15.chunk.css.map": "/react-store/static/css/main.6233df15.chunk.css.map",
+    "static/js/2.77b1440c.chunk.js.LICENSE.txt": "/react-store/static/js/2.77b1440c.chunk.js.LICENSE.txt",
+    "static/media/dogs.849a6443.svg": "/react-store/static/media/dogs.849a6443.svg",
+    "static/media/usuario.dc442992.svg": "/react-store/static/media/usuario.dc442992.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.777764d0.js",
+    "static/js/2.77b1440c.chunk.js",
+    "static/css/main.6233df15.chunk.css",
+    "static/js/main.eaa6a927.chunk.js"
+  ]
+}
