@@ -1,0 +1,79 @@
+import React from 'react';
+import styles from './Header.module.css';
+import { Link } from 'react-router-dom';
+import { ReactComponent as Dogs } from '../Assets/dogs.svg';
+import { ReactComponent as User } from '../Assets/usuario.svg';
+import { UserContext } from '../UserContext';
+import Button from './Forms/Button';
+
+const Header = () => {
+  const { data, userLogout, active, setActive } = React.useContext(UserContext);
+  const dropdownRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const pageClickEvent = (e) => {
+      if (
+        dropdownRef.current !== null &&
+        !dropdownRef.current.contains(e.target)
+      ) {
+        setActive(!active);
+      }
+    };
+    if (active) {
+      window.addEventListener('click', pageClickEvent);
+    }
+    return () => {
+      window.removeEventListener('click', pageClickEvent);
+    };
+  }, [active, setActive]);
+
+  function handleActive(event) {
+    setActive(!active);
+  }
+  return (
+    <header className={styles.header}>
+      <div className="container">
+        <nav className={styles.nav}>
+          <Link className={styles.logo} to="/" aria-label="Dogs - Home">
+            <Dogs />
+          </Link>
+          {data ? (
+            <div className={styles.wrapper}>
+              <Link className={styles.login} to="/conta">
+                <p className={styles.nome}>{data.nome}</p>
+              </Link>
+              <div className={styles.dropdownContainer}>
+                <button
+                  onClick={handleActive}
+                  className={styles.dropdownTrigger}
+                >
+                  <User />
+                </button>
+                {active && (
+                  <nav
+                    ref={dropdownRef}
+                    className={`menu ${active ? 'active' : 'inactive'}`}
+                  >
+                    <ul className={styles.dropDownUL}>
+                      <li onClick={userLogout}>
+                        <Link onClick={userLogout} to="">
+                          Sair
+                        </Link>
+                      </li>
+                    </ul>
+                  </nav>
+                )}
+              </div>
+            </div>
+          ) : (
+            <Link className={styles.login} to="/login">
+              <Button>Login</Button>
+            </Link>
+          )}
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
