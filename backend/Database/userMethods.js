@@ -27,7 +27,7 @@ const updatedUser = async (user) => {
         )
 
         return {
-            result: result,
+            result: result.dataValues,
             code: "200"
         }
     } catch (err) {
@@ -37,8 +37,22 @@ const updatedUser = async (user) => {
     }
 }
 
+const getUserById = async (user) => {
+    const option = await User.findOne({ where: {id: user.id}});
+    return option;
+}
+
+const getAllUsers = async () => {
+   
+   return await User.findAll({ plain: true });
+}
+
+
+
 
 module.exports = {
     createdUser,
-    updatedUser
+    updatedUser,
+    getUserById,
+    getAllUsers
 }

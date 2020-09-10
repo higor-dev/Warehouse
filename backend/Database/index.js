@@ -11,23 +11,20 @@ require('dotenv/config');
 const { sequelize } = require("./dbConnection");
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const { User } = require("./model");
-const { createdUser, updatedUser } = require("./userMethods");
+const userMethods = require('./userMethods');
+const model = require('./model');
 
-const modelToPersist = {
-  id: 2,
-  name: "fabio",
-  favoriteColor: "green",
-  age: 22,
-  cash: 12312312
-}
-
-
-updatedUser(modelToPersist);
+// const modelToPersist = {
+//   id: 2,
+//   name: "fabio",
+//   favoriteColor: "green",
+//   age: 22,
+//   cash: 12312312
+// }
 
 
 (async () => {
   await sequelize.sync();
-  // Code here
 })();
 
 
@@ -35,5 +32,4 @@ updatedUser(modelToPersist);
 
 module.exports = {
     db_connection: sequelize,
-
 }
