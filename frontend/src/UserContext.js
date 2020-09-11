@@ -71,13 +71,14 @@ export const UserStorage = ({ children }) => {
           userLogout();
         } finally {
           setLoading(false);
+          navigate('/');
         }
       } else {
         setLogin(false);
       }
     }
     autoLogin();
-  }, [userLogout]);
+  }, [userLogout, navigate]);
 
   return (
     <UserContext.Provider
