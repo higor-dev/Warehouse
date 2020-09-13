@@ -3,13 +3,35 @@ const { sequelize } = require("./dbConnection");
 
 const User = sequelize.define("user", {
   name: DataTypes.TEXT,
-  favoriteColor: {
-    type: DataTypes.TEXT,
-    defaultValue: 'green'
-  },
-  age: DataTypes.INTEGER,
-  cash: DataTypes.INTEGER
+  lastName: DataTypes.TEXT,
+  password: DataTypes.TEXT,
+  email: DataTypes.TEXT
 });
+
+const Product = sequelize.define("product", {
+  produtcName: DataTypes.TEXT,
+  quantity: DataTypes.TEXT,
+  price: DataTypes.INTEGER,
+  type: DataTypes.TEXT
+})
+
+const Transaction = sequelize.define("transaction", {
+  author: DataTypes.TEXT,
+
+
+})
+
+
+const Company = sequelize.define("company", {
+  balance: DataTypes.INTEGER,  
+})
+
+//A company has many transactions and many products
+Company.hasMany(Transaction);
+Company.hasMany(Product);
+Product.hasOne(Transaction);
+
+
 
 
 module.exports = {

@@ -24,7 +24,7 @@ const model = require('./model');
 
 
 (async () => {
-  await sequelize.sync();
+  await sequelize.sync({force:true});
 })();
 
 
