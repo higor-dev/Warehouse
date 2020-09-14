@@ -4,14 +4,7 @@ const { sequelize } = require("./dbConnection");
 
 
 const createdUser = async (user) => {
-    const result = await User.create({
-
-        name: user.name,
-        lastName: user.lastName,
-        password: user.password,
-        email: user.email
-    
-        });
+    const result = await User.create(user);
     return result.toJSON();
     
 }
@@ -46,7 +39,15 @@ const getUserById = async (user) => {
 
 const getAllUsers = async () => {
    
-   return await User.findAll({ plain: true });
+   return await User.findAll();
+}
+
+const deleteUser = async (user) => {    
+    return await User.destroy({
+        where: {
+          id: user.id
+        }
+      });
 }
 
 
@@ -56,5 +57,6 @@ module.exports = {
     createdUser,
     updatedUser,
     getUserById,
-    getAllUsers
+    getAllUsers,
+    deleteUser
 }
