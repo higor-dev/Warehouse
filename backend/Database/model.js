@@ -10,27 +10,28 @@ const User = sequelize.define("user", {
 
 const Product = sequelize.define("product", {
   produtcName: DataTypes.TEXT,
-  author: DataTypes.TEXT,
-  date: DataTypes.DATE,
   quantity: DataTypes.TEXT,
-  price: DataTypes.INTEGER
+  price: DataTypes.INTEGER,
+  type: DataTypes.TEXT
 })
 
 const Transaction = sequelize.define("transaction", {
-  name: DataTypes.TEXT,
-  lastName: DataTypes.TEXT,
-  password: DataTypes.TEXT,
-  email: DataTypes.TEXT
+  author: DataTypes.TEXT,
+
+
 })
 
 
-const Company = sequelize.define("product", {
-  balance: DataTypes.INTEGER,
-  product: Product,
-  transaction: Transaciont
-
-  
+const Company = sequelize.define("company", {
+  balance: DataTypes.INTEGER,  
 })
+
+//A company has many transactions and many products
+Company.hasMany(Transaction);
+Company.hasMany(Product);
+Product.hasOne(Transaction);
+
+
 
 
 module.exports = {

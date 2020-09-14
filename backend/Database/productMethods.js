@@ -1,10 +1,10 @@
-const { User } = require("./model");
+const { Product } = require("./model");
 const { sequelize } = require("./dbConnection");
 
 
 
-const createdUser = async (user) => {
-    const result = await User.create({
+const createdProduct = async (product) => {
+    const result = await Product.create({
 
         name: user.name,
         lastName: user.lastName,
@@ -16,9 +16,9 @@ const createdUser = async (user) => {
     
 }
 
-const updatedUser = async (user) => {
+const updatedProduct = async (product) => {
     try {
-        const result = await User.update(
+        const result = await Product.update(
             {
                 name: user.name,
                 lastName: user.lastName,
@@ -39,14 +39,14 @@ const updatedUser = async (user) => {
     }
 }
 
-const getUserById = async (user) => {
-    const option = await User.findOne({ where: {id: user.id}});
+const getProductById = async (product) => {
+    const option = await Product.findOne({ where: {id: product.id}});
     return option;
 }
 
-const getAllUsers = async () => {
+const getAllProduct = async () => {
    
-   return await User.findAll({ plain: true });
+   return await Product.findAll({ plain: true });
 }
 
 
