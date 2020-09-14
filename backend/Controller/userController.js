@@ -21,7 +21,6 @@ router.get("/get", (req,res)=>{
 })
 
 router.post("/createUser", (req,res) => {
-    console.log(req.body);
     const user = service.createdUser(req.body);
     user
         .then(data => res.json(data))

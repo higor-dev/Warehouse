@@ -9,7 +9,7 @@ const User = sequelize.define("user", {
 });
 
 const Product = sequelize.define("product", {
-  produtcName: DataTypes.TEXT,
+  productName: DataTypes.TEXT,
   quantity: DataTypes.TEXT,
   price: DataTypes.INTEGER,
   type: DataTypes.TEXT
@@ -35,5 +35,8 @@ Product.hasOne(Transaction);
 
 
 module.exports = {
-    User
+    User,
+    Product,
+    Company,
+    Transaction
 }
