@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Dogs } from '../Assets/dogs.svg';
 import { ReactComponent as User } from '../Assets/usuario.svg';
+import { ReactComponent as Tool } from '../Assets/tool.svg';
 import { UserContext } from '../UserContext';
 import Button from './Forms/Button';
 
@@ -34,8 +34,8 @@ const Header = () => {
     <header className={styles.header}>
       <div className="container">
         <nav className={styles.nav}>
-          <Link className={styles.logo} to="/" aria-label="Dogs - Home">
-            <Dogs />
+          <Link to="/" aria-label="Dogs - Home">
+            <Tool className={styles.logo} />
           </Link>
           {data ? (
             <div className={styles.wrapper}>

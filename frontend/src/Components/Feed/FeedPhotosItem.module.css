@@ -1,0 +1,36 @@
+.photo {
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
+  padding: 10px;
+  border-radius: 4px;
+  display: grid;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.photo img {
+  grid-area: 1 / 1;
+}
+
+.span {
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  grid-area: 1 / 1;
+  display: none;
+  font-weight: bold;
+}
+
+.photo:hover .span {
+  display: flex;
+}
+
+.descricao {
+  padding: 0.5rem 0;
+}
+
+.descricao h3 {
+  margin: 0.5rem;
+}
