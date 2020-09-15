@@ -1,12 +1,16 @@
 import React from 'react';
 import styles from './FeedPhotosItem.module.css';
 
-const FeedPhotosItem = ({ photo }) => {
+const FeedPhotosItem = ({ photo, setModalPhoto }) => {
+  function handleClick() {
+    setModalPhoto(photo);
+  }
+
   return (
-    <li className={styles.photo}>
-      <img src={photo.src} alt={photo.title} />
+    <li onClick={handleClick} className={styles.photo}>
+      <img className={styles.img} src={photo.src} alt={photo.title} />
       <span className={styles.span}>
-        {photo.acessos ? 'DISPONÍVEL' : 'INDISPONÍVEL'}
+        {photo.peso > 0 ? 'DISPONÍVEL' : 'INDISPONÍVEL'}
       </span>
       <div className={styles.descricao}>
         <h3>{photo.title}</h3>

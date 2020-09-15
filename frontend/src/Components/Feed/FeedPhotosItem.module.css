@@ -7,8 +7,14 @@
   cursor: pointer;
 }
 
+.img {
+  object-fit: cover;
+  width: 100%;
+}
+
 .photo img {
   grid-area: 1 / 1;
+  background-size: cover;
 }
 
 .span {
@@ -29,6 +35,8 @@
 
 .descricao {
   padding: 0.5rem 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .descricao h3 {

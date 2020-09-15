@@ -1,0 +1,81 @@
+.photo {
+  margin: auto;
+  border-radius: 0.2rem;
+  height: 36rem;
+  background: white;
+  display: grid;
+  grid-template-columns: 36rem 20rem;
+  grid-template-rows: 1fr 1fr 1fr;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleUp 0.3s forwards;
+}
+
+@keyframes scaleUp {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}
+
+.details {
+  padding: 2rem 2rem 0 2rem;
+}
+
+.img {
+  grid-row: 1 / 4;
+}
+
+.attributes {
+  display: flex;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.attributes li {
+  margin-bottom: 2rem;
+}
+
+.author {
+  opacity: 0.5;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.author a:hover {
+  text-decoration: underline;
+}
+
+.xesque {
+  grid-row: 3 / 4;
+  padding: 2rem 2rem 0 2rem;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+.adicionar {
+  background: #eee;
+  border-radius: 0.2rem;
+  height: 40px;
+  width: 40px;
+  border: 1px solid transparent;
+  transition: 0.1s;
+  cursor: pointer;
+  margin-left: 1.5rem;
+}
+
+.adicionar:hover {
+  background: white;
+  box-shadow: 0 0 0 3px #eee;
+  border-color: #ddd;
+  outline: none;
+}
