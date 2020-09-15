@@ -15,9 +15,9 @@ const userMethods = require('./userMethods');
 const model = require('./model');
 
 
-(async () => {
-  await sequelize.sync();
-})();
+// (async () => {
+//   await sequelize.sync({force: true});
+// })();
 
 
 

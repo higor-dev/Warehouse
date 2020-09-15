@@ -2,6 +2,15 @@ const { User } = require("./model");
 const { sequelize } = require("./dbConnection");
 
 
+const getUserById = async (user) => {
+    const option = await User.findOne({ where: {id: user.id}});
+    return option;
+}
+
+const getAllUsers = async () => {
+   
+   return await User.findAll();
+}
 
 const createdUser = async (user) => {
     const result = await User.create(user);
@@ -32,15 +41,6 @@ const updatedUser = async (user) => {
     }
 }
 
-const getUserById = async (user) => {
-    const option = await User.findOne({ where: {id: user.id}});
-    return option;
-}
-
-const getAllUsers = async () => {
-   
-   return await User.findAll();
-}
 
 const deleteUser = async (user) => {    
     return await User.destroy({
