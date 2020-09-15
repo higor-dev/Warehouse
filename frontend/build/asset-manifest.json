@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/react-store/static/css/main.104330bf.chunk.css",
+    "main.js": "/react-store/static/js/main.74505073.chunk.js",
+    "main.js.map": "/react-store/static/js/main.74505073.chunk.js.map",
+    "runtime-main.js": "/react-store/static/js/runtime-main.777764d0.js",
+    "runtime-main.js.map": "/react-store/static/js/runtime-main.777764d0.js.map",
+    "static/js/2.eb30bdfb.chunk.js": "/react-store/static/js/2.eb30bdfb.chunk.js",
+    "static/js/2.eb30bdfb.chunk.js.map": "/react-store/static/js/2.eb30bdfb.chunk.js.map",
+    "index.html": "/react-store/index.html",
+    "precache-manifest.9a37ba01a03ad2e89399c34f736ed418.js": "/react-store/precache-manifest.9a37ba01a03ad2e89399c34f736ed418.js",
+    "service-worker.js": "/react-store/service-worker.js",
+    "static/css/main.104330bf.chunk.css.map": "/react-store/static/css/main.104330bf.chunk.css.map",
+    "static/js/2.eb30bdfb.chunk.js.LICENSE.txt": "/react-store/static/js/2.eb30bdfb.chunk.js.LICENSE.txt",
+    "static/media/adicionar.c6e243c7.svg": "/react-store/static/media/adicionar.c6e243c7.svg",
+    "static/media/estatisticas.5ce6ac31.svg": "/react-store/static/media/estatisticas.5ce6ac31.svg",
+    "static/media/feed.95db7478.svg": "/react-store/static/media/feed.95db7478.svg",
+    "static/media/sair.efa03022.svg": "/react-store/static/media/sair.efa03022.svg",
+    "static/media/tool.90bd3ec8.svg": "/react-store/static/media/tool.90bd3ec8.svg",
+    "static/media/usuario.78901e1f.svg": "/react-store/static/media/usuario.78901e1f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.777764d0.js",
+    "static/js/2.eb30bdfb.chunk.js",
+    "static/css/main.104330bf.chunk.css",
+    "static/js/main.74505073.chunk.js"
+  ]
+}
