@@ -3,31 +3,45 @@ require('dotenv/config');
 const General = express.Router();
 const { Company, Transaction } = require("../Database/model");
 const { sequelize } = require("../Database/dbConnection");
+const jwt = require("jsonwebtoken");
 
 
+function verifyJWT(req, res, next){
+    var token = req.headers['x-access-token'];
+    if (!token) return res.status(401).json({ auth: false, message: 'No token provided.' });
+    
+    jwt.verify(token, process.env.SECRET, function(err, decoded) {
+      if (err) return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+      
+      // se tudo estiver ok, salva no request para uso posterior
+      req.userId = decoded.id;
+      next();
+    });
+}
 
-General.get("/getAllTransactions", (req,res)=>{
+
+General.get("/getAllTransactions", verifyJWT, (req,res)=>{
     const allTransactions = Transaction.findAll();
     allTransactions
         .then(data => res.json(data))
         .catch(err => res.json(err));
 })
 
-General.get("/getOneTransaction", (req,res)=>{
+General.get("/getOneTransaction", verifyJWT, (req,res)=>{
     const transaction = Transaction.findOne({ where: {id: req.body.id}});
     transaction
         .then(data => res.json(data))
         .catch(err => res.json(err));
 })
 
-General.delete("/deleteTransaction", (req,res)=> {
+General.delete("/deleteTransaction", verifyJWT, (req,res)=> {
     const transactionObject = Transaction.destroy({where: {id: req.body.id}});
     transactionObject
         .then(data => res.json(data))
         .catch(err => res.json(err));
 })
 
-General.get("/getBalance", async (req,res)=>{
+General.get("/getBalance", verifyJWT, async (req,res)=>{
         const user = await getBalance(req.body.id);
         res.json(user[0][0]);
 })
