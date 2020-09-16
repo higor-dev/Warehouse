@@ -44,14 +44,8 @@ async function updateBalance(beforeProduct, postproduct){
 
     const difference = balanceAfter - balanceBefore;
 
-    console.log(balanceAfter);
-    console.log(balanceBefore);
-    console.log(balanceAfter - balanceBefore)
-    
-
     const value = await getBalance(1);
     const balance = value[0][0].balance - difference;
-    console.log(balance);
     const users = await sequelize.query(`UPDATE storage.companies SET balance = ${balance} WHERE id = 1`);
 }
 

@@ -36,7 +36,6 @@ const updatedUser = async (user) => {
         }
     } catch (err) {
 
-        console.log(err);
         return "500";
     }
 }

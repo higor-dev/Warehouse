@@ -34,7 +34,6 @@ const updatedProduct = async (product) => {
         }
     } catch (err) {
 
-        console.log(err);
         return "500";
     }
 }
