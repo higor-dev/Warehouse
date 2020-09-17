@@ -54,7 +54,7 @@ product.put("/updateProduct", verifyJWT,async (req,res) => {
     const product = await Product.update(req.body,{where: {id: req.body.id}})
     createTransaction(
         {
-            author: user.name,  
+            author: `${user.name} ${user.lastName}`,  
             productId: fetchedProduct.id,
             companyId: 1 //There is only one conpany
         }

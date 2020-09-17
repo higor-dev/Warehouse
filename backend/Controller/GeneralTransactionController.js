@@ -46,8 +46,8 @@ General.get("/getBalance", verifyJWT, async (req,res)=>{
         res.json(user[0][0]);
 })
 
-async function getBalance(id){
-    const users = await sequelize.query(`SELECT balance from storage.companies where id=${id}`);
+async function getBalance(){
+    const users = await sequelize.query(`SELECT balance from storage.companies where id= 1`);
     return users;
 }
 
