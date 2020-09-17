@@ -3,18 +3,14 @@
   padding: 10px;
   border-radius: 4px;
   display: grid;
+  max-width: 310px;
   overflow: hidden;
   cursor: pointer;
-}
-
-.img {
-  object-fit: cover;
-  width: 100%;
+  max-height: 500px;
 }
 
 .photo img {
   grid-area: 1 / 1;
-  background-size: cover;
 }
 
 .span {
@@ -27,6 +23,7 @@
   grid-area: 1 / 1;
   display: none;
   font-weight: bold;
+  height: 290px;
 }
 
 .photo:hover .span {
@@ -35,8 +32,9 @@
 
 .descricao {
   padding: 0.5rem 0;
+  max-width: 310px;
+  overflow: hidden;
   word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .descricao h3 {

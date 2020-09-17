@@ -46,9 +46,29 @@ const UserPhotoPost = () => {
     <>
       <section className={`${styles.photoPost} animeLeft`}>
         <form onSubmit={handleSubmit}>
-          <Input label="Produto" type="text" name="nome" {...nome} />
-          <Input label="Quantidade" type="number" name="peso" {...peso} />
-          <Input label="Preço" type="number" name="idade" {...idade} />
+          <Input
+            label="Produto"
+            maxLength="20"
+            type="text"
+            name="nome"
+            {...nome}
+          />
+          <Input
+            label="Quantidade"
+            type="number"
+            pattern="\d*"
+            maxLength="4"
+            name="peso"
+            {...peso}
+          />
+          <Input
+            label="Preço"
+            type="number"
+            pattern="\d*"
+            maxLength="4"
+            name="idade"
+            {...idade}
+          />
           <input
             className={styles.file}
             type="file"

@@ -8,10 +8,23 @@ const FeedPhotosItem = ({ photo, setModalPhoto }) => {
 
   return (
     <li onClick={handleClick} className={styles.photo}>
-      <img className={styles.img} src={photo.src} alt={photo.title} />
-      <span className={styles.span}>
-        {photo.peso > 0 ? 'DISPONÍVEL' : 'INDISPONÍVEL'}
-      </span>
+      <div
+        style={{
+          background: `url('${photo.src}') no-repeat center center`,
+          backgroundSize: 'cover',
+          display: 'block',
+          height: '290px',
+          width: '290px',
+          objectFit: 'fill',
+          borderRadius: '4px',
+        }}
+        className={styles.container}
+      >
+        {/* <img className={styles.img} src={photo.src} alt={photo.title} /> */}
+        <span className={styles.span}>
+          {photo.peso > 0 ? 'DISPONÍVEL' : 'INDISPONÍVEL'}
+        </span>
+      </div>
       <div className={styles.descricao}>
         <h3>{photo.title}</h3>
         <h3>Disponíveis: {photo.peso}</h3>
