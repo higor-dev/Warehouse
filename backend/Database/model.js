@@ -12,7 +12,8 @@ const Product = sequelize.define("product", {
   productName: DataTypes.TEXT,
   quantity: DataTypes.TEXT,
   price: DataTypes.INTEGER,
-  type: DataTypes.TEXT
+  type: DataTypes.TEXT,
+  image: DataTypes.BLOB
 })
 
 const Transaction = sequelize.define("transaction", {
