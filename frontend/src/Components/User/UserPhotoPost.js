@@ -35,12 +35,30 @@ const UserPhotoPost = () => {
     request(url, options);
   }
 
-  function handleImgChange({ target }) {
+  async function handleImgChange({ target }) {
+    const file = target.files[0];
+    const base64 = await convertBase64(file);
+    console.log(base64);
     setImg({
       preview: URL.createObjectURL(target.files[0]),
       raw: target.files[0],
+      base64: base64,
     });
   }
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        resolve(error);
+      };
+    });
+  };
 
   return (
     <>
@@ -87,8 +105,10 @@ const UserPhotoPost = () => {
           {img.preview && (
             <div
               className={styles.preview}
-              style={{ backgroundImage: `url('{ ${img.preview}}')` }}
-            ></div>
+              // style={{ backgroundImage: `url(' ${img.preview}')` }}
+            >
+              <img src={img.base64} alt="" />
+            </div>
           )}
         </div>
       </section>
