@@ -13,8 +13,8 @@ const FeedPhotosItem = ({ photo, setModalPhoto }) => {
           background: `url('${photo.src}') no-repeat center center`,
           backgroundSize: 'cover',
           display: 'block',
-          height: '290px',
-          width: '290px',
+          height: '18.125rem',
+          width: '18.125rem',
           objectFit: 'fill',
           borderRadius: '4px',
         }}

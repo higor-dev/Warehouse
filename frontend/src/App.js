@@ -17,6 +17,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/react-store" element={<Home />} />
             <Route path="/login/*" element={<Login />} />
             <ProtectedRouter path="/conta/*" element={<User />} />
           </Routes>

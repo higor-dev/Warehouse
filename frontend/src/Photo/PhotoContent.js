@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import styles from './PhotoContent.module.css';
 import Button from '../Components/Forms/Button';
 import { ReactComponent as Adicionar } from '../Assets/adicionar.svg';
+import { UserContext } from '../UserContext';
+import PhotoDelete from './PhotoDelete';
 
 const PhotoContent = ({ data }) => {
   const { photo } = data;
+  const user = React.useContext(UserContext);
   console.log(data);
   return (
     <div className={styles.photo}>
@@ -15,7 +18,11 @@ const PhotoContent = ({ data }) => {
       <div className={styles.details}>
         <div>
           <p className={styles.author}>
-            <Link to={`/perfil/${photo.author}`}>{photo.author}</Link>
+            {user.data && user.data.username === photo.author ? (
+              <PhotoDelete id={photo.id} />
+            ) : (
+              <Link to={`/perfil/${photo.author}`}>{photo.author}</Link>
+            )}
           </p>
           <h1 className="title">
             <Link to={`/foto/${photo.id}`}>{photo.title}</Link>
