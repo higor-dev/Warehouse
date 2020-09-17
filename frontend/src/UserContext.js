@@ -9,7 +9,6 @@ export const UserStorage = ({ children }) => {
   const [login, setLogin] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
-  const [active, setActive] = React.useState(false);
   const navigate = useNavigate();
 
   const userLogout = React.useCallback(
@@ -18,7 +17,6 @@ export const UserStorage = ({ children }) => {
       setError(null);
       setLoading(false);
       setLogin(false);
-      setActive(false);
       window.localStorage.removeItem('token');
       navigate('/login');
     },
@@ -37,7 +35,6 @@ export const UserStorage = ({ children }) => {
   async function userLogin(username, password) {
     try {
       setError(null);
-      setActive(false);
       setLoading(true);
       const { url, options } = TOKEN_POST({ username, password });
       const tokenRes = await fetch(url, options);
@@ -61,7 +58,6 @@ export const UserStorage = ({ children }) => {
       if (token) {
         try {
           setError(null);
-          setActive(false);
           setLoading(true);
           const { url, options } = TOKEN_VALIDATE_POST(token);
           const response = await fetch(url, options);
@@ -89,8 +85,7 @@ export const UserStorage = ({ children }) => {
         error,
         loading,
         login,
-        active,
-        setActive,
+
       }}
     >
       {children}

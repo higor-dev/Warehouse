@@ -7,17 +7,19 @@ import { UserContext } from '../UserContext';
 import Button from './Forms/Button';
 
 const Header = () => {
-  const { data, userLogout, active, setActive } = React.useContext(UserContext);
+  const { data, userLogout, login } = React.useContext(UserContext);
+  const [active, setActive] = React.useState(false);
   const dropdownRef = React.useRef(null);
 
   React.useEffect(() => {
     const pageClickEvent = (e) => {
-      if (
-        dropdownRef.current !== null &&
-        !dropdownRef.current.contains(e.target)
-      ) {
-        setActive(!active);
-      }
+      if (login)
+        if (
+          dropdownRef.current !== null &&
+          !dropdownRef.current.contains(e.target)
+        ) {
+          setActive(!active);
+        }
     };
     if (active) {
       window.addEventListener('click', pageClickEvent);
@@ -25,9 +27,9 @@ const Header = () => {
     return () => {
       window.removeEventListener('click', pageClickEvent);
     };
-  }, [active, setActive]);
+  }, [active, setActive, login]);
 
-  function handleActive(event) {
+  function handleActive() {
     setActive(!active);
   }
   return (
