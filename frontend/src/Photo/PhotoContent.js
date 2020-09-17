@@ -5,15 +5,18 @@ import Button from '../Components/Forms/Button';
 import { ReactComponent as Adicionar } from '../Assets/adicionar.svg';
 import { UserContext } from '../UserContext';
 import PhotoDelete from './PhotoDelete';
+import ImageModal from '../Components/Helper/ImageModal';
 
 const PhotoContent = ({ data }) => {
-  const { photo } = data;
   const user = React.useContext(UserContext);
+  const { photo } = data;
+
   console.log(data);
+
   return (
     <div className={styles.photo}>
       <div className={styles.img}>
-        <img src={photo.src} alt={photo.title} />
+        <ImageModal src={photo.src} alt={photo.title} />
       </div>
       <div className={styles.details}>
         <div>

@@ -25,6 +25,7 @@
 
 .img {
   grid-row: 1 / 4;
+  object-position: center;
 }
 
 .attributes {
