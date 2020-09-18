@@ -5,8 +5,16 @@
   gap: 2rem;
 }
 
+.login::before {
+  display: block;
+  content: '';
+  background: url('../../Assets/photo-1581783898377-1c85bf937427.jpg') no-repeat
+    center center;
+  background-size: cover;
+}
+
 .forms {
-  max-width: 30rem;
+  max-width: 40rem;
   padding: 2rem;
 }
 
