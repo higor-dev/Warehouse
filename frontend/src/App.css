@@ -12,6 +12,8 @@ body {
   --type-second: 'Spectral', Georgia;
   font-family: var(--type-first);
   overflow-y: scroll;
+  background: url(./Assets/background_Prancheta\ 1.svg) no-repeat center top;
+  background-size: 200rem 120rem;
 }
 
 h1,
@@ -48,7 +50,7 @@ a {
 }
 
 .container {
-  max-width: 50rem;
+  max-width: 75rem;
   padding: 0 1rem;
   margin: 0 auto;
   position: relative;
@@ -65,6 +67,29 @@ a {
   margin: 1rem 0;
   position: relative;
   z-index: 1;
+}
+
+.title2 {
+  font-family: var(--type-second);
+  line-height: 1;
+  font-size: 3rem;
+  margin: 1rem 0;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+.title2::after {
+  content: '';
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #a90f11;
+  position: absolute;
+  bottom: 5px;
+  left: -5px;
+  border-radius: 0.2rem;
+  z-index: -1;
 }
 
 .title::after {
@@ -102,6 +127,7 @@ a {
   text-align: center;
   right: 1px;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  background-color: white;
 }
 
 .menu.active {

@@ -5,24 +5,28 @@
 }
 
 .search {
-  border: 1px solid #eee;
+  border: 2px solid #efefef;
   display: flex;
   width: 100%;
   grid-column: 2;
   font-size: 1rem;
   padding: 0.8rem;
-  border-radius: 0.4rem;
-  background: #eee;
+  border-radius: 2rem;
+  background: white;
   transition: 0.2s;
   margin-bottom: 1.5rem;
+}
+
+::placeholder {
+  color: #ccc;
 }
 
 .search:focus,
 .search:hover {
   outline: none;
-  border-color: #fb1;
+  border-color: white;
   background: white;
-  box-shadow: 0 0 0 3px #fea;
+  box-shadow: 0 0 0 1px #fff;
 }
 
 @media (max-width: 50rem) {

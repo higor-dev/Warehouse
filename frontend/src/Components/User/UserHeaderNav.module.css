@@ -31,12 +31,11 @@
 
 .nav a.active {
   background: white;
-  box-shadow: 0 0 0 3px #fea;
-  border-color: #fb1;
+  box-shadow: 0 0 0 3px #fff;
 }
 
 .nav a.active svg > * {
-  fill: #fb1;
+  fill: #a90f11;
 }
 
 .mobileButton {

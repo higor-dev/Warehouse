@@ -7,7 +7,7 @@ const Search = ({ onChange }) => {
       <input
         className={styles.search}
         type="text"
-        placeholder="Search"
+        placeholder="Pesquisar..."
         onChange={onChange}
       />
     </div>

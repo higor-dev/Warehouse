@@ -3,33 +3,36 @@
 }
 
 .input {
-  border: 1px solid #eee;
+  border: 2px solid #ccc;
   display: block;
   width: 100%;
   font-size: 1rem;
   padding: 0.8rem;
   border-radius: 0.4rem;
-  background: #eee;
+  background: white;
   transition: 0.2s;
 }
 
 .input:focus,
 .input:hover {
   outline: none;
-  border-color: #fb1;
+  border-color: white;
   background: white;
-  box-shadow: 0 0 0 3px #fea;
+  box-shadow: 0 0 0 3px #ccc;
 }
 
 .label {
   display: block;
-  font-size: 1rem;
+  font-size: 1.4rem;
   line-height: 1;
   padding-bottom: 0.5rem;
+  color: white;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .error {
   color: #f31;
   font-size: 0.875rem;
-  margin-top: 0.25rem;
+  margin-top: 0.75rem;
 }
