@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './FeedPhotosItem.module.css';
 import Image from '../Helper/Image';
 
-const FeedPhotosItem = ({ photo, setModalPhoto }) => {
+const FeedPhotosItem = ({ photo, setModalPhoto, filter }) => {
   function handleClick() {
     setModalPhoto(photo);
   }

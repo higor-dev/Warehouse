@@ -5,9 +5,11 @@ import FeedPhotosItem from './FeedPhotosItem';
 import Error from '../Helper/Error';
 import Loading from '../Helper/Loading';
 import styles from './FeedPhotos.module.css';
+import Search from '../Helper/Search';
 
 const FeedPhotos = ({ setModalPhoto }) => {
   const { data, loading, error, request } = useFetch();
+  const [search, setSearch] = React.useState('');
 
   React.useEffect(() => {
     async function fetchPhotos() {
@@ -20,19 +22,33 @@ const FeedPhotos = ({ setModalPhoto }) => {
 
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;
-  if (data)
+  if (data) {
+    const filter = data.filter((produto) => {
+      return produto.title.toLowerCase().includes(search.toLowerCase());
+    });
+
     return (
-      <ul className={`${styles.feed} animeLeft`}>
-        {data.map((photo) => (
-          <FeedPhotosItem
-            setModalPhoto={setModalPhoto}
-            key={photo.id}
-            photo={photo}
-          />
-        ))}
-      </ul>
+      <>
+        <Search
+          className={styles.search}
+          value={search}
+          onChange={({ target }) => {
+            setSearch(target.value);
+          }}
+        />
+        <ul className={`${styles.feed} animeLeft`}>
+          {filter.map((photo, index) => (
+            <FeedPhotosItem
+              setModalPhoto={setModalPhoto}
+              key={photo.id}
+              photo={photo}
+              filter={filter}
+            />
+          ))}
+        </ul>
+      </>
     );
-  else return null;
+  } else return null;
 };
 
 export default FeedPhotos;

@@ -12,6 +12,7 @@ const Input = ({
   maxLength,
   max,
   pattern,
+  placeholder,
 }) => {
   return (
     <div className={styles.wrapper}>
@@ -30,6 +31,7 @@ const Input = ({
         maxLength={maxLength}
         max={max}
         pattern={pattern}
+        placeholder={placeholder}
       />
       {error && <p className={styles.error}>{error}</p>}
     </div>
