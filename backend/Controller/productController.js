@@ -26,8 +26,8 @@ product.get("/getAllProducts", verifyJWT,(req,res)=>{
         .catch(err => res.json(err));
 })
 
-product.get("/getProduct", verifyJWT,(req,res)=>{
-    const product = Product.findOne({ where: {id: req.body.id}});
+product.get("/getProduct/:id", verifyJWT,(req,res)=>{
+    const product = Product.findOne({ where: {id: req.params.id}});
     product
         .then(data => res.json(data))
         .catch(err => res.json(err));
@@ -40,7 +40,9 @@ product.post("/createProduct", verifyJWT,async (req,res) => {
         {
             author: user.name, 
             productId: product.id,
-            companyId: 1 //There is only one conpany
+            companyId: 1, //There is only one company
+            price:  (product.price * quantity *(-1)), //Transaction price, not product price
+            quantity: product.quantity
         }
     );    
     updateBalance( { quantity: 0, price: 0}, product.dataValues);
@@ -49,14 +51,26 @@ product.post("/createProduct", verifyJWT,async (req,res) => {
 })
 
 product.put("/updateProduct", verifyJWT,async (req,res) => {
-    const user = await User.findOne({where: {id: req.userId}});
-    const fetchedProduct = await Product.findOne({where: {id: req.body.id}});
-    const product = await Product.update(req.body,{where: {id: req.body.id}})
+    const user = await User.findOne({where: {id: req.userId}}); //Find author
+    const fetchedProduct = await Product.findOne({where: {id: req.body.id}}); //Find product before update
+    const product = await Product.update(req.body,{where: {id: req.body.id}}); //update
+    
+    //Balance calculation
+    const balanceAfter = (req.body.quantity * req.body.price); 
+    const balanceBefore = (fetchedProduct.quantity * fetchedProduct.price);
+    const transactionPrice = balanceAfter - balanceBefore;
+    
+    //Quantity calculation
+    const transactionQuantity = req.body.quantity - fetchedProduct.quantity;
+    const difference = balanceAfter - balanceBefore;
+
     createTransaction(
         {
             author: `${user.name} ${user.lastName}`,  
             productId: fetchedProduct.id,
-            companyId: 1 //There is only one conpany
+            companyId: 1, //There is only one conpany
+            price: transactionPrice,
+            quantity: transactionQuantity
         }
     );    
     updateBalance(fetchedProduct, req.body);
@@ -65,18 +79,20 @@ product.put("/updateProduct", verifyJWT,async (req,res) => {
     
 })
 
-product.delete("/deleteProduct", verifyJWT,async (req,res)=> {
-    const fetchedProduct = await Product.findOne({where: {id: req.body.id}})
+product.delete("/deleteProduct/:id", verifyJWT,async (req,res)=> {
+    const fetchedProduct = await Product.findOne({where: {id: req.params.id}})
     createTransaction(
         {
             author: fetchedProduct.productName, //Change to user name of a session 
             productId: fetchedProduct.id,
-            companyId: 1 //There is only one conpany
+            companyId: 1, //There is only one conpany
+            price:  (product.price * quantity), //Transaction price, not product price
+            quantity: product.quantity
         }
     );    
     updateBalance(fetchedProduct, { quantity: 0, price: 0});
 
-    const product = Product.destroy({where: {id: req.body.id}});
+    const product = Product.destroy({where: {id: req.params.id}});
     product
         .then(data => res.json(data))
         .catch(err => res.json(err));

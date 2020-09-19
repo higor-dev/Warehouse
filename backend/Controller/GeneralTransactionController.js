@@ -27,19 +27,19 @@ General.get("/getAllTransactions", verifyJWT, (req,res)=>{
         .catch(err => res.json(err));
 })
 
-General.get("/getOneTransaction", verifyJWT, (req,res)=>{
-    const transaction = Transaction.findOne({ where: {id: req.body.id}});
+General.get("/getOneTransaction/:id", verifyJWT, (req,res)=>{
+    const transaction = Transaction.findOne({ where: {id: req.params.id}});
     transaction
         .then(data => res.json(data))
         .catch(err => res.json(err));
 })
 
-General.delete("/deleteTransaction", verifyJWT, (req,res)=> {
-    const transactionObject = Transaction.destroy({where: {id: req.body.id}});
-    transactionObject
-        .then(data => res.json(data))
-        .catch(err => res.json(err));
-})
+// General.delete("/deleteTransaction", verifyJWT, (req,res)=> {
+//     const transactionObject = Transaction.destroy({where: {id: req.body.id}});
+//     transactionObject
+//         .then(data => res.json(data))
+//         .catch(err => res.json(err));
+// })
 
 General.get("/getBalance", verifyJWT, async (req,res)=>{
         const user = await getBalance(req.body.id);

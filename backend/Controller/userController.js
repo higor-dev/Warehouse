@@ -5,7 +5,7 @@ const service = require("../Database/userMethods");
 const { response } = require('express');
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-
+const bcrypt = require('bcrypt');
 
 router.get("/", verifyJWT,(req,res)=>{
     const allUsers = service.getAllUsers();
@@ -21,12 +21,19 @@ router.get("/get", verifyJWT,(req,res)=>{
         .catch(err => res.json(err));
 })
 
-router.post("/createUser", verifyJWT,(req,res) => {
-    const user = service.createdUser(req.body);
-    user
-        .then(data => res.json(data))
-        .catch(err => res.json(err));
-
+router.post("/createUser",(req,res) => {
+    bcrypt.hash(req.body.password, 10, function(err, hash) {
+        const hashedUser = {
+            name: req.body.name,
+            lastName: req.body.lastName,
+            password: hash,
+            email: req.body.email
+        }
+        const user = service.createdUser(hashedUser);
+        user
+            .then(data => res.json(data))
+            .catch(err => res.json(err));
+    });
 })
 
 router.put("/updateUser", verifyJWT,(req,res) => {

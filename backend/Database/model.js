@@ -18,8 +18,8 @@ const Product = sequelize.define("product", {
 
 const Transaction = sequelize.define("transaction", {
   author: DataTypes.TEXT,
-
-
+  quantity: DataTypes.TEXT,
+  price: DataTypes.INTEGER
 })
 
 
