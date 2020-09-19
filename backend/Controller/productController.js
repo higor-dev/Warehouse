@@ -34,7 +34,7 @@ product.get("/getProduct/:id", verifyJWT,(req,res)=>{
 })
 
 product.post("/createProduct", verifyJWT, async (req,res) => {
-    const user = await User.findOne(req.userId);
+    const user = await User.findOne({where: {id:req.userId}});
     const product = await Product.create(req.body);
     createTransaction(
         {
@@ -58,11 +58,10 @@ product.put("/updateProduct", verifyJWT, async (req,res) => {
     //Balance calculation
     const balanceAfter = (req.body.quantity * req.body.price); 
     const balanceBefore = (fetchedProduct.quantity * fetchedProduct.price);
-    const transactionPrice = balanceAfter - balanceBefore;
+    const transactionPrice = (balanceAfter - balanceBefore) * (-1);
     
     //Quantity calculation
     const transactionQuantity = req.body.quantity - fetchedProduct.quantity;
-    const difference = balanceAfter - balanceBefore;
 
     createTransaction(
         {
@@ -81,21 +80,19 @@ product.put("/updateProduct", verifyJWT, async (req,res) => {
 
 product.delete("/deleteProduct/:id", verifyJWT, async (req,res)=> {
     const fetchedProduct = await Product.findOne({where: {id: req.params.id}})
-    createTransaction(
+    await createTransaction(
         {
             author: fetchedProduct.productName, //Change to user name of a session 
             productId: fetchedProduct.id,
             companyId: 1, //There is only one conpany
-            price:  (product.price * product.quantity), //Transaction price, not product price
-            quantity: product.quantity
+            price:  (fetchedProduct.price * fetchedProduct.quantity), //Transaction price, not product price
+            quantity: (-1)*fetchedProduct.quantity
         }
     );    
-    updateBalance(fetchedProduct, { quantity: 0, price: 0});
+    await updateBalance(fetchedProduct, { quantity: 0, price: 0});
 
-    const product = Product.destroy({where: {id: req.params.id}});
-    product
-        .then(data => res.json(data))
-        .catch(err => res.json(err));
+    const product = await Product.destroy({where: {id: req.params.id}});
+    res.json(product);
     
 })
 
