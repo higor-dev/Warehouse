@@ -30,7 +30,6 @@ app.post("/login", async (req,res) => {
 
 	bcrypt.compare(req.body.password, option.password, function(err, result) {
 
-		console.log(result);
 		if(err) return res.json({message: "Login inválido"});
 		
 		if(result == true){
