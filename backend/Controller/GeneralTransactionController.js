@@ -46,7 +46,7 @@ General.get("/getBalance", verifyJWT, async (req,res)=>{
         res.json(user[0][0]);
 })
 
-General.get("/getProductByType/:type", async (req,res) => {
+General.get("/getProductByType/:type", verifyJWT, async (req,res) => {
     const optional = await getProductByType(req.params.type);
     res.json(optional[0]);
 })
