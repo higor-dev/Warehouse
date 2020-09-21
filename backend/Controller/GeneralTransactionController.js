@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv/config');
 const General = express.Router();
-const { Company, Transaction } = require("../Database/model");
+const { Company, Transaction, Product } = require("../Database/model");
 const { sequelize } = require("../Database/dbConnection");
 const jwt = require("jsonwebtoken");
 
@@ -46,6 +46,11 @@ General.get("/getBalance", verifyJWT, async (req,res)=>{
         res.json(user[0][0]);
 })
 
+General.get("/getProductByType/:type", async (req,res) => {
+    const optional = await getProductByType(req.params.type);
+    res.json(optional[0]);
+})
+
 async function getBalance(){
     const users = await sequelize.query(`SELECT balance from storage.companies where id= 1`);
     return users;
@@ -63,6 +68,10 @@ async function updateBalance(beforeProduct, postproduct){
     const users = await sequelize.query(`UPDATE storage.companies SET balance = ${balance} WHERE id = 1`);
 }
 
+async function getProductByType(type){
+    return await sequelize.query("SELECT * FROM storage.products p WHERE p.`type`" + ` LIKE '%${type}%'`); 
+}
+
 async function createTransaction(transaction){
     const transactionObject = Transaction.create(transaction);;
     transactionObject
@@ -74,7 +83,8 @@ module.exports = {
     General: General,
     getBalance,
     updateBalance,
-    createTransaction
+    createTransaction,
+    getProductByType
 
 
 }

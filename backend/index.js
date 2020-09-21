@@ -10,8 +10,8 @@ const bodyParser = require('body-parser');
 const jwt = require("jsonwebtoken");
 const { User } = require("./Database/model");
 const bcrypt = require('bcrypt');
-
 // const {db_connection} = require("./Database/index");
+
 
 
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -21,7 +21,6 @@ app.use(express.json())
 app.use(router);
 app.use(product);
 app.use(General);
-
 
 
 
