@@ -1,7 +1,7 @@
 import React from 'react';
 
-const UserStats = () => {
+const History = () => {
   return <div></div>;
 };
 
-export default UserStats;
+export default History;

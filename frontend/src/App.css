@@ -140,3 +140,22 @@ a {
     transform: initial;
   }
 }
+
+.navlinkAnime::after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 0.3rem;
+  width: 0%;
+  border: #fff;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: all ease-in-out 1s;
+  animation: anime 0.5s forwards;
+}
+
+@keyframes anime {
+  to {
+    width: 100%;
+  }
+}

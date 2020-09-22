@@ -13,8 +13,11 @@ const UserHeader = () => {
       case '/conta/postar':
         setTitle('Adicionar produto');
         break;
-      case '/conta/estatisticas':
+      case '/conta/estatisticas/':
         setTitle('Estatísticas');
+        break;
+      case '/conta/estatisticas/historico':
+        setTitle('Histórico');
         break;
       default:
         setTitle('Minha conta');

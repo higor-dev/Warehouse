@@ -1,0 +1,13 @@
+.header a {
+  font-family: var(--type-second);
+  font-size: 1.75rem;
+  color: white;
+}
+
+.header ul {
+  display: flex;
+}
+
+.header li a {
+  position: relative;
+}
