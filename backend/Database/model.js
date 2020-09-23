@@ -19,7 +19,8 @@ const Product = sequelize.define("product", {
 const Transaction = sequelize.define("transaction", {
   author: DataTypes.TEXT,
   quantity: DataTypes.TEXT,
-  price: DataTypes.INTEGER
+  price: DataTypes.INTEGER,
+  isApportioned: DataTypes.BOOLEAN
 })
 
 
@@ -27,10 +28,17 @@ const Company = sequelize.define("company", {
   balance: DataTypes.INTEGER,  
 })
 
+const Installment = sequelize.define("installment", {
+  price: DataTypes.INTEGER,
+  paymentDay: DataTypes.DATE,
+  paid: DataTypes.BOOLEAN
+})
+
 //A company has many transactions and many products
 Company.hasMany(Transaction);
 Company.hasMany(Product);
 Product.hasOne(Transaction);
+Transaction.hasMany(Installment);
 
 
 

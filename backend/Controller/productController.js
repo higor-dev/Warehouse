@@ -55,6 +55,8 @@ product.put("/updateProduct", verifyJWT, async (req,res) => {
     const fetchedProduct = await Product.findOne({where: {id: req.body.id}}); //Find product before update
     const product = await Product.update(req.body,{where: {id: req.body.id}}); //update
     
+    //IF instalment > 0 then make a whole new business logic here and return res.json(something)
+
     //Balance calculation
     const balanceAfter = (req.body.quantity * req.body.price); 
     const balanceBefore = (fetchedProduct.quantity * fetchedProduct.price);
@@ -78,22 +80,22 @@ product.put("/updateProduct", verifyJWT, async (req,res) => {
     
 })
 
-product.delete("/deleteProduct/:id", verifyJWT, async (req,res)=> {
-    const fetchedProduct = await Product.findOne({where: {id: req.params.id}})
-    await createTransaction(
-        {
-            author: fetchedProduct.productName, //Change to user name of a session 
-            productId: fetchedProduct.id,
-            companyId: 1, //There is only one conpany
-            price:  (fetchedProduct.price * fetchedProduct.quantity), //Transaction price, not product price
-            quantity: (-1)*fetchedProduct.quantity
-        }
-    );    
-    await updateBalance(fetchedProduct, { quantity: 0, price: 0});
+// product.delete("/deleteProduct/:id", verifyJWT, async (req,res)=> {
+//     const fetchedProduct = await Product.findOne({where: {id: req.params.id}})
+//     await createTransaction(
+//         {
+//             author: fetchedProduct.productName, //Change to user name of a session 
+//             productId: fetchedProduct.id,
+//             companyId: 1, //There is only one conpany
+//             price:  (fetchedProduct.price * fetchedProduct.quantity), //Transaction price, not product price
+//             quantity: (-1)*fetchedProduct.quantity
+//         }
+//     );    
+//     await updateBalance(fetchedProduct, { quantity: 0, price: 0});
 
-    const product = await Product.destroy({where: {id: req.params.id}});
-    res.json(product);
+//     const product = await Product.destroy({where: {id: req.params.id}});
+//     res.json(product);
     
-})
+// })
 
 module.exports = product;
