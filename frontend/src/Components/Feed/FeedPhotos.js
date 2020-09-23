@@ -7,18 +7,18 @@ import Loading from '../Helper/Loading';
 import styles from './FeedPhotos.module.css';
 import Search from '../Helper/Search';
 
-const FeedPhotos = ({ setModalPhoto }) => {
+const FeedPhotos = ({ user, setModalPhoto }) => {
   const { data, loading, error, request } = useFetch();
   const [search, setSearch] = React.useState('');
 
   React.useEffect(() => {
     async function fetchPhotos() {
-      const { url, options } = PHOTO_GET({ page: 1, total: 6, user: 0 });
+      const { url, options } = PHOTO_GET({ page: 1, total: 200, user });
       const { json } = await request(url, options);
       console.log(json);
     }
     fetchPhotos();
-  }, [request]);
+  }, [request, user]);
 
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;

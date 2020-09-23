@@ -1,7 +1,5 @@
 import React from 'react';
 import styles from './History.module.css';
-import { ReactComponent as AdicionarFoto } from '../../Assets/adicionar.svg';
-import { ReactComponent as Filtro } from '../../Assets/filtro.jpg';
 import logo from '../../Assets/filtro.jpg';
 
 const History = () => {
