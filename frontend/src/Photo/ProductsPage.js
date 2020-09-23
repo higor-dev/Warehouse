@@ -9,6 +9,13 @@ const ProductsPage = ({ data }) => {
   const total = select * photo.idade;
   const totalParcelado = total / parcelas;
 
+  React.useEffect(() => {
+    document.body.classList.add(styles.body);
+    return () => {
+      document.body.className = '';
+    };
+  });
+
   console.log(total);
 
   function polir() {
@@ -38,7 +45,7 @@ const ProductsPage = ({ data }) => {
     console.log(formData.get('parcelas'));
   }
   return (
-    <div className="container mainContainer">
+    <div>
       <div className={styles.grid}>
         <img src={photo.src} alt={photo.title} />
         <div className={styles.description}>
@@ -53,56 +60,58 @@ const ProductsPage = ({ data }) => {
             </h2>
           </div>
           <div className={styles.vender}>
-            <h1 className={`${styles.venderTitulo} title3`}>
-              Deseja vender o produto?
-            </h1>
-            <form onSubmit={handleSubmit} className={styles.form}>
-              <label htmlFor="produtos">Selecione a quantidade:</label>
-              <select id="produtos" value={select} onChange={handleChange}>
-                <option disabled value=""></option>
-                <option value="1">{`Um por R$${photo.idade}`} </option>
-                <option value="2">{`Dois por R$${photo.idade * 2}`} </option>
-                <option value="3">{`Três por R$${photo.idade * 3}`} </option>
-                <option value="4">{`Quatro por R$${photo.idade * 4}`} </option>
-                <option value="5">{`Cinco por R$${photo.idade * 5}`} </option>
-                <option value="6">{`Seis por R$${photo.idade * 6}`} </option>
-                <option value="7">{`Sete por R$${photo.idade * 7}`} </option>
-                <option value="8">{`Oito por R$${photo.idade * 8}`} </option>
-              </select>
-              <label className={styles.parcelas} htmlFor="">
-                Selecione o número de parcelas:
-              </label>
-              {total === 0 ? (
-                <select disabled></select>
-              ) : (
-                <select
-                  id="produtos"
-                  value={parcelas}
-                  onChange={handleParcelas}
-                >
+            <div className={styles.formWrap}>
+              <h1 className={`${styles.venderTitulo} title3`}>Vender</h1>
+              <form onSubmit={handleSubmit} className={styles.form}>
+                <label htmlFor="produtos">Selecione a quantidade:</label>
+                <select id="produtos" value={select} onChange={handleChange}>
                   <option disabled value=""></option>
-                  <option value="1">
-                    {`Uma vez de R$${total / 1} sem juros`}{' '}
-                  </option>
-                  <option value="2">
-                    {`Duas vezes de R$${total / 2} sem juros`}{' '}
-                  </option>
-                  <option value="3">
-                    {`Três vezes de R$${total / 3} sem juros`}{' '}
-                  </option>
+                  <option value="1">{`Um por R$${photo.idade}`} </option>
+                  <option value="2">{`Dois por R$${photo.idade * 2}`} </option>
+                  <option value="3">{`Três por R$${photo.idade * 3}`} </option>
                   <option value="4">
-                    {`Quatro vezes de R$${total / 4} sem juros`}{' '}
+                    {`Quatro por R$${photo.idade * 4}`}{' '}
                   </option>
-                  <option value="5">
-                    {`Cinco vezes de R$${total / 5} sem juros`}{' '}
-                  </option>
-                  <option value="6">
-                    {`Seis vezes de R$${total / 6} sem juros`}{' '}
-                  </option>
+                  <option value="5">{`Cinco por R$${photo.idade * 5}`} </option>
+                  <option value="6">{`Seis por R$${photo.idade * 6}`} </option>
+                  <option value="7">{`Sete por R$${photo.idade * 7}`} </option>
+                  <option value="8">{`Oito por R$${photo.idade * 8}`} </option>
                 </select>
-              )}
-              <Button>Vender</Button>
-            </form>
+                <label className={styles.parcelas} htmlFor="">
+                  Selecione o número de parcelas:
+                </label>
+                {total === 0 ? (
+                  <select disabled></select>
+                ) : (
+                  <select
+                    id="produtos"
+                    value={parcelas}
+                    onChange={handleParcelas}
+                  >
+                    <option disabled value=""></option>
+                    <option value="1">
+                      {`Uma vez de R$${total / 1} sem juros`}{' '}
+                    </option>
+                    <option value="2">
+                      {`Duas vezes de R$${total / 2} sem juros`}{' '}
+                    </option>
+                    <option value="3">
+                      {`Três vezes de R$${total / 3} sem juros`}{' '}
+                    </option>
+                    <option value="4">
+                      {`Quatro vezes de R$${total / 4} sem juros`}{' '}
+                    </option>
+                    <option value="5">
+                      {`Cinco vezes de R$${total / 5} sem juros`}{' '}
+                    </option>
+                    <option value="6">
+                      {`Seis vezes de R$${total / 6} sem juros`}{' '}
+                    </option>
+                  </select>
+                )}
+                <Button>Vender</Button>
+              </form>
+            </div>
             <div className={polir() ? styles.total : ''}>
               {parcelas > 1 ? (
                 <h3 className={`${styles.subTotal} title3`}>

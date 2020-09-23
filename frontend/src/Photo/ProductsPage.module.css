@@ -1,12 +1,21 @@
+.body {
+  background: none;
+}
+
 .grid {
   display: grid;
   background: white;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.7fr 2fr;
   border-radius: 10px;
-  padding: 1rem;
+  /* padding: 0.5rem; */
   /* height: 60vh; */
-  border-bottom: 2px solid #ccc;
-  box-shadow: 01px 0px 4px 2px #d8d8d8;
+  /* border-bottom: 2px solid #ccc; */
+  /* box-shadow: 01px 0px 4px 2px #d8d8d8; */
+}
+
+.grid img {
+  height: 100%;
+  object-fit: cover;
 }
 
 .description {
@@ -71,6 +80,7 @@
 .venderTitulo {
   font-size: 2.5rem;
   grid-column: 1 / 4;
+  font-family: Arial, Helvetica, sans-serif;
   /* border-bottom: 2px solid blue; */
 }
 
@@ -104,7 +114,15 @@
 .total {
   background: #efefef;
   border-radius: 6px;
-  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  /* grid-row: 1 / 4; */
+  grid-column: 2 / 4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .subTotal {
@@ -141,4 +159,8 @@
   height: 2px;
   grid-column: 1 / 4;
   background: #ccc;
+}
+
+.formWrap {
+  grid-column: 1 / 2;
 }
