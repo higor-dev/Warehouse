@@ -34,6 +34,11 @@ const Installment = sequelize.define("installment", {
   paid: DataTypes.BOOLEAN
 })
 
+// paidAlready = Campo em transaction do quanto foi pago até agora
+// quando passar o cron e trocar pra paid -> 
+
+// transaction -> price / inteiro -> Persistir de cara pra transaction (HEAD) 
+
 //A company has many transactions and many products
 Company.hasMany(Transaction);
 Company.hasMany(Product);
