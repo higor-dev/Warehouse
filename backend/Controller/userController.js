@@ -15,7 +15,8 @@ router.get("/", verifyJWT,(req,res)=>{
 })
 
 router.get("/getUser", verifyJWT,(req,res)=>{
-    const user = service.getUserById(req.userId);
+
+    const user = service.getUserById({id:req.userId});
     user
         .then(data => res.json(data))
         .catch(err => res.json(err));
