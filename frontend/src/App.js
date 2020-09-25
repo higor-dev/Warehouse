@@ -17,10 +17,10 @@ function App() {
         <UserStorage>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/react-store" element={<Home />} />
+            <ProtectedRouter path="/" element={<Home />} />
+            <ProtectedRouter path="/react-store" element={<Home />} />
             <Route path="/login/*" element={<Login />} />
-            <Route path="foto/:id" element={<Photo />} />
+            <ProtectedRouter path="foto/:id" element={<Photo />} />
             <ProtectedRouter path="/conta/*" element={<User />} />
           </Routes>
           <Footer />
