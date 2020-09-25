@@ -102,3 +102,30 @@ export function PHOTO_DELETE(id) {
     },
   };
 }
+
+// começando a integrar com o Backend do Fábio, em Node.JS.
+
+export function getBalance(body) {
+  return {
+    url: 'localhost:8080/login',
+    options: {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
+export function getUserByToken(token) {
+  return {
+    url: 'localhost:8080/get',
+    options: {
+      method: 'GET',
+      headers: {
+        Authorization: 'x-access-token ' + token,
+      },
+    },
+  };
+}
