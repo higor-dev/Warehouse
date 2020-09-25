@@ -23,14 +23,14 @@ export const UserStorage = ({ children }) => {
     [navigate],
   );
 
-  async function getUser(token) {
-    const { url, options } = USER_GET(token);
-    const response = await fetch(url, options);
-    const json = await response.json();
-    console.log(json);
-    setData(json);
-    setLogin(true);
-  }
+  // async function getUser(token) {
+  //   const { url, options } = USER_GET(token);
+  //   const response = await fetch(url, options);
+  //   const json = await response.json();
+  //   console.log(json);
+  //   setData(json);
+  //   setLogin(true);
+  // }
 
   async function userLogin(username, password) {
     try {
@@ -42,7 +42,7 @@ export const UserStorage = ({ children }) => {
       const { token } = await tokenRes.json();
       console.log({ token });
       window.localStorage.setItem('token', token);
-      await getUser(token);
+      // await getUser(token);
       navigate('/conta');
     } catch (err) {
       setError(err.message);
@@ -62,7 +62,7 @@ export const UserStorage = ({ children }) => {
           const { url, options } = TOKEN_VALIDATE_POST(token);
           const response = await fetch(url, options);
           if (!response.ok) throw new Error('Token inválido.');
-          await getUser(token);
+          // await getUser(token);
         } catch (err) {
           userLogout();
         } finally {
@@ -85,7 +85,6 @@ export const UserStorage = ({ children }) => {
         error,
         loading,
         login,
-
       }}
     >
       {children}
