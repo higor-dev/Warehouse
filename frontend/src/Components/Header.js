@@ -42,7 +42,7 @@ const Header = () => {
           {data ? (
             <div className={styles.wrapper}>
               <Link className={styles.login} to="/conta">
-                <p className={styles.nome}>{data.nome}</p>
+                <p className={styles.nome}>{data.name}</p>
               </Link>
               <div className={styles.dropdownContainer}>
                 <button
