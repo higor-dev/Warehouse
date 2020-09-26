@@ -143,3 +143,15 @@ export function createProduct(formData, token) {
     },
   };
 }
+
+export function getProduct(id, token) {
+  return {
+    url: `http://localhost:8080/getProduct/${id}`,
+    options: {
+      method: 'GET',
+      headers: {
+        'x-access-token': token,
+      },
+    },
+  };
+}

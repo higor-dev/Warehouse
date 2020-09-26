@@ -22,6 +22,7 @@ const UserPhotoPost = () => {
     console.log(data);
   }, [data, navigate]);
 
+
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
