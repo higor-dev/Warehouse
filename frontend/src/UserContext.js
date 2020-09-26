@@ -1,5 +1,5 @@
 import React from 'react';
-import { TOKEN_POST, USER_GET, TOKEN_VALIDATE_POST, getBalance } from './api';
+import { LoginUser, getUserByToken } from './api';
 import { useNavigate } from 'react-router-dom';
 
 export const UserContext = React.createContext();
@@ -25,8 +25,8 @@ export const UserStorage = ({ children }) => {
   );
 
   async function getUser(token) {
-    //const {url, options} = getUserByToken(token);
-    const { url, options } = USER_GET(token);
+    const { url, options } = getUserByToken(token);
+    // const { url, options } = USER_GET(token);
     const response = await fetch(url, options);
     console.log(response);
     const json = await response.json();
@@ -34,13 +34,14 @@ export const UserStorage = ({ children }) => {
     setData(json);
     setLogin(true);
   }
-  //async function userLogin(email, password) {
-  async function userLogin(username, password) {
+  async function userLogin(email, password) {
+    // async function userLogin(username, password) {
     try {
       setError(null);
       setLoading(true);
-      const { url, options } = TOKEN_POST({ username, password });
-      // const {url, options} = getBalance({email, password});
+      // const { url, options } = TOKEN_POST({ username, password });
+      const { url, options } = LoginUser({ email, password });
+      // const { url, options } = getBalance({ email, password });
       const tokenRes = await fetch(url, options);
       if (!tokenRes.ok) throw new Error(`Error: ${tokenRes.statusText}`);
       const { token } = await tokenRes.json();
@@ -63,9 +64,6 @@ export const UserStorage = ({ children }) => {
         try {
           setError(null);
           setLoading(true);
-          const { url, options } = TOKEN_VALIDATE_POST(token);
-          const response = await fetch(url, options);
-          if (!response.ok) throw new Error('Token inválido.');
           await getUser(token);
         } catch (err) {
           userLogout();
