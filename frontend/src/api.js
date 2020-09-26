@@ -129,3 +129,16 @@ export function getUserByToken(token) {
     },
   };
 }
+
+export function createProduct(formData, token) {
+  return {
+    url: 'http://localhost:8080/createProduct',
+    options: {
+      method: 'POST',
+      headers: {
+        'x-access-token': token,
+      },
+      body: formData,
+    },
+  };
+}

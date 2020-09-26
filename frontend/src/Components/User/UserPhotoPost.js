@@ -1,5 +1,5 @@
 import React from 'react';
-import { PHOTO_POST } from '../../api';
+import { createProduct } from '../../api';
 import useFetch from '../../Hooks/useFetch';
 import useForm from '../../Hooks/useForm';
 import Button from '../Forms/Button';
@@ -9,9 +9,10 @@ import Error from '../Helper/Error';
 import { useNavigate } from 'react-router-dom';
 
 const UserPhotoPost = () => {
-  const nome = useForm();
-  const peso = useForm('number');
-  const idade = useForm('number');
+  const product = useForm();
+  const type = useForm();
+  const quantity = useForm('number');
+  const price = useForm('number');
   const [img, setImg] = React.useState({});
   const { data, error, loading, request } = useFetch();
   const navigate = useNavigate();
@@ -24,14 +25,31 @@ const UserPhotoPost = () => {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('img', img.raw);
-    formData.append('nome', nome.value);
-    formData.append('peso', peso.value);
-    formData.append('idade', idade.value);
-    console.log(formData);
+    formData.append('image', img.base64);
+    formData.append('productName', product.value);
+    formData.append('quantity', quantity.value);
+    formData.append('price', price.value);
+    formData.append('type', type.value);
+
+    const obj = {};
+    formData.forEach((value, key) => {
+      obj[key] = value;
+    });
+    const json = JSON.stringify(obj);
+
+    const xesquedele = {
+      "productName": product.value,
+      "image": img.base64,
+      "quantity": quantity.value,
+      "price": price.value,
+      "type": type.value,
+    };
+
+    console.log(xesquedele);
 
     const token = window.localStorage.getItem('token');
-    const { url, options } = PHOTO_POST(formData, token);
+    // const { url, options } = PHOTO_POST(formData, token);
+    const { url, options } = createProduct(json, token);
     request(url, options);
   }
 
@@ -68,44 +86,51 @@ const UserPhotoPost = () => {
             label="Produto"
             maxLength="20"
             type="text"
-            name="nome"
-            {...nome}
+            name="productName"
+            {...product}
+          />
+          <Input
+            label="Categoria"
+            maxLength="20"
+            type="text"
+            name="type"
+            {...type}
           />
           <Input
             label="Quantidade"
             type="number"
             pattern="\d*"
             maxLength="4"
-            name="peso"
-            {...peso}
+            name="quantity"
+            {...quantity}
           />
           <Input
             label="Preço"
             type="number"
             pattern="\d*"
             maxLength="4"
-            name="idade"
-            {...idade}
+            name="price"
+            {...price}
           />
           <input
             className={styles.file}
             type="file"
             name="img"
-            id="img"
+            id="image"
             onChange={handleImgChange}
           />
           {loading ? (
             <Button disabled>Enviando...</Button>
           ) : (
-            <Button>Enviar</Button>
-          )}
+              <Button>Enviar</Button>
+            )}
           <Error error={error} />
         </form>
         <div>
           {img.preview && (
             <div
               className={styles.preview}
-              // style={{ backgroundImage: `url(' ${img.preview}')` }}
+            // style={{ backgroundImage: `url(' ${img.preview}')` }}
             >
               <img src={img.base64} alt="" />
             </div>
