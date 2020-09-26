@@ -26,12 +26,11 @@ product.get("/getAllProducts", verifyJWT,(req,res)=>{
         .catch(err => res.json(err));
 })
 
-product.get("/getProduct/:id", verifyJWT,(req,res)=>{
-    const product = Product.findOne({ where: {id: req.params.id}});
-    product
-        .then(data => res.json(data))
-        .catch(err => res.json(err));
-})
+product.get("/getProduct/:id", verifyJWT, async (req,res)=>{
+    let product = await Product.findOne({ where: {id: req.params.id}});
+    product.dataValues.image = product.dataValues.image.toString('base64');
+    res.json(product);
+}   )
 
 product.post("/createProduct", verifyJWT, async (req,res) => {
     const user = await User.findOne({where: {id:req.userId}});
