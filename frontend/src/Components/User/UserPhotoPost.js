@@ -25,30 +25,21 @@ const UserPhotoPost = () => {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('image', img.base64);
+    formData.append('image', img.raw);
     formData.append('productName', product.value);
     formData.append('quantity', quantity.value);
     formData.append('price', price.value);
     formData.append('type', type.value);
+    formData.append('companyId', 1);
 
     const obj = {};
     formData.forEach((value, key) => {
       obj[key] = value;
     });
     const json = JSON.stringify(obj);
-
-    const xesquedele = {
-      "productName": product.value,
-      "image": img.base64,
-      "quantity": quantity.value,
-      "price": price.value,
-      "type": type.value,
-    };
-
-    console.log(xesquedele);
+    console.log(json)
 
     const token = window.localStorage.getItem('token');
-    // const { url, options } = PHOTO_POST(formData, token);
     const { url, options } = createProduct(json, token);
     request(url, options);
   }
@@ -63,6 +54,7 @@ const UserPhotoPost = () => {
       base64: base64,
     });
   }
+
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {

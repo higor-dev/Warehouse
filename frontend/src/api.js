@@ -136,6 +136,7 @@ export function createProduct(formData, token) {
     options: {
       method: 'POST',
       headers: {
+        'Content-Type': 'application/json',
         'x-access-token': token,
       },
       body: formData,
