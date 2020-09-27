@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import styles from './PhotoContent.module.css';
 import Button from '../Components/Forms/Button';
 import { ReactComponent as Adicionar } from '../Assets/adicionar.svg';
-import { UserContext } from '../UserContext';
 import PhotoDelete from './PhotoDelete';
 import ImageModal from '../Components/Helper/ImageModal';
 
 const PhotoContent = ({ data }) => {
-  const user = React.useContext(UserContext);
 
   console.log(data);
 
@@ -24,7 +22,7 @@ const PhotoContent = ({ data }) => {
               <PhotoDelete id={data.id} />
             </p>
             <h1 className="title2">
-              <Link to={`/foto/${data.id}`}>{data.productName}</Link>
+              <Link to={`/produto/${data.id}`}>{data.productName}</Link>
             </h1>
             <ul className={styles.attributes}>
               <li>

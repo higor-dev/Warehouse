@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAllProducts, PHOTO_GET } from '../../api';
+import { getAllProducts } from '../../api';
 import useFetch from '../../Hooks/useFetch';
 import FeedPhotosItem from './FeedPhotosItem';
 import Error from '../Helper/Error';
@@ -13,7 +13,6 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
 
   React.useEffect(() => {
     async function fetchPhotos() {
-      // const { url, options } = PHOTO_GET({ page: 1, total: 200, user });
       const token = window.localStorage.getItem('token')
       const { url, options } = getAllProducts(token);
       const { json } = await request(url, options);
@@ -45,7 +44,6 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
               setModalPhoto={setModalPhoto}
               key={produto.id}
               produto={produto}
-            // filter={filter}
             />
 
           ))}
