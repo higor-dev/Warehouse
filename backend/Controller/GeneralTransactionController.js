@@ -1,10 +1,10 @@
 const express = require('express');
 require('dotenv/config');
 const General = express.Router();
-const { Company, Transaction, Product } = require("../Database/model");
+const { Company, Transaction, Product, Installment } = require("../Database/model");
 const { sequelize } = require("../Database/dbConnection");
 const jwt = require("jsonwebtoken");
-
+const moment = require('moment');
 
 function verifyJWT(req, res, next){
     var token = req.headers['x-access-token'];
@@ -73,10 +73,25 @@ async function getProductByType(type){
 }
 
 async function createTransaction(transaction){
-    const transactionObject = Transaction.create(transaction);;
-    transactionObject
-        .then(data => {return data})
-        .catch(err => {return err});
+    const transactionObject = await Transaction.create(transaction);
+        
+    moment().format('MMMM Do YYYY, h:mm:ss a');
+    var date = Date.now();
+    var endDateMoment = moment(date); 
+    
+
+    for(i=1; i < transaction.portion; i++){
+        endDateMoment.add(1, 'months');
+        const installment = await Installment.create({
+            transactionId: transactionObject.id,
+            price: transaction.received,
+            paymentDay: endDateMoment.toISOString(),
+            paid: false
+        })       
+         
+    }
+
+    return transactionObject;
 }
 
 module.exports = {
