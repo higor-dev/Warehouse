@@ -155,3 +155,14 @@ export function getProduct(id, token) {
     },
   };
 }
+export function getAllProducts(token) {
+  return {
+    url: `http://localhost:8080/getAllProducts`,
+    options: {
+      method: 'GET',
+      headers: {
+        'x-access-token': token,
+      },
+    },
+  };
+}
