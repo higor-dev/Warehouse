@@ -26,6 +26,10 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
   if (loading) return <Loading />;
   if (data) {
     console.log(data)
+
+    const filter = data.filter(filteredProduct => {
+      return filteredProduct.productName.toLowerCase().includes(search.toLowerCase())
+    })
     return (
       <>
         <Search
@@ -36,7 +40,7 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
           }}
         />
         <ul className={`${styles.feed} animeLeft`}>
-          {data.map((produto, index) => (
+          {filter.map((produto, index) => (
             < FeedPhotosItem
               setModalPhoto={setModalPhoto}
               key={produto.id}
