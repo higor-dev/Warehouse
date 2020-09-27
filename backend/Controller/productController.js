@@ -27,8 +27,7 @@ product.get("/getAllProducts", verifyJWT,(req,res)=>{
 })
 
 product.get("/getProduct/:id", verifyJWT, async (req,res)=>{
-    let product = await Product.findOne({ where: {id: req.params.id}});
-    product.dataValues.image = product.dataValues.image.toString('base64');
+    const product = await Product.findOne({ where: {id: req.params.id}});
     res.json(product);
 }   )
 
@@ -41,7 +40,10 @@ product.post("/createProduct", verifyJWT, async (req,res) => {
             productId: product.id,
             companyId: 1, //There is only one company
             price:  (product.price * product.quantity *(-1)), //Transaction price, not product price
-            quantity: product.quantity
+            quantity: product.quantity,
+            isApportioned: req.body.isApportioned,
+            portion: req.body.portion,
+            received: (product.price * product.quantity *(-1))/req.body.portion
         }
     );    
     updateBalance( { quantity: 0, price: 0}, product.dataValues);

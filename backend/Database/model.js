@@ -11,16 +11,18 @@ const User = sequelize.define("user", {
 const Product = sequelize.define("product", {
   productName: DataTypes.TEXT,
   quantity: DataTypes.TEXT,
-  price: DataTypes.INTEGER,
+  price: DataTypes.DOUBLE,
   type: DataTypes.TEXT,
-  image: DataTypes.BLOB
+  image: DataTypes.TEXT('long')
 })
 
 const Transaction = sequelize.define("transaction", {
   author: DataTypes.TEXT,
-  quantity: DataTypes.TEXT,
-  price: DataTypes.INTEGER,
-  isApportioned: DataTypes.BOOLEAN
+  quantity: DataTypes.INTEGER,
+  price: DataTypes.DOUBLE,
+  received: DataTypes.DOUBLE,
+  isApportioned: DataTypes.BOOLEAN,
+  portion: DataTypes.INTEGER
 })
 
 
@@ -29,7 +31,7 @@ const Company = sequelize.define("company", {
 })
 
 const Installment = sequelize.define("installment", {
-  price: DataTypes.INTEGER,
+  price: DataTypes.DOUBLE,
   paymentDay: DataTypes.DATE,
   paid: DataTypes.BOOLEAN
 })
@@ -52,5 +54,6 @@ module.exports = {
     User,
     Product,
     Company,
-    Transaction
+    Transaction,
+    Installment
 }
