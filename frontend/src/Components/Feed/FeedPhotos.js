@@ -13,7 +13,7 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
 
   React.useEffect(() => {
     async function fetchPhotos() {
-      const token = window.localStorage.getItem('token')
+      const token = window.localStorage.getItem('token');
       const { url, options } = getAllProducts(token);
       const { json } = await request(url, options);
       console.log(json);
@@ -24,11 +24,13 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;
   if (data) {
-    console.log(data)
+    console.log(data);
 
-    const filter = data.filter(filteredProduct => {
-      return filteredProduct.productName.toLowerCase().includes(search.toLowerCase())
-    })
+    const filter = data.filter((filteredProduct) => {
+      return filteredProduct.productName
+        .toLowerCase()
+        .includes(search.toLowerCase());
+    });
     return (
       <>
         <Search
@@ -39,19 +41,17 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
           }}
         />
         <ul className={`${styles.feed} animeLeft`}>
-          {filter.map((produto, index) => (
-            < FeedPhotosItem
+          {filter.reverse().map((produto, index) => (
+            <FeedPhotosItem
               setModalPhoto={setModalPhoto}
               key={produto.id}
               produto={produto}
             />
-
           ))}
         </ul>
       </>
     );
-  }
-  else return null;
+  } else return null;
 };
 
 export default FeedPhotos;

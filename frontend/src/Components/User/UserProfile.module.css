@@ -8,7 +8,10 @@
   /* margin-right: 3rem; */
 }
 .foto img {
-  border-radius: 50%;
+  border-radius: 20%;
+  width: 500px;
+  height: 300px;
+  object-fit: contain;
 }
 
 .info {

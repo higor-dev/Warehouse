@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './UserProfile.module.css';
 import fotoSidnei from '../../Assets/Sidnei.jpg';
-import fotoJoao from '../../Assets/João.jpg';
+import fotoJoao from '../../Assets/João.svg';
 
 const UserProfile = ({ data }) => {
   if (data) {
