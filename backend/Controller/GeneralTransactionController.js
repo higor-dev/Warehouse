@@ -51,6 +51,37 @@ General.get("/getProductByType/:type", verifyJWT, async (req,res) => {
     res.json(optional[0]);
 })
 
+
+General.get("/getStatistics", async (req, res) => {
+    const transaction= await sequelize.query("select * from storage.transactions t");
+    const installment = await sequelize.query("select * from storage.installments i");
+    
+    transaction[0].map((value,index)=> {
+        value.installments = [];
+    })
+
+    //Sempre terá installment >= transaction
+
+    installment[0].map((value,index) => {
+        
+        for(i=0;i<transaction[0].length;i++){
+            
+            if(installment[0][index].transactionId == transaction[0][i].id){
+                
+                transaction[0][i].installments.push(installment[0][index]);
+                
+            
+            }
+        }
+    
+    })
+
+
+    
+    res.json(transaction[0])
+
+})
+
 async function getBalance(){
     const users = await sequelize.query(`SELECT balance from storage.companies where id= 1`);
     return users;
@@ -93,6 +124,9 @@ async function createTransaction(transaction){
 
     return transactionObject;
 }
+
+
+
 
 module.exports = {
     General: General,
