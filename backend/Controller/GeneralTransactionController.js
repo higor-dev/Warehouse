@@ -52,7 +52,7 @@ General.get("/getProductByType/:type", verifyJWT, async (req,res) => {
 })
 
 
-General.get("/getStatistics", async (req, res) => {
+General.get("/getStatistics",verifyJWT, async (req, res) => {
     const transaction= await sequelize.query("select * from storage.transactions t");
     const installment = await sequelize.query("select * from storage.installments i");
     

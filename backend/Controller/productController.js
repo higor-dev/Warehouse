@@ -55,9 +55,22 @@ product.post('/createProduct', verifyJWT, async (req, res) => {
 });
 
 product.put('/updateProduct', verifyJWT, async (req, res) => {
+  
+
+
   const user = await User.findOne({ where: { id: req.userId } }); //Find author
   const fetchedProduct = await Product.findOne({ where: { id: req.body.id } }); //Find product before update
-  const product = await Product.update(req.body, {
+  
+  const objectoToPersist = {
+    id: req.body.id,
+    productName: req.body.productName,
+    quantity: fetchedProduct.quantity - req.body.quantity,
+    type: req.body.type,
+    image: req.body.image,
+    companyId: req.body.companyId
+    }  
+  
+  const product = await Product.update(objectoToPersist, {
     where: { id: req.body.id },
   }); //update
 
