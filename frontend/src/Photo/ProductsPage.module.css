@@ -103,7 +103,8 @@
 }
 
 .form button {
-  margin-top: 1rem;
+  margin-top: 10rem;
+  width: 60%;
 }
 
 .parcelas {

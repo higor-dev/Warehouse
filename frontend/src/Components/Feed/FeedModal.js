@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './FeedModal.module.css';
 import useFetch from '../../Hooks/useFetch';
-import { PROD_GET } from '../../api';
+import { getProduct } from '../../api';
 import Error from '../Helper/Error';
 import Loading from '../Helper/Loading';
 import PhotoContent from '../../Photo/PhotoContent';
 
-const FeedModal = ({ photo, setModalPhoto }) => {
+const FeedModal = ({ product, setModalPhoto }) => {
   const { data, error, loading, request } = useFetch();
 
   function handleOutside(event) {
@@ -16,9 +16,10 @@ const FeedModal = ({ photo, setModalPhoto }) => {
   }
 
   React.useEffect(() => {
-    const { url, options } = PROD_GET(photo.id);
+    const token = window.localStorage.getItem('token')
+    const { url, options } = getProduct(product.id, token);
     request(url, options);
-  }, [photo, request]);
+  }, [product, request]);
 
   return (
     <div onClick={handleOutside} className={styles.modal}>

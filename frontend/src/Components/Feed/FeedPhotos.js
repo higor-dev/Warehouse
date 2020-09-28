@@ -1,5 +1,5 @@
 import React from 'react';
-import { PHOTO_GET } from '../../api';
+import { getAllProducts } from '../../api';
 import useFetch from '../../Hooks/useFetch';
 import FeedPhotosItem from './FeedPhotosItem';
 import Error from '../Helper/Error';
@@ -13,7 +13,8 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
 
   React.useEffect(() => {
     async function fetchPhotos() {
-      const { url, options } = PHOTO_GET({ page: 1, total: 200, user });
+      const token = window.localStorage.getItem('token');
+      const { url, options } = getAllProducts(token);
       const { json } = await request(url, options);
       console.log(json);
     }
@@ -23,10 +24,13 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;
   if (data) {
-    const filter = data.filter((produto) => {
-      return produto.title.toLowerCase().includes(search.toLowerCase());
-    });
+    console.log(data);
 
+    const filter = data.filter((filteredProduct) => {
+      return filteredProduct.productName
+        .toLowerCase()
+        .includes(search.toLowerCase());
+    });
     return (
       <>
         <Search
@@ -37,12 +41,11 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
           }}
         />
         <ul className={`${styles.feed} animeLeft`}>
-          {filter.map((photo, index) => (
+          {filter.reverse().map((produto, index) => (
             <FeedPhotosItem
               setModalPhoto={setModalPhoto}
-              key={photo.id}
-              photo={photo}
-              filter={filter}
+              key={produto.id}
+              produto={produto}
             />
           ))}
         </ul>

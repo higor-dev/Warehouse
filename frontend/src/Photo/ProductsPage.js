@@ -3,11 +3,10 @@ import Button from '../Components/Forms/Button';
 import styles from './ProductsPage.module.css';
 
 const ProductsPage = ({ data }) => {
-  const { photo } = data;
-  const [select, setSelect] = React.useState('');
-  const [parcelas, setParcelas] = React.useState('');
-  const total = select * photo.idade;
-  const totalParcelado = total / parcelas;
+  // const [select, setSelect] = React.useState('');
+  // const [parcelas, setParcelas] = React.useState('');
+  // const total = select * data.price;
+  // const totalParcelado = total / parcelas;
 
   React.useEffect(() => {
     document.body.classList.add(styles.body);
@@ -16,66 +15,64 @@ const ProductsPage = ({ data }) => {
     };
   });
 
-  console.log(total);
+  // console.log(total);
 
-  function polir() {
-    if (totalParcelado > 0 && totalParcelado !== Infinity) {
-      return totalParcelado;
-    }
-  }
+  // function polir() {
+  //   if (totalParcelado > 0 && totalParcelado !== Infinity) {
+  //     return totalParcelado;
+  //   }
+  // }
 
-  if (totalParcelado > 0 && totalParcelado !== Infinity) {
-    console.log(totalParcelado);
-  }
+  // if (totalParcelado > 0 && totalParcelado !== Infinity) {
+  //   console.log(totalParcelado);
+  // }
 
-  function handleChange({ target }) {
-    setSelect(target.value);
-  }
+  // function handleChange({ target }) {
+  //   setSelect(target.value);
+  // }
 
-  function handleParcelas({ target }) {
-    setParcelas(target.value);
-  }
+  // function handleParcelas({ target }) {
+  //   setParcelas(target.value);
+  // }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('total', totalParcelado);
-    formData.append('parcelas', parcelas);
-    console.log(formData.get('total'));
-    console.log(formData.get('parcelas'));
-  }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append('total', totalParcelado);
+  //   formData.append('parcelas', parcelas);
+  //   console.log(formData.get('total'));
+  //   console.log(formData.get('parcelas'));
+  // }
   return (
     <div>
       <div className={styles.grid}>
-        <img src={photo.src} alt={photo.title} />
+        <img src={data.image} alt={data.productName} />
         <div className={styles.description}>
-          <h1 className="title">{photo.title}</h1>
-          <span className={styles.id}>Product ID: {photo.id}</span>
+          <h1 className="title">{data.productName}</h1>
+          <span className={styles.id}>Product ID: {data.id}</span>
           <div>
-            <h2 className={styles.preco}>Preço: R${photo.idade}</h2>
+            <h2 className={styles.preco}>Preço: R${data.price}</h2>
             <h2 className={styles.quantidade}>
-              Quantidade em estoque: {photo.peso}{' '}
+              Quantidade em estoque: {data.quantity}{' '}
               <button className={styles.adicionar}>+</button>
               <button className={styles.remover}>-</button>
             </h2>
           </div>
           <div className={styles.vender}>
             <div className={styles.formWrap}>
-              <h1 className={`${styles.venderTitulo} title3`}>Vender</h1>
-              <form onSubmit={handleSubmit} className={styles.form}>
-                <label htmlFor="produtos">Selecione a quantidade:</label>
+              {/* <h1 className={`${styles.venderTitulo} title3`}>Vender</h1> */}
+              <form className={styles.form}>
+                {/* <label htmlFor="produtos">Selecione a quantidade:</label>
                 <select id="produtos" value={select} onChange={handleChange}>
                   <option disabled value=""></option>
-                  <option value="1">{`Um por R$${photo.idade}`} </option>
-                  <option value="2">{`Dois por R$${photo.idade * 2}`} </option>
-                  <option value="3">{`Três por R$${photo.idade * 3}`} </option>
-                  <option value="4">
-                    {`Quatro por R$${photo.idade * 4}`}{' '}
-                  </option>
-                  <option value="5">{`Cinco por R$${photo.idade * 5}`} </option>
-                  <option value="6">{`Seis por R$${photo.idade * 6}`} </option>
-                  <option value="7">{`Sete por R$${photo.idade * 7}`} </option>
-                  <option value="8">{`Oito por R$${photo.idade * 8}`} </option>
+                  <option value="1">{`Um por R$${data.price}`} </option>
+                  <option value="2">{`Dois por R$${data.price * 2}`} </option>
+                  <option value="3">{`Três por R$${data.price * 3}`} </option>
+                  <option value="4">{`Quatro por R$${data.price * 4}`} </option>
+                  <option value="5">{`Cinco por R$${data.price * 5}`} </option>
+                  <option value="6">{`Seis por R$${data.price * 6}`} </option>
+                  <option value="7">{`Sete por R$${data.price * 7}`} </option>
+                  <option value="8">{`Oito por R$${data.price * 8}`} </option>
                 </select>
                 <label className={styles.parcelas} htmlFor="">
                   Selecione o número de parcelas:
@@ -108,11 +105,11 @@ const ProductsPage = ({ data }) => {
                       {`Seis vezes de R$${total / 6} sem juros`}{' '}
                     </option>
                   </select>
-                )}
+                )} */}
                 <Button>Vender</Button>
               </form>
             </div>
-            <div className={polir() ? styles.total : ''}>
+            {/* <div className={polir() ? styles.total : ''}>
               {parcelas > 1 ? (
                 <h3 className={`${styles.subTotal} title3`}>
                   {polir() && `Valor parcelado: R$${polir()}`}
@@ -132,7 +129,7 @@ const ProductsPage = ({ data }) => {
                   {polir() && `Valor em ${parcelas} meses: R$${total}`}
                 </h3>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.descricao}>

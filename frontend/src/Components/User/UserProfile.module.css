@@ -1,0 +1,38 @@
+.profile {
+  display: grid;
+  grid-template-columns: 300px auto;
+  /* grid-template-rows: 1fr 1fr; */
+}
+
+.foto {
+  /* margin-right: 3rem; */
+}
+.foto img {
+  border-radius: 20%;
+  width: 500px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.info {
+  text-align: center;
+  margin-left: 5rem;
+}
+
+.info h1 {
+  font-family: var(--type-second);
+  line-height: 1;
+  font-size: 3rem;
+  margin: 0.5rem 0;
+  z-index: 1;
+  color: #fff;
+}
+
+.wrapper::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 4px;
+}
