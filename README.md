@@ -1,4 +1,4 @@
-This project was made by Higor Pereira(front-end, design and back-end) and Fábio Bocampagni(backend).
+This project was made by Higor Pereira(front-end and design) and Fábio Bocampagni(backend).
 
 ## Features:
 
