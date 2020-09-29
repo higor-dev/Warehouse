@@ -27,7 +27,7 @@ function verifyJWT(req, res, next) {
   });
 }
 
-product.get('/getAllProducts', (req, res) => {
+product.get('/getAllProducts', verifyJWT, (req, res) => {
   const allproducts = Product.findAll();
   allproducts.then((data) => res.json(data)).catch((err) => res.json(err));
 });
@@ -54,11 +54,11 @@ product.post('/createProduct', verifyJWT, async (req, res) => {
   res.json(product);
 });
 
-product.put('/updateProduct', async (req, res) => {
+product.put('/updateProduct', verifyJWT, async (req, res) => {
   
 
 
-  // const user = await User.findOne({ where: { id: req.userId } }); //Find author
+  const user = await User.findOne({ where: { id: req.userId } }); //Find author
   const fetchedProduct = await Product.findOne({ where: { id: req.body.id } }); //Find product before update
   
   const objectoToPersist = {
@@ -76,7 +76,7 @@ product.put('/updateProduct', async (req, res) => {
 
 
   createTransaction({
-    // author: `${user.name} ${user.lastName}`,
+    author: `${user.name} ${user.lastName}`,
     productId: fetchedProduct.id,
     companyId: 1, //There is only one company
     price: req.body.quantity * req.body.price, //Transaction price, not product price
