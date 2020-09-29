@@ -111,8 +111,8 @@ async function createTransaction(transaction){
     var endDateMoment = moment(date); 
     
 
-    for(i=1; i < transaction.portion; i++){
-        endDateMoment.add(1, 'months');
+    for(i=0; i < transaction.portion; i++){
+        endDateMoment.add(i, 'months');
         const installment = await Installment.create({
             transactionId: transactionObject.id,
             price: transaction.received,

@@ -27,7 +27,7 @@ function verifyJWT(req, res, next) {
   });
 }
 
-product.get('/getAllProducts', verifyJWT, (req, res) => {
+product.get('/getAllProducts', (req, res) => {
   const allproducts = Product.findAll();
   allproducts.then((data) => res.json(data)).catch((err) => res.json(err));
 });
@@ -73,8 +73,6 @@ product.put('/updateProduct', verifyJWT, async (req, res) => {
   const product = await Product.update(objectoToPersist, {
     where: { id: req.body.id },
   }); //update
-
-  //IF instalment > 0 then make a whole new business logic here and return res.json(something)
 
   //Balance calculation
   const balanceAfter = req.body.quantity * req.body.price;
