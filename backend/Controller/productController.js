@@ -92,7 +92,7 @@ product.put('/sellProduct', verifyJWT, async (req, res) => {
   res.json(await Product.findOne({ where: { id: req.body.id } }));
 });
 
-product.put("/buyProduct", verifyJWT, (req,res) => {
+product.put("/buyProduct", verifyJWT, async (req,res) => {
 
   const user = await User.findOne({ where: { id: req.userId } }); //Find author
   const fetchedProduct = await Product.findOne({ where: { id: req.body.id } }); //Find product before update

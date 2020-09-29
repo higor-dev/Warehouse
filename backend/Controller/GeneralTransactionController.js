@@ -5,6 +5,7 @@ const { Company, Transaction, Product, Installment } = require("../Database/mode
 const { sequelize } = require("../Database/dbConnection");
 const jwt = require("jsonwebtoken");
 const moment = require('moment');
+const product = require('./productController');
 
 function verifyJWT(req, res, next){
     var token = req.headers['x-access-token'];
@@ -52,12 +53,16 @@ General.get("/getProductByType/:type", verifyJWT, async (req,res) => {
 })
 
 
-General.get("/getStatistics",verifyJWT, async (req, res) => {
+General.get("/getStatistics", async (req, res) => {
     const transaction= await sequelize.query("select * from storage.transactions t");
     const installment = await sequelize.query("select * from storage.installments i");
+    const products = await sequelize.query("select p.id, p.productName, p.quantity, p.price, p.`type` , p.image from storage.products p, storage.transactions t where t.productId = p.id")
     
     transaction[0].map((value,index)=> {
-        value.installments = [];
+        value.installments = []; 
+        if(products[0][index].id == value.productId){
+            value.product = products[0][index];
+        }
     })
 
     //Sempre terá installment >= transaction
