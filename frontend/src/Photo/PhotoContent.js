@@ -7,9 +7,6 @@ import PhotoDelete from './PhotoDelete';
 import ImageModal from '../Components/Helper/ImageModal';
 
 const PhotoContent = ({ data }) => {
-
-  console.log(data);
-
   return (
     <>
       <div className={styles.photo}>
@@ -17,11 +14,11 @@ const PhotoContent = ({ data }) => {
           <ImageModal src={data.image} alt={data.productName} />
         </div>
         <div className={styles.details}>
-          <div>
+          <div className={styles.flexSla}>
             <p className={styles.author}>
               <PhotoDelete id={data.id} />
             </p>
-            <h1 className="title2">
+            <h1 className={`${styles.titleNovo} title2`}>
               <Link to={`/produto/${data.id}`}>{data.productName}</Link>
             </h1>
             <ul className={styles.attributes}>
@@ -47,7 +44,6 @@ const PhotoContent = ({ data }) => {
         </div>
       </div>
     </>
-
   );
 };
 

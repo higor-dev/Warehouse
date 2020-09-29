@@ -9,6 +9,10 @@ const types = {
     regex: /^\d+$/,
     message: 'Utilize apenas números.',
   },
+  money: {
+    regex: /^\$?[\d,]+(\.\d*)?$/,
+    message: 'Utilize um valor válido.',
+  },
 };
 
 const useForm = (type) => {
