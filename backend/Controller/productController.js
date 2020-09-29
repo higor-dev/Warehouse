@@ -54,11 +54,11 @@ product.post('/createProduct', verifyJWT, async (req, res) => {
   res.json(product);
 });
 
-product.put('/updateProduct', verifyJWT, async (req, res) => {
+product.put('/updateProduct', async (req, res) => {
   
 
 
-  const user = await User.findOne({ where: { id: req.userId } }); //Find author
+  // const user = await User.findOne({ where: { id: req.userId } }); //Find author
   const fetchedProduct = await Product.findOne({ where: { id: req.body.id } }); //Find product before update
   
   const objectoToPersist = {
@@ -74,21 +74,19 @@ product.put('/updateProduct', verifyJWT, async (req, res) => {
     where: { id: req.body.id },
   }); //update
 
-  //Balance calculation
-  const balanceAfter = req.body.quantity * req.body.price;
-  const balanceBefore = fetchedProduct.quantity * fetchedProduct.price;
-  const transactionPrice = (balanceAfter - balanceBefore) * -1;
-
-  //Quantity calculation
-  const transactionQuantity = req.body.quantity - fetchedProduct.quantity;
 
   createTransaction({
-    author: `${user.name} ${user.lastName}`,
+    // author: `${user.name} ${user.lastName}`,
     productId: fetchedProduct.id,
-    companyId: 1, //There is only one conpany
-    price: transactionPrice,
-    quantity: transactionQuantity,
+    companyId: 1, //There is only one company
+    price: req.body.quantity * req.body.price, //Transaction price, not product price
+    quantity: req.body.quantity,
+    isApportioned: req.body.isApportioned,
+    portion: req.body.portion,
+    received: (req.body.price * req.body.quantity) / req.body.portion
   });
+
+
   updateBalance(fetchedProduct, req.body);
 
   res.json(await Product.findOne({ where: { id: req.body.id } }));

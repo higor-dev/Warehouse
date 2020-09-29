@@ -109,10 +109,15 @@ async function createTransaction(transaction){
     moment().format('MMMM Do YYYY, h:mm:ss a');
     var date = Date.now();
     var endDateMoment = moment(date); 
-    
+    const installment = await Installment.create({
+        transactionId: transactionObject.id,
+        price: transaction.received,
+        paymentDay: endDateMoment.toISOString(),
+        paid: true
+    })  
 
-    for(i=0; i < transaction.portion; i++){
-        endDateMoment.add(i, 'months');
+    for(i=1; i < transaction.portion; i++){
+        endDateMoment.add(1, 'months');
         const installment = await Installment.create({
             transactionId: transactionObject.id,
             price: transaction.received,
