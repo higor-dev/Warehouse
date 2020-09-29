@@ -10,7 +10,7 @@ const User = sequelize.define("user", {
 
 const Product = sequelize.define("product", {
   productName: DataTypes.TEXT,
-  quantity: DataTypes.TEXT,
+  quantity: DataTypes.INTEGER,
   price: DataTypes.DOUBLE,
   type: DataTypes.TEXT,
   image: DataTypes.TEXT('long')
@@ -44,8 +44,8 @@ const Installment = sequelize.define("installment", {
 //A company has many transactions and many products
 Company.hasMany(Transaction);
 Company.hasMany(Product);
-Product.hasOne(Transaction);
 Transaction.hasMany(Installment);
+Transaction.belongsTo(Product);
 
 
 
