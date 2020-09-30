@@ -27,7 +27,7 @@ const Transaction = sequelize.define("transaction", {
 
 
 const Company = sequelize.define("company", {
-  balance: DataTypes.INTEGER,  
+  balance: DataTypes.DOUBLE,  
 })
 
 const Installment = sequelize.define("installment", {
