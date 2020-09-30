@@ -23,6 +23,16 @@
   padding: 2rem 2rem 0 2rem;
 }
 
+.flexSla {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.titleNovo a {
+  flex-wrap: wrap;
+  word-break: break-all;
+}
+
 .img {
   grid-row: 1 / 4;
   object-position: center;

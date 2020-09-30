@@ -15,8 +15,7 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
     async function fetchPhotos() {
       const token = window.localStorage.getItem('token');
       const { url, options } = getAllProducts(token);
-      const { json } = await request(url, options);
-      console.log(json);
+      request(url, options);
     }
     fetchPhotos();
   }, [request, user]);
@@ -24,8 +23,6 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;
   if (data) {
-    console.log(data);
-
     const filter = data.filter((filteredProduct) => {
       return filteredProduct.productName
         .toLowerCase()

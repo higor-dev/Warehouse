@@ -144,6 +144,34 @@ export function createProduct(formData, token) {
   };
 }
 
+export function sellProduct(formData, token) {
+  return {
+    url: 'http://localhost:8080/sellProduct',
+    options: {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+      },
+      body: formData,
+    },
+  };
+}
+
+export function buyProduct(formData, token) {
+  return {
+    url: 'http://localhost:8080/buyProduct',
+    options: {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+      },
+      body: formData,
+    },
+  };
+}
+
 export function getProduct(id, token) {
   return {
     url: `http://localhost:8080/getProduct/${id}`,

@@ -12,7 +12,7 @@ const UserPhotoPost = () => {
   const product = useForm();
   const type = useForm();
   const quantity = useForm('number');
-  const price = useForm('number');
+  const price = useForm('money');
   // const [img, setImg] = React.useState({});
   const image = useForm();
   const { data, error, loading, request } = useFetch();
@@ -20,17 +20,15 @@ const UserPhotoPost = () => {
 
   React.useEffect(() => {
     if (data) navigate('/conta');
-    console.log(data);
   }, [data, navigate]);
-
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
     formData.append('image', image.value);
     formData.append('productName', product.value);
-    formData.append('quantity', quantity.value);
-    formData.append('price', price.value);
+    formData.append('quantity', +quantity.value);
+    formData.append('price', Number(price.value.replace(/[$,]/g, '.')));
     formData.append('type', type.value);
     formData.append('companyId', 1);
 
@@ -39,7 +37,7 @@ const UserPhotoPost = () => {
       obj[key] = value;
     });
     const json = JSON.stringify(obj);
-    console.log(json)
+    console.log(json);
 
     const token = window.localStorage.getItem('token');
     const { url, options } = createProduct(json, token);
@@ -83,12 +81,7 @@ const UserPhotoPost = () => {
             name="productName"
             {...product}
           />
-          <Input
-            label="Imagem"
-            type="text"
-            name="image"
-            {...image}
-          />
+          <Input label="Imagem" type="text" name="image" {...image} />
           <Input
             label="Categoria"
             maxLength="20"
@@ -104,14 +97,7 @@ const UserPhotoPost = () => {
             name="quantity"
             {...quantity}
           />
-          <Input
-            label="Preço"
-            type="number"
-            pattern="\d*"
-            maxLength="4"
-            name="price"
-            {...price}
-          />
+          <Input label="Preço" type="text" name="price" {...price} />
           {/* <input
             className={styles.file}
             type="file"
@@ -122,8 +108,8 @@ const UserPhotoPost = () => {
           {loading ? (
             <Button disabled>Enviando...</Button>
           ) : (
-              <Button>Enviar</Button>
-            )}
+            <Button>Enviar</Button>
+          )}
           <Error error={error} />
         </form>
         {/* <div>
