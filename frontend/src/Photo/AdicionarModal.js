@@ -10,7 +10,6 @@ import styles from './AdicionarModal.module.css';
 const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
   const quantidade = useForm('number');
   const { loading, request } = useFetch();
-  const navigate = useNavigate();
   const quantidadeNumero = +quantidade.value;
 
   function handleOutside(event) {
@@ -23,7 +22,7 @@ const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (quantidade) {
+    if (quantidadeNumero) {
       const formData = new FormData();
       formData.append('id', data.id);
       formData.append('productName', data.productName);
@@ -33,21 +32,30 @@ const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
       formData.append('companyId', 1);
       formData.append('image', data.image);
       formData.append('isApportioned', 0);
-
       formData.append('portion', 1);
 
       const obj = {};
       formData.forEach((value, key) => {
         obj[key] = value;
       });
-      const json = JSON.stringify(obj);
 
-      console.log(json);
+      //prettier-ignore
+      const oi = JSON.stringify({
+        'id': data.id,
+        'productName': data.productName,
+        'quantity': parseFloat(+quantidade.value),
+        'price': data.price,
+        'type': data.type,
+        'companyId': 1,
+        'image': data.image,
+        'isApportioned': 0,
+        'portion': 1,
+      })
 
       const token = window.localStorage.getItem('token');
-      const { url, options } = buyProduct(json, token);
+      const { url, options } = buyProduct(oi, token);
       request(url, options);
-      // window.location.reload();
+      window.location.reload();
     } else {
       return alert('Você deve preencher todos os campos.');
     }

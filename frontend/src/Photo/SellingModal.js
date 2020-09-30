@@ -6,7 +6,6 @@ import Button from '../Components/Forms/Button';
 import { sellProduct } from '../api';
 import useFetch from '../Hooks/useFetch';
 import Error from '../Components/Helper/Error';
-import { useNavigate } from 'react-router-dom';
 
 const SellingModal = ({ data, modal, setModal }) => {
   const { loading, error, request } = useFetch();
@@ -17,8 +16,6 @@ const SellingModal = ({ data, modal, setModal }) => {
   const corrigirVenda = Number(formatarVenda.replace(/[$,]/g, '.'));
   const total = +valorQuantidade.value * corrigirVenda;
   const totalParcelado = total / parcelas;
-
-  const navigate = useNavigate();
 
   console.log(total);
 
@@ -31,62 +28,25 @@ const SellingModal = ({ data, modal, setModal }) => {
   function handleSubmit(e) {
     e.preventDefault();
     if (valorVenda && valorQuantidade && parcelas) {
-      const formData = new FormData();
-      formData.append('id', data.id);
-      formData.append('productName', data.productName);
-      formData.append('quantity', valorQuantidade.value);
-      formData.append('price', Number(valorVenda.value.replace(/[$,]/g, '.')));
-      formData.append('type', data.type);
-      formData.append('companyId', 1);
-      formData.append('image', data.image);
-      parcelas === 1
-        ? formData.append('isApportioned', 0)
-        : formData.append('isApportioned', 1);
-
-      formData.append('portion', parcelas);
-
-      const obj = {};
-      formData.forEach((value, key) => {
-        obj[key] = value;
-      });
-      const json = JSON.stringify(obj);
-
-      console.log(json);
-
+      //prettier-ignore
+      const oi = JSON.stringify({
+      'id': data.id,
+      'productName': data.productName,
+      'quantity': valorQuantidade.value,
+      'price': Number(valorVenda.value.replace(/[$,]/g, '.')),
+      'type': data.type,
+      'companyId': 1,
+      'image': data.image,
+      'isApportioned': Number(`${+parcelas === 1 ? 0 : 1}`),
+      'portion': +parcelas,
+    })
       const token = window.localStorage.getItem('token');
-      const { url, options } = sellProduct(json, token);
+      const { url, options } = sellProduct(oi, token);
       request(url, options);
-      navigate('/');
+      window.location.reload();
     } else {
       return alert('Você deve preencher todos os campos.');
     }
-
-    const formData = new FormData();
-    formData.append('id', data.id);
-    formData.append('productName', data.productName);
-    formData.append('quantity', valorQuantidade.value);
-    formData.append('price', Number(valorVenda.value.replace(/[$,]/g, '.')));
-    formData.append('type', data.type);
-    formData.append('companyId', 1);
-    formData.append('image', data.image);
-    parcelas === 1
-      ? formData.append('isApportioned', 0)
-      : formData.append('isApportioned', 1);
-
-    formData.append('portion', parcelas);
-
-    const obj = {};
-    formData.forEach((value, key) => {
-      obj[key] = value;
-    });
-    const json = JSON.stringify(obj);
-
-    console.log(json);
-
-    const token = window.localStorage.getItem('token');
-    const { url, options } = sellProduct(json, token);
-    request(url, options);
-    window.location.reload();
   }
 
   if (data) {
