@@ -158,6 +158,20 @@ export function sellProduct(formData, token) {
   };
 }
 
+export function buyProduct(formData, token) {
+  return {
+    url: 'http://localhost:8080/buyProduct',
+    options: {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+      },
+      body: formData,
+    },
+  };
+}
+
 export function getProduct(id, token) {
   return {
     url: `http://localhost:8080/getProduct/${id}`,
