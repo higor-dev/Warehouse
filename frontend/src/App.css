@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 * {
   box-sizing: border-box;
@@ -12,8 +13,7 @@ body {
   --type-second: 'Spectral', Georgia;
   font-family: var(--type-first);
   overflow-y: scroll;
-  background: url(./Assets/background_Prancheta\ 1.svg) no-repeat center top;
-  background-size: 200rem 120rem;
+  background: white;
 }
 
 h1,
@@ -155,9 +155,9 @@ a {
   display: block;
   height: 0.3rem;
   width: 0%;
-  border: #fff;
+  border: black;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: black;
   transition: all ease-in-out 1s;
   animation: anime 0.5s forwards;
 }
@@ -176,4 +176,10 @@ a {
 
 .appBody {
   flex: 1;
+  /* display: grid;
+  grid-template-columns: 500px 1fr; */
+}
+
+.allGrid {
+  grid-column: 1 / 5;
 }

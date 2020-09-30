@@ -6,7 +6,7 @@ import fotoJoao from '../../Assets/João.svg';
 const UserProfile = ({ data }) => {
   if (data) {
     return (
-      <div className={`${styles.profile} container`}>
+      <div className={`${styles.profile}`}>
         <div className={styles.foto}>
           {data.name === 'Higor' && <img src={fotoSidnei} alt="" />}
           {data.name === 'João' && <img src={fotoJoao} alt="" />}

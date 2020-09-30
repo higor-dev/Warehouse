@@ -1,6 +1,16 @@
 .form {
   margin-bottom: 1rem;
 }
+
+.form label {
+  color: black;
+  margin: 1rem 0;
+}
+
+.form input {
+  margin: 1rem 0;
+}
+
 .perdeu {
   display: inline-block;
   color: #fff;

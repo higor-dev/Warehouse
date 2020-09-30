@@ -25,7 +25,7 @@ const LoginForm = () => {
 
   return (
     <section className="animeLeft">
-      <h1 className="title2">Login</h1>
+      <h1 className="title3">Login</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input label="E-mail" type="text" name="email" {...email} />
         {/* <Input label="Usuário" type="text" name="username" {...username} /> */}

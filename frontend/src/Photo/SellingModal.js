@@ -6,6 +6,7 @@ import Button from '../Components/Forms/Button';
 import { sellProduct } from '../api';
 import useFetch from '../Hooks/useFetch';
 import Error from '../Components/Helper/Error';
+import { useNavigate } from 'react-router-dom';
 
 const SellingModal = ({ data, modal, setModal }) => {
   const { loading, error, request } = useFetch();
@@ -16,6 +17,7 @@ const SellingModal = ({ data, modal, setModal }) => {
   const corrigirVenda = Number(formatarVenda.replace(/[$,]/g, '.'));
   const total = +valorQuantidade.value * corrigirVenda;
   const totalParcelado = total / parcelas;
+  const navigate = useNavigate();
 
   console.log(total);
 
@@ -43,7 +45,7 @@ const SellingModal = ({ data, modal, setModal }) => {
       const token = window.localStorage.getItem('token');
       const { url, options } = sellProduct(oi, token);
       request(url, options);
-      window.location.reload();
+      navigate('/');
     } else {
       return alert('Você deve preencher todos os campos.');
     }

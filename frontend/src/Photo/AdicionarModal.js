@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { buyProduct } from '../api';
 import Button from '../Components/Forms/Button';
 import Input from '../Components/Forms/Input';

@@ -184,6 +184,18 @@ export function getProduct(id, token) {
   };
 }
 
+export function getBalance(token) {
+  return {
+    url: `http://localhost:8080/getBalance`,
+    options: {
+      method: 'GET',
+      headers: {
+        'x-access-token': token,
+      },
+    },
+  };
+}
+
 export function deleteProduct(id, token) {
   return {
     url: `http://localhost:8080/deleteProduct/${id}`,

@@ -1,8 +1,21 @@
 .feed {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 4rem;
   margin-bottom: 3rem;
-  justify-items: center;
+  margin-top: 1rem;
+}
+
+.container {
+  margin-left: 3rem;
+}
+.container h1 {
+  grid-column: 1 / 4;
+}
+
+.title {
+  font-family: 'Poppins';
+  padding: 0.3rem;
+  font-size: 2rem;
   margin-top: 1rem;
 }

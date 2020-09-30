@@ -15,8 +15,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <UserStorage>
-          <Header />
           <main className="appBody">
+            <Header />
+
             <Routes>
               <ProtectedRouter path="/" element={<Home />} />
               <ProtectedRouter path="/react-store" element={<Login />} />

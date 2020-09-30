@@ -9,6 +9,7 @@ export const UserStorage = ({ children }) => {
   const [login, setLogin] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const [active, setActive] = React.useState(false);
   const navigate = useNavigate();
 
   const userLogout = React.useCallback(
@@ -30,6 +31,7 @@ export const UserStorage = ({ children }) => {
     const json = await response.json();
     setData(json);
     setLogin(true);
+    setActive(false);
   }
   async function userLogin(email, password) {
     // async function userLogin(username, password) {
@@ -50,6 +52,7 @@ export const UserStorage = ({ children }) => {
       setLogin(false);
     } finally {
       setLoading(false);
+      setActive(false);
     }
   }
 
@@ -84,6 +87,8 @@ export const UserStorage = ({ children }) => {
         error,
         loading,
         login,
+        active,
+        setActive,
       }}
     >
       {children}

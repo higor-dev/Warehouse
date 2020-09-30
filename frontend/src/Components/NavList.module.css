@@ -1,0 +1,36 @@
+.navList {
+  padding: 2rem;
+  display: flex;
+  grid-column: 1 / 2;
+}
+
+.navList ul li {
+  margin-top: 4rem;
+  font-family: 'Poppins';
+  font-size: 1rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.navList ul li:nth-child(1) {
+  margin-top: 2rem;
+}
+
+.navList ul li span {
+  margin-left: 2rem;
+  cursor: pointer;
+}
+.navList ul li a {
+  display: flex;
+}
+
+.navList::after {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 100vh;
+  background-color: #ccc;
+  border-radius: 4px;
+  margin-left: 6rem;
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 import { getAllProducts } from '../../api';
 import useFetch from '../../Hooks/useFetch';
-import FeedPhotosItem from './FeedPhotosItem';
 import Error from '../Helper/Error';
 import Loading from '../Helper/Loading';
 import styles from './FeedPhotos.module.css';
 import Search from '../Helper/Search';
+import ProductFeed from './ProductFeed';
 
 const FeedPhotos = ({ user, setModalPhoto }) => {
   const { data, loading, error, request } = useFetch();
@@ -30,22 +30,26 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
     });
     return (
       <>
-        <Search
-          className={styles.search}
-          value={search}
-          onChange={({ target }) => {
-            setSearch(target.value);
-          }}
-        />
-        <ul className={`${styles.feed} animeLeft`}>
-          {filter.reverse().map((produto, index) => (
-            <FeedPhotosItem
-              setModalPhoto={setModalPhoto}
-              key={produto.id}
-              produto={produto}
-            />
-          ))}
-        </ul>
+        <div className={`${styles.container} animeLeft`}>
+          <h1 className={styles.title}>Produtos</h1>
+          <Search
+            className={styles.search}
+            value={search}
+            onChange={({ target }) => {
+              setSearch(target.value);
+            }}
+          />
+
+          <ul className={`${styles.feed}`}>
+            {filter.reverse().map((produto, index) => (
+              <ProductFeed
+                setModalPhoto={setModalPhoto}
+                key={produto.id}
+                produto={produto}
+              />
+            ))}
+          </ul>
+        </div>
       </>
     );
   } else return null;

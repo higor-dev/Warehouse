@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
   gap: 2rem;
+  grid-column: 1 / 5;
 }
 
 .login::before {
@@ -15,7 +16,8 @@
 
 .forms {
   max-width: 40rem;
-  padding: 2rem;
+  padding: 4rem;
+  grid-column: 2;
 }
 
 @media (max-width: 40rem) {

@@ -10,7 +10,7 @@ const User = () => {
   const { data } = React.useContext(UserContext);
 
   return (
-    <section className="container">
+    <section className="allGrid">
       <UserHeader />
       <Routes>
         <Route path="/" element={<UserProfile data={data} />}></Route>
