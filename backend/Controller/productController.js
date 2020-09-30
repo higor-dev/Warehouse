@@ -115,15 +115,17 @@ product.put("/buyProduct", verifyJWT, async (req,res) => {
     author: `${user.name} ${user.lastName}`,
     productId: fetchedProduct.id,
     companyId: 1, //There is only one company
-    price: req.body.quantity * req.body.price, //Transaction price, not product price
+    price: (req.body.quantity * req.body.price)*(-1), //Transaction price, not product price
     quantity: req.body.quantity,
     isApportioned: req.body.isApportioned,
     portion: req.body.portion,
     received: (req.body.price * req.body.quantity) / req.body.portion
   });
 
-
-  updateBalance(fetchedProduct, req.body);
+  const difference = req.body.quantity * req.body.price;
+  const value = await getBalance(1);
+  const balance = value[0][0].balance - difference;
+  const users = await sequelize.query(`UPDATE storage.companies SET balance = ${balance} WHERE id = 1`);
 
   res.json(await Product.findOne({ where: { id: req.body.id } }));
 
