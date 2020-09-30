@@ -5,19 +5,19 @@ import Input from '../Components/Forms/Input';
 import useFetch from '../Hooks/useFetch';
 import useForm from '../Hooks/useForm';
 import styles from './AdicionarModal.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
   const quantidade = useForm('number');
   const { loading, request } = useFetch();
   const quantidadeNumero = +quantidade.value;
+  const navigate = useNavigate();
 
   function handleOutside(event) {
     if (event.target === event.currentTarget) {
       setNovoModal(null);
     }
   }
-
-  console.log(quantidadeNumero);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -51,10 +51,12 @@ const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
         'portion': 1,
       })
 
+      console.log(oi);
+
       const token = window.localStorage.getItem('token');
       const { url, options } = buyProduct(oi, token);
       request(url, options);
-      window.location.reload();
+      navigate('/');
     } else {
       return alert('Você deve preencher todos os campos.');
     }

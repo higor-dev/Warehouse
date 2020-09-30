@@ -179,7 +179,8 @@ a {
   /* display: grid;
   grid-template-columns: 500px 1fr; */
 }
+.title4 {
+  font-family: 'Poppins';
 
-.allGrid {
-  grid-column: 1 / 5;
+  font-size: 2rem;
 }

@@ -7,8 +7,6 @@ const ProductFeed = ({ produto, setModalPhoto, filter }) => {
     setModalPhoto(produto);
   }
 
-  console.log(produto);
-
   return (
     <>
       <li onClick={handleClick} className={styles.product}>

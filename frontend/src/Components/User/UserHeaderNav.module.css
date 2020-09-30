@@ -6,7 +6,7 @@
 
 .nav a,
 .nav button {
-  background: #eee;
+  background: #a90f11;
   border-radius: 0.2rem;
   height: 40px;
   width: 40px;
@@ -23,14 +23,14 @@
 .nav a:focus,
 .nav button:hover,
 .nav button:focus {
-  background: white;
+  background: ccc;
   box-shadow: 0 0 0 3px #eee;
-  border-color: #ddd;
+  border-color: #ccc;
   outline: none;
 }
 
 .nav a.active {
-  background: white;
+  background: black;
   box-shadow: 0 0 0 3px #fff;
 }
 

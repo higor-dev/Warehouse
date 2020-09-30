@@ -36,11 +36,21 @@ const UserPhotoPost = () => {
     formData.forEach((value, key) => {
       obj[key] = value;
     });
+
+    const oi = JSON.stringify({
+      productName: product.value,
+      quantity: +quantity.value,
+      price: Number(price.value.replace(/[$,]/g, '.')),
+      type: type.value,
+      companyId: 1,
+      image: image.value,
+    });
+
     const json = JSON.stringify(obj);
     console.log(json);
 
     const token = window.localStorage.getItem('token');
-    const { url, options } = createProduct(json, token);
+    const { url, options } = createProduct(oi, token);
     request(url, options);
   }
 

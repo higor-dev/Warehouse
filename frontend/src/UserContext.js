@@ -26,7 +26,6 @@ export const UserStorage = ({ children }) => {
 
   async function getUser(token) {
     const { url, options } = getUserByToken(token);
-    // const { url, options } = USER_GET(token);
     const response = await fetch(url, options);
     const json = await response.json();
     setData(json);
@@ -34,13 +33,10 @@ export const UserStorage = ({ children }) => {
     setActive(false);
   }
   async function userLogin(email, password) {
-    // async function userLogin(username, password) {
     try {
       setError(null);
       setLoading(true);
-      // const { url, options } = TOKEN_POST({ username, password });
       const { url, options } = LoginUser({ email, password });
-      // const { url, options } = getBalance({ email, password });
       const tokenRes = await fetch(url, options);
       if (!tokenRes.ok) throw new Error(`Error: ${tokenRes.statusText}`);
       const { token } = await tokenRes.json();

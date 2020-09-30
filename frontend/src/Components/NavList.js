@@ -10,8 +10,6 @@ import { UserContext } from '../UserContext';
 const NavList = () => {
   const { active, setActive } = React.useContext(UserContext);
 
-  console.log(active);
-
   return (
     <div className={styles.navList}>
       <ul>

@@ -13,7 +13,7 @@ const UserHeader = () => {
       case '/conta/postar':
         setTitle('Adicionar produto');
         break;
-      case '/conta/estatisticas/':
+      case '/conta/estatisticas':
         setTitle('Estatísticas');
         break;
       case '/conta/estatisticas/historico':
@@ -26,7 +26,7 @@ const UserHeader = () => {
 
   return (
     <header className={styles.header}>
-      <h1 className="title2">{title}</h1>
+      <h1 className="title4">{title}</h1>
       <UserHeaderNav />
     </header>
   );

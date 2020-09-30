@@ -12,7 +12,9 @@ const StatsHeader = () => {
             activeClassName="navlinkAnime"
             to="historico"
           >
-            Histórico
+            <span style={{ color: 'black', fontFamily: 'Poppins' }}>
+              Histórico
+            </span>
           </NavLink>
         </li>
       </ul>

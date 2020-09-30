@@ -22,17 +22,19 @@ const Balance = () => {
     return (
       <div className={styles.balance}>
         <h1>
-          Saldo do mês:{' '}
+          Gastos do mês:{' '}
           {data.balance > 0 ? (
-            <span style={{ color: 'green' }}>R${data.balance}</span>
-          ) : (
             <span style={{ color: 'red' }}>R${data.balance}</span>
+          ) : data.balance < 0 ? (
+            <span style={{ color: 'red' }}>R${data.balance}</span>
+          ) : (
+            <span style={{ color: '#ccc' }}>R${data.balance}</span>
           )}
         </h1>
       </div>
     );
   } else {
-    return null;
+    return <Loading />;
   }
 };
 
