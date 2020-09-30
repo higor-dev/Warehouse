@@ -11,6 +11,7 @@ const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
   const quantidade = useForm('number');
   const { loading, request } = useFetch();
   const navigate = useNavigate();
+  const quantidadeNumero = +quantidade.value;
 
   function handleOutside(event) {
     if (event.target === event.currentTarget) {
@@ -18,13 +19,15 @@ const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
     }
   }
 
+  console.log(quantidadeNumero);
+
   function handleSubmit(e) {
     e.preventDefault();
     if (quantidade) {
       const formData = new FormData();
       formData.append('id', data.id);
       formData.append('productName', data.productName);
-      formData.append('quantity', +quantidade.value);
+      formData.append('quantity', quantidadeNumero);
       formData.append('price', data.price);
       formData.append('type', data.type);
       formData.append('companyId', 1);
@@ -44,7 +47,7 @@ const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
       const token = window.localStorage.getItem('token');
       const { url, options } = buyProduct(json, token);
       request(url, options);
-      navigate('/');
+      // window.location.reload();
     } else {
       return alert('Você deve preencher todos os campos.');
     }

@@ -19,7 +19,7 @@ function App() {
           <main className="appBody">
             <Routes>
               <ProtectedRouter path="/" element={<Home />} />
-              <ProtectedRouter path="/react-store" element={<Home />} />
+              <ProtectedRouter path="/react-store" element={<Login />} />
               <Route path="/login/*" element={<Login />} />
               <ProtectedRouter path="produto/:id" element={<Photo />} />
               <ProtectedRouter path="/conta/*" element={<User />} />

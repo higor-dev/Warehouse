@@ -17,6 +17,7 @@ const SellingModal = ({ data, modal, setModal }) => {
   const corrigirVenda = Number(formatarVenda.replace(/[$,]/g, '.'));
   const total = +valorQuantidade.value * corrigirVenda;
   const totalParcelado = total / parcelas;
+
   const navigate = useNavigate();
 
   console.log(total);
@@ -85,7 +86,7 @@ const SellingModal = ({ data, modal, setModal }) => {
     const token = window.localStorage.getItem('token');
     const { url, options } = sellProduct(json, token);
     request(url, options);
-    navigate('/');
+    window.location.reload();
   }
 
   if (data) {

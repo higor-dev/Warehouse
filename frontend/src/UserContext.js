@@ -63,6 +63,7 @@ export const UserStorage = ({ children }) => {
           await getUser(token);
         } catch (err) {
           userLogout();
+          navigate('/login');
         } finally {
           setLoading(false);
           navigate('/');
