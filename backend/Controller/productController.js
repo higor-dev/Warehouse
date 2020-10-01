@@ -83,7 +83,7 @@ product.put('/sellProduct', verifyJWT, async (req, res) => {
     received: (req.body.price * req.body.quantity) / req.body.portion,
   });
 
-  const difference = req.body.quantity * req.body.price;
+  const difference = (req.body.price * req.body.quantity) / req.body.portion;
   const value = await getBalance(1);
   const balance = value[0][0].balance + difference;
   const users = await sequelize.query(
