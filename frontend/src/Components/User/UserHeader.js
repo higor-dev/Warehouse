@@ -25,7 +25,7 @@ const UserHeader = () => {
   }, [location]);
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} animeLeft`}>
       <h1 className="title4">{title}</h1>
       <UserHeaderNav />
     </header>

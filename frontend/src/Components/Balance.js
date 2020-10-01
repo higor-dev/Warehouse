@@ -20,11 +20,11 @@ const Balance = () => {
   if (error) return <Error error={error} />;
   if (data) {
     return (
-      <div className={styles.balance}>
+      <div className={`${styles.balance} animeLeft`}>
         <h1>
           Gastos do mês:{' '}
           {data.balance > 0 ? (
-            <span style={{ color: 'red' }}>R${data.balance}</span>
+            <span style={{ color: 'green' }}>R${data.balance}</span>
           ) : data.balance < 0 ? (
             <span style={{ color: 'red' }}>R${data.balance}</span>
           ) : (
