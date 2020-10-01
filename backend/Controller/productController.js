@@ -8,7 +8,6 @@ const {
   createTransaction,
 } = require('../Controller/GeneralTransactionController');
 const jwt = require('jsonwebtoken');
-const { sequelize } = require('../Database/dbConnection');
 
 function verifyJWT(req, res, next) {
   var token = req.headers['x-access-token'];
@@ -39,10 +38,10 @@ product.get('/getProduct/:id', verifyJWT, async (req, res) => {
 });
 
 product.post('/createProduct', verifyJWT, async (req, res) => {
-  // const user = await User.findOne({ where: { id: req.userId } });
+  const user = await User.findOne({ where: { id: req.userId } });
   const product = await Product.create(req.body);
   createTransaction({
-    // author: user.name,
+    author: user.name,
     productId: product.id,
     companyId: 1, //There is only one company
     price: product.price * product.quantity * -1, //Transaction price, not product price
@@ -56,21 +55,25 @@ product.post('/createProduct', verifyJWT, async (req, res) => {
 });
 
 product.put('/sellProduct', verifyJWT, async (req, res) => {
+  
+
+
   const user = await User.findOne({ where: { id: req.userId } }); //Find author
   const fetchedProduct = await Product.findOne({ where: { id: req.body.id } }); //Find product before update
-
+  
   const objectoToPersist = {
     id: req.body.id,
     productName: req.body.productName,
     quantity: fetchedProduct.quantity - req.body.quantity,
     type: req.body.type,
     image: req.body.image,
-    companyId: req.body.companyId,
-  };
-
+    companyId: req.body.companyId
+    }  
+  
   const product = await Product.update(objectoToPersist, {
     where: { id: req.body.id },
   }); //update
+
 
   createTransaction({
     author: `${user.name} ${user.lastName}`,
@@ -80,56 +83,54 @@ product.put('/sellProduct', verifyJWT, async (req, res) => {
     quantity: req.body.quantity,
     isApportioned: req.body.isApportioned,
     portion: req.body.portion,
-    received: (req.body.price * req.body.quantity) / req.body.portion,
+    received: (req.body.price * req.body.quantity) / req.body.portion
   });
 
-  const difference = (req.body.price * req.body.quantity) / req.body.portion;
-  const value = await getBalance(1);
-  const balance = value[0][0].balance + difference;
-  const users = await sequelize.query(
-    `UPDATE storage.companies SET balance = ${balance} WHERE id = 1`,
-  );
+
+  updateBalance(fetchedProduct, req.body);
 
   res.json(await Product.findOne({ where: { id: req.body.id } }));
 });
 
-product.put('/buyProduct', verifyJWT, async (req, res) => {
+product.put("/buyProduct", verifyJWT, async (req,res) => {
+
   const user = await User.findOne({ where: { id: req.userId } }); //Find author
   const fetchedProduct = await Product.findOne({ where: { id: req.body.id } }); //Find product before update
-
+  
   const objectoToPersist = {
     id: req.body.id,
     productName: req.body.productName,
     quantity: fetchedProduct.quantity + req.body.quantity,
     type: req.body.type,
     image: req.body.image,
-    companyId: req.body.companyId,
-  };
-
+    companyId: req.body.companyId
+    }  
+  
   const product = await Product.update(objectoToPersist, {
     where: { id: req.body.id },
   }); //update
+
 
   createTransaction({
     author: `${user.name} ${user.lastName}`,
     productId: fetchedProduct.id,
     companyId: 1, //There is only one company
-    price: req.body.quantity * req.body.price * -1, //Transaction price, not product price
+    price: (req.body.quantity * req.body.price)*(-1), //Transaction price, not product price
     quantity: req.body.quantity,
     isApportioned: req.body.isApportioned,
     portion: req.body.portion,
-    received: (req.body.price * req.body.quantity) / req.body.portion,
+    received: (req.body.price * req.body.quantity) / req.body.portion
   });
 
   const difference = req.body.quantity * req.body.price;
   const value = await getBalance(1);
   const balance = value[0][0].balance - difference;
-  const users = await sequelize.query(
-    `UPDATE storage.companies SET balance = ${balance} WHERE id = 1`,
-  );
+  const users = await sequelize.query(`UPDATE storage.companies SET balance = ${balance} WHERE id = 1`);
 
   res.json(await Product.findOne({ where: { id: req.body.id } }));
-});
+
+
+})
 
 product.delete('/deleteProduct/:id', verifyJWT, async (req, res) => {
   const fetchedProduct = await Product.findOne({
