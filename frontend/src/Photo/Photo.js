@@ -11,7 +11,7 @@ const Photo = () => {
   const { data, loading, error, request } = useFetch();
 
   React.useEffect(() => {
-    const token = window.localStorage.getItem('token')
+    const token = window.localStorage.getItem('token');
     const { url, options } = getProduct(id, token);
     request(url, options);
   }, [request, id]);
@@ -21,7 +21,7 @@ const Photo = () => {
   if (data)
     return (
       <section className="container mainContainer">
-        <ProductsPage data={data} />
+        <ProductsPage dataBalance={data} />
       </section>
     );
   else return null;
