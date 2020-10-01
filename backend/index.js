@@ -28,7 +28,7 @@ app.use(General);
 
 
 // A cada minuto
-cron.schedule("* * *", async function () {
+cron.schedule("30 7 * * *", async function () {
    moment().format('MMMM Do YYYY, h:mm:ss a');
   var date = Date.now();
   var endDateMoment = moment(date);
