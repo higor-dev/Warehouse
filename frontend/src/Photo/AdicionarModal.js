@@ -7,9 +7,9 @@ import useForm from '../Hooks/useForm';
 import styles from './AdicionarModal.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
+const AdicionarModal = ({ dataBalance, adicionarModal, setNovoModal }) => {
   const quantidade = useForm('number');
-  const { loading, request } = useFetch();
+  const { loading, request, data, error } = useFetch();
   const quantidadeNumero = +quantidade.value;
   const navigate = useNavigate();
 
@@ -19,44 +19,29 @@ const AdicionarModal = ({ data, adicionarModal, setNovoModal }) => {
     }
   }
 
+  React.useEffect(() => {
+    if (data) navigate('/');
+  }, [data, navigate]);
+
   function handleSubmit(e) {
     e.preventDefault();
     if (quantidadeNumero) {
-      const formData = new FormData();
-      formData.append('id', data.id);
-      formData.append('productName', data.productName);
-      formData.append('quantity', quantidadeNumero);
-      formData.append('price', data.price);
-      formData.append('type', data.type);
-      formData.append('companyId', 1);
-      formData.append('image', data.image);
-      formData.append('isApportioned', 0);
-      formData.append('portion', 1);
-
-      const obj = {};
-      formData.forEach((value, key) => {
-        obj[key] = value;
-      });
-
       //prettier-ignore
       const oi = JSON.stringify({
-        'id': data.id,
-        'productName': data.productName,
+        'id': dataBalance.id,
+        'productName': dataBalance.productName,
         'quantity': parseFloat(+quantidade.value),
-        'price': data.price,
-        'type': data.type,
+        'price': dataBalance.price,
+        'type': dataBalance.type,
         'companyId': 1,
-        'image': data.image,
+        'image': dataBalance.image,
         'isApportioned': 0,
         'portion': 1,
       })
 
-      console.log(oi);
-
       const token = window.localStorage.getItem('token');
       const { url, options } = buyProduct(oi, token);
       request(url, options);
-      navigate('/');
     } else {
       return alert('Você deve preencher todos os campos.');
     }

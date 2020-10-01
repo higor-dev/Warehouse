@@ -14,7 +14,7 @@ const User = () => {
     <>
       <div className="appContainerMain">
         <NavList />
-        <section className="appDivider">
+        <section className="appDivider animeLeft">
           <UserHeader />
           <Routes>
             <Route path="/" element={<UserProfile data={data} />}></Route>

@@ -19,25 +19,13 @@ const UserPhotoPost = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (data) navigate('/conta');
+    if (data) navigate('/');
   }, [data, navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('image', image.value);
-    formData.append('productName', product.value);
-    formData.append('quantity', +quantity.value);
-    formData.append('price', Number(price.value.replace(/[$,]/g, '.')));
-    formData.append('type', type.value);
-    formData.append('companyId', 1);
 
-    const obj = {};
-    formData.forEach((value, key) => {
-      obj[key] = value;
-    });
-
-    const oi = JSON.stringify({
+    const productValues = JSON.stringify({
       productName: product.value,
       quantity: +quantity.value,
       price: Number(price.value.replace(/[$,]/g, '.')),
@@ -46,11 +34,8 @@ const UserPhotoPost = () => {
       image: image.value,
     });
 
-    const json = JSON.stringify(obj);
-    console.log(json);
-
     const token = window.localStorage.getItem('token');
-    const { url, options } = createProduct(oi, token);
+    const { url, options } = createProduct(productValues, token);
     request(url, options);
   }
 

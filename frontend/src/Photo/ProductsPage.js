@@ -4,25 +4,18 @@ import styles from './ProductsPage.module.css';
 import SellingModal from './SellingModal';
 import AdicionarModal from './AdicionarModal';
 
-const ProductsPage = ({ data }) => {
+const ProductsPage = ({ dataBalance }) => {
   const [modal, setModal] = React.useState(null);
   const [adicionarModal, setNovoModal] = React.useState(null);
 
-  React.useEffect(() => {
-    document.body.classList.add(styles.body);
-    return () => {
-      document.body.className = '';
-    };
-  });
-
   function handleClick(e) {
     e.preventDefault();
-    setModal(data);
+    setModal(dataBalance);
   }
 
   function handleAdicionar(e) {
     e.preventDefault();
-    setNovoModal(data);
+    setNovoModal(dataBalance);
   }
 
   console.log(modal);
@@ -31,24 +24,28 @@ const ProductsPage = ({ data }) => {
     <>
       {adicionarModal && (
         <AdicionarModal
-          data={data}
+          dataBalance={dataBalance}
           product={adicionarModal}
           setNovoModal={setNovoModal}
         />
       )}
       {modal && (
-        <SellingModal data={data} product={modal} setModal={setModal} />
+        <SellingModal
+          dataBalance={dataBalance}
+          product={modal}
+          setModal={setModal}
+        />
       )}
       <div>
         <div className={styles.grid}>
-          <img src={data.image} alt={data.productName} />
+          <img src={dataBalance.image} alt={dataBalance.productName} />
           <div className={styles.description}>
-            <h1 className="title">{data.productName}</h1>
-            <span className={styles.id}>Product ID: {data.id}</span>
+            <h1 className="title">{dataBalance.productName}</h1>
+            <span className={styles.id}>Product ID: {dataBalance.id}</span>
             <div>
-              <h2 className={styles.preco}>Preço: R${data.price}</h2>
+              <h2 className={styles.preco}>Preço: R${dataBalance.price}</h2>
               <h2 className={styles.quantidade}>
-                Quantidade em estoque: {data.quantity}{' '}
+                Quantidade em estoque: {dataBalance.quantity}{' '}
                 <button onClick={handleAdicionar} className={styles.adicionar}>
                   +
                 </button>

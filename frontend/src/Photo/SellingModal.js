@@ -8,8 +8,8 @@ import useFetch from '../Hooks/useFetch';
 import Error from '../Components/Helper/Error';
 import { useNavigate } from 'react-router-dom';
 
-const SellingModal = ({ data, modal, setModal }) => {
-  const { loading, error, request } = useFetch();
+const SellingModal = ({ dataBalance, modal, setModal }) => {
+  const { loading, error, request, data } = useFetch();
   const valorVenda = useForm();
   const valorQuantidade = useForm();
   const [parcelas, setParcelas] = React.useState('');
@@ -27,31 +27,34 @@ const SellingModal = ({ data, modal, setModal }) => {
     }
   }
 
+  React.useEffect(() => {
+    if (data) navigate('/');
+  }, [data, navigate]);
+
   function handleSubmit(e) {
     e.preventDefault();
     if (valorVenda && valorQuantidade && parcelas) {
       //prettier-ignore
       const oi = JSON.stringify({
-      'id': data.id,
-      'productName': data.productName,
+      'id': dataBalance.id,
+      'productName': dataBalance.productName,
       'quantity': valorQuantidade.value,
       'price': Number(valorVenda.value.replace(/[$,]/g, '.')),
-      'type': data.type,
+      'type': dataBalance.type,
       'companyId': 1,
-      'image': data.image,
+      'image': dataBalance.image,
       'isApportioned': Number(`${+parcelas === 1 ? 0 : 1}`),
       'portion': +parcelas,
     })
       const token = window.localStorage.getItem('token');
       const { url, options } = sellProduct(oi, token);
       request(url, options);
-      navigate('/');
     } else {
       return alert('Você deve preencher todos os campos.');
     }
   }
 
-  if (data) {
+  if (dataBalance) {
     return (
       <>
         <div className={styles.modal} onClick={handleOutside}>
@@ -132,7 +135,7 @@ const SellingModal = ({ data, modal, setModal }) => {
                 </select>
               )}
               <div className={styles.flexWrap}>
-                {+valorQuantidade.value > data.quantity ? (
+                {+valorQuantidade.value > dataBalance.quantity ? (
                   <Button disabled>Quantidade indisponível.</Button>
                 ) : loading ? (
                   <Button disabled>Carregando...</Button>
@@ -145,7 +148,7 @@ const SellingModal = ({ data, modal, setModal }) => {
               <Error error={error} />
             </form>
             <div className={styles.wrapper}>
-              <img className={styles.image} src={data.image} alt="" />
+              <img className={styles.image} src={dataBalance.image} alt="" />
             </div>
           </div>
         </div>
