@@ -5,19 +5,25 @@ import UserPhotoPost from './UserPhotoPost';
 import UserStats from '../Stats/UserStats';
 import { UserContext } from '../../UserContext';
 import UserProfile from './UserProfile';
+import NavList from '../NavList';
 
 const User = () => {
   const { data } = React.useContext(UserContext);
 
   return (
-    <section className="container mainContainer">
-      <UserHeader />
-      <Routes>
-        <Route path="/" element={<UserProfile data={data} />}></Route>
-        <Route path="postar" element={<UserPhotoPost />}></Route>
-        <Route path="estatisticas/*" element={<UserStats />}></Route>
-      </Routes>
-    </section>
+    <>
+      <div className="appContainerMain">
+        <NavList />
+        <section className="appDivider">
+          <UserHeader />
+          <Routes>
+            <Route path="/" element={<UserProfile data={data} />}></Route>
+            <Route path="postar" element={<UserPhotoPost />}></Route>
+            <Route path="estatisticas/*" element={<UserStats />}></Route>
+          </Routes>
+        </section>
+      </div>
+    </>
   );
 };
 

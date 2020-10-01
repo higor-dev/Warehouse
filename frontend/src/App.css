@@ -184,3 +184,14 @@ a {
 
   font-size: 2rem;
 }
+
+.appContainerMain {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+
+.appDivider {
+  padding: 0.3rem;
+  margin-left: 3rem;
+  margin-top: 1rem;
+}

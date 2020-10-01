@@ -6,7 +6,7 @@ import StatsHeader from './StatsHeader';
 
 const UserStats = () => {
   return (
-    <section className="container">
+    <section className="animeLeft">
       <StatsHeader />
       <Routes>
         <Route path="/" element={<Stats />}></Route>

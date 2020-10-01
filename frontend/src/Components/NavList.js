@@ -4,7 +4,7 @@ import account from '../Assets/account.svg';
 import home from '../Assets/home.svg';
 import add from '../Assets/add.svg';
 import stats from '../Assets/stats.svg';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 
 const NavList = () => {
@@ -23,13 +23,19 @@ const NavList = () => {
           </NavLink>
         </li>
         <li>
-          <img src={stats} alt="" /> <span>Estatísticas</span>
+          <Link to="/conta/estatisticas">
+            <img src={stats} alt="" /> <span>Estatísticas</span>
+          </Link>
         </li>
         <li>
-          <img src={add} alt="" /> <span>Adicionar Produto</span>
+          <Link to="/conta/postar">
+            <img src={add} alt="" /> <span>Adicionar Produto</span>
+          </Link>
         </li>
         <li>
-          <img src={account} alt="" /> <span>Minha Conta</span>
+          <Link to="/conta">
+            <img src={account} alt="" /> <span>Minha Conta</span>
+          </Link>
         </li>
       </ul>
     </div>
