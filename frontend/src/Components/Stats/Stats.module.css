@@ -1,0 +1,34 @@
+.stats {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-right: 2rem;
+  gap: 2rem;
+}
+
+.container {
+  margin-top: 5rem;
+}
+
+.saldoTotal {
+  grid-column: 2 / 4;
+}
+
+.entrada {
+  grid-column: 2 / 3;
+}
+
+.saida {
+  grid-column: 3 / 4;
+}
+
+.stats li {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: 'Poppins';
+  font-size: 1.5rem;
+}

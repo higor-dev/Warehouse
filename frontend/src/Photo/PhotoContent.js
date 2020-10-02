@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PhotoContent.module.css';
-import Button from '../Components/Forms/Button';
-import { ReactComponent as Adicionar } from '../Assets/adicionar.svg';
 import PhotoDelete from './PhotoDelete';
 import ImageModal from '../Components/Helper/ImageModal';
 
@@ -18,7 +16,7 @@ const PhotoContent = ({ data }) => {
             <p className={styles.author}>
               <PhotoDelete id={data.id} />
             </p>
-            <h1 className={`${styles.titleNovo} title2`}>
+            <h1 className={`${styles.titleNovo} title4`}>
               <Link to={`/produto/${data.id}`}>{data.productName}</Link>
             </h1>
             <ul className={styles.attributes}>
@@ -33,13 +31,24 @@ const PhotoContent = ({ data }) => {
                   <span style={{ color: 'red' }}>{data.quantity}</span>
                 </h3>{' '}
               </li>
+              <li>
+                <h3>
+                  Status:{' '}
+                  {data.quantity > 0 ? (
+                    <span style={{ color: 'green' }}>Disponível!</span>
+                  ) : (
+                    <span style={{ color: 'red' }}>Indisponível.</span>
+                  )}
+                </h3>{' '}
+              </li>
             </ul>
           </div>
         </div>
         <div className={styles.xesque}>
           <div className={styles.wrapper}>
-            <Adicionar className={styles.adicionar} />
-            <Button>Vender</Button>
+            <Link className={styles.link} to={`/produto/${data.id}`}>
+              Vender o produto
+            </Link>
           </div>
         </div>
       </div>

@@ -16,6 +16,9 @@ const UserHeader = () => {
       case '/conta/estatisticas':
         setTitle('Estatísticas');
         break;
+      case '/conta/estatisticas/estatisticas':
+        setTitle('Estatísticas');
+        break;
       case '/conta/estatisticas/historico':
         setTitle('Histórico');
         break;

@@ -10,6 +10,17 @@ const StatsHeader = () => {
           <NavLink
             className={styles.navlink}
             activeClassName="navlinkAnime"
+            to="estatisticas"
+          >
+            <span style={{ color: 'black', fontFamily: 'Poppins' }}>
+              Estatísticas
+            </span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className={styles.navlink}
+            activeClassName="navlinkAnime"
             to="historico"
           >
             <span style={{ color: 'black', fontFamily: 'Poppins' }}>

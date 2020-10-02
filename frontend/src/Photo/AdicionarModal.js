@@ -6,6 +6,8 @@ import useFetch from '../Hooks/useFetch';
 import useForm from '../Hooks/useForm';
 import styles from './AdicionarModal.module.css';
 import { useNavigate } from 'react-router-dom';
+import Error from '../Components/Helper/Error';
+import Loading from '../Components/Helper/Loading';
 
 const AdicionarModal = ({ dataBalance, adicionarModal, setNovoModal }) => {
   const quantidade = useForm('number');
@@ -46,7 +48,8 @@ const AdicionarModal = ({ dataBalance, adicionarModal, setNovoModal }) => {
       return alert('Você deve preencher todos os campos.');
     }
   }
-
+  if (error) return <Error error={error} />;
+  if (loading) return <Loading />;
   return (
     <div className={styles.modal} onClick={handleOutside}>
       <div className={styles.sell}>

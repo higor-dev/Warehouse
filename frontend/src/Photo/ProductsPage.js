@@ -18,8 +18,6 @@ const ProductsPage = ({ dataBalance }) => {
     setNovoModal(dataBalance);
   }
 
-  console.log(modal);
-
   return (
     <>
       {adicionarModal && (

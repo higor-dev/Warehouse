@@ -23,7 +23,7 @@ const NavList = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/conta/estatisticas">
+          <NavLink to="/conta/estatisticas/estatisticas">
             <img src={stats} alt="" /> <span>Estatísticas</span>
           </NavLink>
         </li>

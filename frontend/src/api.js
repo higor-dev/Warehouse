@@ -219,3 +219,27 @@ export function getAllProducts(token) {
     },
   };
 }
+
+export function getStatistics(token) {
+  return {
+    url: `http://localhost:8080/getStatistics`,
+    options: {
+      method: 'GET',
+      headers: {
+        'x-access-token': token,
+      },
+    },
+  };
+}
+
+export function getAllTransactions(token) {
+  return {
+    url: `http://localhost:8080/getAllTransactions`,
+    options: {
+      method: 'GET',
+      headers: {
+        'x-access-token': token,
+      },
+    },
+  };
+}

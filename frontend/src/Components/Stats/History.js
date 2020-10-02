@@ -1,54 +1,66 @@
 import React from 'react';
 import styles from './History.module.css';
-import logo from '../../Assets/filtro.jpg';
 
-const History = () => {
-  return (
-    <>
-      <div className={`${styles.history} animeLeft`}>
-        <h2 className={styles.produto}>Produto</h2>
-        <h2 className={styles.produtoPc}>Preço</h2>
-        <h2 className={styles.produtoQtd}>Quantidade</h2>
-        <h2 className={styles.produtoData}>Data</h2>
-        <div className={styles.imagemContainer}>
-          <img className={styles.img} src={logo} alt="" />
-          <div className={styles.drop}>
-            <h3>Filtro de Óleo</h3>
-          </div>
-        </div>
-        <div className={styles.gridPc}>
-          <span className={styles.descPc}>R$20,00</span>
-        </div>
-        <div className={styles.gridQtd}>
-          <span className={styles.descQtd}>3</span>
-        </div>
-        <div className={styles.gridData}>
-          <span className={styles.descData}>22/09/2020</span>
-        </div>
-      </div>
-      <div className={`${styles.history} animeLeft`}>
-        <h2 className={styles.produto}>Produto</h2>
-        <h2 className={styles.produtoPc}>Preço</h2>
-        <h2 className={styles.produtoQtd}>Quantidade</h2>
-        <h2 className={styles.produtoData}>Data</h2>
-        <div className={styles.imagemContainer}>
-          <img className={styles.img} src={logo} alt="" />
-          <div className={styles.drop}>
-            <h3>Filtro de Óleo</h3>
-          </div>
-        </div>
-        <div className={styles.gridPc}>
-          <span className={styles.descPc}>R$20,00</span>
-        </div>
-        <div className={styles.gridQtd}>
-          <span className={styles.descQtd}>3</span>
-        </div>
-        <div className={styles.gridData}>
-          <span className={styles.descData}>22/09/2020</span>
-        </div>
-      </div>
-    </>
-  );
+const History = ({ dataBalance }) => {
+  console.log(dataBalance);
+
+  function isTrue(value) {
+    return value === true;
+  }
+  let contador = 0;
+  console.log(contador);
+  if (dataBalance) {
+    return (
+      <>
+        {dataBalance.map((data) => {
+          return (
+            <div
+              key={data.createdAt}
+              style={
+                data.price < 0
+                  ? { boxShadow: '0 20px 20px rgba(255, 0, 0, 0.1)' }
+                  : { boxShadow: '0 20px 20px rgba(0, 255, 0, 0.1)' }
+              }
+              className={`${styles.history}`}
+            >
+              <span className={styles.nome}>Produto</span>
+              <span className={styles.nome}>Data</span>
+              <img src={data.product.image} alt="" />
+              <span className={styles.nome}>Preço</span>
+              <span className={styles.nome}>Tipo</span>
+              <span className={styles.nome}>Pagamento</span>
+              <span className={styles.nome}>Parcelas</span>
+              <span
+                className={styles.desc}
+                style={{
+                  fontFamily: 'Poppins',
+                  color: 'red',
+                }}
+              >
+                {data.createdAt}
+              </span>
+              <span className={styles.desc}>R${data.product.price}</span>
+              <span className={styles.desc}>{data.product.type}</span>
+              <span className={styles.desc}>
+                {data.price < 0 ? 'Compra' : 'Venda'}
+              </span>
+              <span className={styles.desc}>
+                {data.installments.map(function (installment, index) {
+                  if (installment.paid) {
+                    return contador++;
+                  }
+                  if (data.installments.length - 1 === index) {
+                    contador = 0;
+                  }
+                  return <h1 key={index}>{contador}</h1>;
+                })}
+              </span>
+            </div>
+          );
+        })}
+      </>
+    );
+  } else return null;
 };
 
 export default History;

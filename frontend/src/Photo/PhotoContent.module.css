@@ -34,6 +34,16 @@
   word-break: break-all;
 }
 
+.titleNovo::after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  background: #ccc;
+  display: block;
+  margin-top: 1rem;
+}
+
 .img {
   grid-row: 1 / 4;
   object-position: center;
@@ -49,6 +59,10 @@
 
 .attributes li {
   margin-bottom: 2rem;
+}
+
+.attributes h3 {
+  font-family: 'Poppins';
 }
 
 .author {
@@ -74,6 +88,15 @@
   justify-items: center;
 }
 
+.wrapper button {
+  color: white;
+  font-family: 'Poppins';
+}
+
+.wrapper button a {
+  color: white;
+}
+
 .adicionar {
   background: #eee;
   border-radius: 0.2rem;
@@ -90,4 +113,30 @@
   box-shadow: 0 0 0 3px #eee;
   border-color: #ddd;
   outline: none;
+}
+
+.link {
+  font-size: 1rem;
+  font-family: var(--type-first);
+  cursor: pointer;
+  border: none;
+  border-radius: 0.4rem;
+  background: #a90f11;
+  color: #efefef;
+  font-weight: bold;
+  min-width: 8rem;
+  padding: 0.8rem 1.2rem;
+  box-sizing: border-box;
+  transition: 0.1s;
+}
+
+.link:hover,
+.link:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 2px white;
+}
+
+.link:disabled {
+  opacity: 0.5;
+  cursor: wait;
 }

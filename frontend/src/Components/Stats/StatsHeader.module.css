@@ -8,6 +8,10 @@
   display: flex;
 }
 
+.header ul li {
+  margin-right: 2rem;
+}
+
 .header li a {
   position: relative;
 }

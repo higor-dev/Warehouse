@@ -19,7 +19,7 @@ const ProductFeed = ({ produto, setModalPhoto, filter }) => {
         <section className={styles.descricao}>
           <h3>{produto.productName}</h3>
           <h3>Disponíveis: {produto.quantity}</h3>
-          <h3>R$: {produto.price}</h3>
+          <h3>Preço de compra: R$: {produto.price}</h3>
         </section>
       </li>{' '}
     </>
