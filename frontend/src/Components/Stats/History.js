@@ -2,11 +2,6 @@ import React from 'react';
 import styles from './History.module.css';
 
 const History = ({ dataBalance }) => {
-  console.log(dataBalance);
-
-  function isTrue(value) {
-    return value === true;
-  }
   let contador = 0;
   console.log(contador);
   if (dataBalance) {
@@ -45,6 +40,7 @@ const History = ({ dataBalance }) => {
                 {data.price < 0 ? 'Compra' : 'Venda'}
               </span>
               <span className={styles.desc}>
+                {/* Sua conta precisa ficar dentro desse span. */}
                 {data.installments.map(function (installment, index) {
                   if (installment.paid) {
                     return contador++;

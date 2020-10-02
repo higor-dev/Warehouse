@@ -6,9 +6,6 @@ const SaldoSaida = ({ data }) => {
   React.useEffect(() => {
     if (data) {
       const allPrices = data.map(({ price }) => Number(price));
-      console.log(allPrices);
-      const negatives = allPrices.filter((a) => a < 0);
-      console.log(negatives);
       const sumNegatives = allPrices.reduce((a, b) => {
         return b < 0 ? a + b : a;
       }, 0);
