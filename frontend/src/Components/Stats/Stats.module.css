@@ -2,7 +2,6 @@
   display: grid;
   margin: 0 auto;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-right: 2rem;
   gap: 2rem;
 }
 

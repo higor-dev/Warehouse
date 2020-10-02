@@ -1,7 +1,7 @@
 .wrapper {
   /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, auto)); */
-  justify-items: left;
+  justify-items: center;
   /* grid-column: 1 / 6; */
 }
 
@@ -28,9 +28,8 @@
 .search:hover {
   outline: none;
 }
-
-@media (max-width: 50rem) {
-  .wrapper {
-    min-width: 500px;
+@media (max-width: 45rem) {
+  .search {
+    width: 100%;
   }
 }

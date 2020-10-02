@@ -6,9 +6,6 @@
   margin-top: 1rem;
 }
 
-.container {
-  margin-left: 3rem;
-}
 .container h1 {
   grid-column: 1 / 4;
 }
@@ -18,4 +15,10 @@
   padding: 0.3rem;
   font-size: 2rem;
   margin-top: 1rem;
+}
+
+@media (max-width: 40rem) {
+  .feed {
+    grid-template-columns: 1fr;
+  }
 }

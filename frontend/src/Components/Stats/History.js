@@ -2,23 +2,24 @@ import React from 'react';
 import styles from './History.module.css';
 
 const History = ({ dataBalance }) => {
-  console.log(dataBalance) //To remove
+  console.log(dataBalance); //To remove
   if (dataBalance) {
     return (
       <>
-        {dataBalance.map((data,index) => {
+        {dataBalance.map((data, index) => {
           let contador = 0;
           //Para cada iteração do dataBalance.map, eu terei uma transaction em data.
           //Mas data possui installments, uma lista.
           //Logo, data.installments.map -> minhas parcelas.
           //Para cada iteração de dataBalance.map, eu preciso calcular quantas parcelas estão pagas e mostrar esse valor.
-          
+
           //Iteração para pegar os installments
-          data.installments.map((value,index) => {
-            if(value.paid == true){
+          data.installments.map((value, index) => {
+            if (value.paid === true) {
               contador++;
             }
-          })
+            return null;
+          });
 
           return (
             <div
@@ -51,9 +52,7 @@ const History = ({ dataBalance }) => {
               <span className={styles.desc}>
                 {data.price < 0 ? 'Compra' : 'Venda'}
               </span>
-              <span className={styles.desc}>
-                  {contador}
-              </span>
+              <span className={styles.desc}>{contador}</span>
             </div>
           );
         })}

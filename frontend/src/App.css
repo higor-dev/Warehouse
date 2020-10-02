@@ -185,13 +185,31 @@ a {
   font-size: 2rem;
 }
 
-.appContainerMain {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-}
-
 .appDivider {
   padding: 0.3rem;
-  margin-left: 3rem;
   margin-top: 1rem;
+}
+
+@media (max-width: 45rem) {
+  .appContainerMain {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+  }
+}
+
+.generalContainer {
+  display: grid;
+  grid-template-columns: 300px minmax(300px, 1100px);
+}
+@media (max-width: 45rem) {
+  .generalContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 }

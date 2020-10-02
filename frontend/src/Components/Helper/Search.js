@@ -3,7 +3,7 @@ import styles from './Search.module.css';
 
 const Search = ({ onChange }) => {
   return (
-    <div className={`${styles.wrapper} mainContainer`}>
+    <div className={`${styles.wrapper}`}>
       <input
         className={styles.search}
         type="text"

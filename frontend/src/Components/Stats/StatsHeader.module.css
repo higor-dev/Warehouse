@@ -2,16 +2,32 @@
   font-family: var(--type-second);
   font-size: 1.75rem;
   color: white;
+  text-align: center;
+}
+
+.header {
+  text-align: center;
 }
 
 .header ul {
   display: flex;
+  justify-content: center;
 }
 
 .header ul li {
-  margin-right: 2rem;
+  text-align: center;
+}
+
+.header ul li:nth-last-child(1) {
+  margin-left: 1rem;
 }
 
 .header li a {
   position: relative;
+}
+
+@media (max-width: 45rem) {
+  .header ul li {
+    text-align: center;
+  }
 }

@@ -1,8 +1,6 @@
 .nav {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-right: 2rem;
+  display: flex;
+  margin: 1rem 0;
 }
 
 .nav a,
@@ -17,7 +15,7 @@
   border: 1px solid transparent;
   transition: 0.1s;
   cursor: pointer;
-  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .nav a:hover,
@@ -50,7 +48,8 @@
   border: 1px solid transparent;
   transition: 0.1s;
   cursor: pointer;
-  margin-left: 1.5rem;
+  /* margin-left: 1.5rem; */
+  margin: 1rem 0;
   padding: 0px;
 }
 
@@ -92,13 +91,14 @@
   border-radius: 0.2rem;
   transform: translateX(-10px);
   opacity: 0;
+  z-index: 100000;
   pointer-events: none;
 }
 
 .navMobileActive {
   transition: 0.3s;
   transform: initial;
-  z-index: 100;
+  z-index: 10000;
   pointer-events: initial;
   opacity: 1;
 }
@@ -126,4 +126,19 @@
 
 .navMobile svg {
   margin-right: 0.5rem;
+}
+
+@media (max-width: 45rem) {
+  .mobileButton {
+    margin-left: 2rem;
+  }
+  .nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-content: center;
+    justify-items: center;
+    margin-bottom: 2rem;
+  }
 }

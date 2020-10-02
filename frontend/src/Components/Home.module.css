@@ -2,3 +2,12 @@
   display: grid;
   grid-template-columns: 300px minmax(300px, 1100px) minmax(300px, 500px);
 }
+
+@media (max-width: 45rem) {
+  .home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}

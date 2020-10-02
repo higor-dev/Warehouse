@@ -1,8 +1,14 @@
 .header {
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  margin-bottom: 2rem;
-
-  position: relative;
+  grid-template-rows: 1fr 1fr;
 }
+
+/* @media (max-width: 45rem) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    align-items: center;
+  }
+} */

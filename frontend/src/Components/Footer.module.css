@@ -4,6 +4,8 @@
   height: 10rem;
   text-align: center;
   color: white;
+  width: 100%;
+  margin: 0;
 }
 
 .footer p {

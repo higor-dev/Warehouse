@@ -34,3 +34,9 @@
   border-radius: 4px;
   margin-left: 6rem;
 }
+
+@media (max-width: 45rem) {
+  .navList {
+    display: none;
+  }
+}

@@ -12,9 +12,9 @@ const User = () => {
 
   return (
     <>
-      <div className="appContainerMain">
+      <div className="generalContainer">
         <NavList />
-        <section className="appDivider animeLeft">
+        <section className="animeLeft">
           <UserHeader />
           <Routes>
             <Route path="/" element={<UserProfile data={data} />}></Route>
