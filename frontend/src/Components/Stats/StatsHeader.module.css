@@ -19,7 +19,7 @@
 }
 
 .header ul li:nth-last-child(1) {
-  margin-left: 1rem;
+  margin-left: 5rem;
 }
 
 .header li a {
@@ -29,5 +29,8 @@
 @media (max-width: 45rem) {
   .header ul li {
     text-align: center;
+  }
+  .header ul li:nth-last-child(1) {
+    margin-left: 1rem;
   }
 }
