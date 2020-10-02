@@ -8,12 +8,7 @@ const History = ({ dataBalance }) => {
       <>
         {dataBalance.map((data, index) => {
           let contador = 0;
-          //Para cada iteração do dataBalance.map, eu terei uma transaction em data.
-          //Mas data possui installments, uma lista.
-          //Logo, data.installments.map -> minhas parcelas.
-          //Para cada iteração de dataBalance.map, eu preciso calcular quantas parcelas estão pagas e mostrar esse valor.
 
-          //Iteração para pegar os installments
           data.installments.map((value, index) => {
             if (value.paid === true) {
               contador++;
@@ -22,38 +17,98 @@ const History = ({ dataBalance }) => {
           });
 
           return (
-            <div
-              key={data.createdAt}
+            <ul
+              key={data.id}
               style={
                 data.price < 0
-                  ? { boxShadow: '0 20px 20px rgba(255, 0, 0, 0.1)' }
-                  : { boxShadow: '0 20px 20px rgba(0, 255, 0, 0.1)' }
+                  ? { boxShadow: '0 10px 10px rgba(0, 0, 0, 0.1)' }
+                  : { boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)' }
               }
-              className={`${styles.history}`}
+              className={styles.container}
             >
-              <span className={styles.nome}>Produto</span>
-              <span className={styles.nome}>Data</span>
-              <img src={data.product.image} alt="" />
-              <span className={styles.nome}>Preço</span>
-              <span className={styles.nome}>Tipo</span>
-              <span className={styles.nome}>Pagamento</span>
-              <span className={styles.nome}>Parcelas</span>
-              <span
-                className={styles.desc}
-                style={{
-                  fontFamily: 'Poppins',
-                  color: 'red',
-                }}
+              <div
+                key={data.id}
+                style={
+                  data.price < 0
+                    ? { background: '#B94141' }
+                    : { background: '#14C15E' }
+                }
+                className={styles.produto}
               >
-                {data.createdAt}
-              </span>
-              <span className={styles.desc}>R${data.product.price}</span>
-              <span className={styles.desc}>{data.product.type}</span>
-              <span className={styles.desc}>
-                {data.price < 0 ? 'Compra' : 'Venda'}
-              </span>
-              <span className={styles.desc}>{contador}</span>
-            </div>
+                <span>PRODUTO:</span> {data.product.productName}
+              </div>
+              <div className={styles.oi}>
+                <li>
+                  <div className={styles.wrap}>
+                    <h4 style={{ color: '#ccc' }}>Tipo de transação</h4>
+                    <span>
+                      {data.price < 0 ? (
+                        <span>Compra</span>
+                      ) : (
+                        <span>Venda</span>
+                      )}
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div className={styles.wrap}>
+                    <h4 style={{ color: '#ccc' }}>Data</h4>
+                    <span>{data.createdAt}</span>
+                  </div>
+                </li>
+                <li>
+                  <div className={styles.wrap}>
+                    <h4 style={{ color: '#ccc' }}>Valor total</h4>
+                    <span>
+                      R${' '}
+                      {Math.abs(
+                        (Math.round(data.received * 100) / 100).toFixed(2),
+                      )}
+                    </span>
+                  </div>
+                </li>
+                <li className={styles.ultimo}>
+                  <div className={styles.wrap}>
+                    <h4 style={{ color: '#ccc' }}>Parcelas</h4>
+                    <span>
+                      {contador} de {data.portion}
+                    </span>
+                  </div>
+                </li>
+              </div>
+            </ul>
+            // <div
+            //   key={data.createdAt}
+            //   style={
+            //     data.price < 0
+            //       ? { boxShadow: '0 20px 20px rgba(255, 0, 0, 0.1)' }
+            //       : { boxShadow: '0 20px 20px rgba(0, 255, 0, 0.1)' }
+            //   }
+            //   className={`${styles.history}`}
+            // >
+            //   <span className={styles.nome}>Produto</span>
+            //   <span className={styles.nome}>Data</span>
+            //   <img src={data.product.image} alt="" />
+            //   <span className={styles.nome}>Preço</span>
+            //   <span className={styles.nome}>Tipo</span>
+            //   <span className={styles.nome}>Pagamento</span>
+            //   <span className={styles.nome}>Parcelas</span>
+            //   <span
+            //     className={styles.desc}
+            //     style={{
+            //       fontFamily: 'Poppins',
+            //       color: 'red',
+            //     }}
+            //   >
+            //     {data.createdAt}
+            //   </span>
+            //   <span className={styles.desc}>R${data.product.price}</span>
+            //   <span className={styles.desc}>{data.product.type}</span>
+            //   <span className={styles.desc}>
+            //     {data.price < 0 ? 'Compra' : 'Venda'}
+            //   </span>
+            //   <span className={styles.desc}>{contador}</span>
+            // </div>
           );
         })}
       </>
