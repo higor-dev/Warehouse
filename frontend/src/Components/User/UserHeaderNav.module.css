@@ -5,7 +5,7 @@
 
 .nav a,
 .nav button {
-  background: #a90f11;
+  background: black;
   border-radius: 0.2rem;
   height: 40px;
   width: 40px;
@@ -22,19 +22,25 @@
 .nav a:focus,
 .nav button:hover,
 .nav button:focus {
-  background: ccc;
+  background: #;
   box-shadow: 0 0 0 3px #eee;
   border-color: #ccc;
   outline: none;
 }
 
 .nav a.active {
-  background: black;
-  box-shadow: 0 0 0 3px #fff;
+  background: white;
+  border: none;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  outline: none;
 }
 
 .nav a.active svg > * {
-  fill: #a90f11;
+  fill: black;
+}
+
+.nav svg > * {
+  fill: white;
 }
 
 .mobileButton {
@@ -117,7 +123,7 @@
 
 .navMobile a:hover svg > *,
 .navMobile button:hover svg > * {
-  fill: #fb1;
+  fill: #white;
 }
 
 .navMobile button {
