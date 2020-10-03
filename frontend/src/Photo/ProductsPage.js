@@ -36,7 +36,9 @@ const ProductsPage = ({ dataBalance }) => {
       )}
       <div>
         <div className={styles.grid}>
-          <img src={dataBalance.image} alt={dataBalance.productName} />
+          <div className={styles.qualquer}>
+            <img src={dataBalance.image} alt={dataBalance.productName} />
+          </div>
           <div className={styles.description}>
             <h1 className="title">{dataBalance.productName}</h1>
             <span className={styles.id}>Product ID: {dataBalance.id}</span>
@@ -44,10 +46,10 @@ const ProductsPage = ({ dataBalance }) => {
               <h2 className={styles.preco}>Preço: R${dataBalance.price}</h2>
               <h2 className={styles.quantidade}>
                 Quantidade em estoque: {dataBalance.quantity}{' '}
-                <button onClick={handleAdicionar} className={styles.adicionar}>
-                  +
-                </button>
               </h2>
+              <button onClick={handleAdicionar} className={styles.adicionar}>
+                +
+              </button>
             </div>
             <div className={styles.vender}>
               <div className={styles.formWrap}>
@@ -56,9 +58,6 @@ const ProductsPage = ({ dataBalance }) => {
                 </form>
               </div>
             </div>
-          </div>
-          <div className={styles.descricao}>
-            <h1 className="title3"> </h1>
           </div>
         </div>
       </div>

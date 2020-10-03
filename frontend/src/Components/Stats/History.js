@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './History.module.css';
+import moment from 'moment';
 
 const History = ({ dataBalance }) => {
-  console.log(dataBalance); //To remove
   if (dataBalance) {
     return (
       <>
@@ -53,7 +53,7 @@ const History = ({ dataBalance }) => {
                 <li>
                   <div className={styles.wrap}>
                     <h4 style={{ color: '#ccc' }}>Data</h4>
-                    <span>{data.createdAt}</span>
+                    <span>{moment(data.createdAt).format('DD/MM/YYYY')}</span>
                   </div>
                 </li>
                 <li>

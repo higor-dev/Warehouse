@@ -5,7 +5,9 @@ const SaldoEntrada = ({ data }) => {
 
   React.useEffect(() => {
     if (data) {
+      console.log(data);
       const allPrices = data.map(({ received }) => Number(received));
+      console.log(allPrices);
 
       const sumPositives = allPrices.reduce((a, b) => {
         return b > 0 ? a + b : a;
