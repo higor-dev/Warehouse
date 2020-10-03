@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { getStatistics } from '../../api';
 import useFetch from '../../Hooks/useFetch';
+import Head from '../Helper/Head';
 import History from './History';
 import Stats from './Stats';
 import StatsHeader from './StatsHeader';
@@ -27,6 +28,7 @@ const UserStats = () => {
 
   return (
     <section className="animeLeft">
+      <Head title="Estatísticas" description="Estatísticas" />;
       <StatsHeader />
       <Routes>
         <Route path="/estatisticas" element={<Stats />}></Route>

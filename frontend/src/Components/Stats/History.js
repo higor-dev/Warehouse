@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from './History.module.css';
 import moment from 'moment';
+import Head from '../Helper/Head';
 
 const History = ({ dataBalance }) => {
   if (dataBalance) {
     return (
       <>
+        <Head title="Histórico" description="Histórico" />;
         {dataBalance.map((data, index) => {
           let contador = 0;
 

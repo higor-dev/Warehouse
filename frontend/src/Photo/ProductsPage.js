@@ -3,6 +3,7 @@ import Button from '../Components/Forms/Button';
 import styles from './ProductsPage.module.css';
 import SellingModal from './SellingModal';
 import AdicionarModal from './AdicionarModal';
+import Head from '../Components/Helper/Head';
 
 const ProductsPage = ({ dataBalance }) => {
   const [modal, setModal] = React.useState(null);
@@ -20,6 +21,11 @@ const ProductsPage = ({ dataBalance }) => {
 
   return (
     <>
+      <Head
+        title={dataBalance.productName}
+        description={`${dataBalance.productName} JSBrakes`}
+      />
+      ;
       {adicionarModal && (
         <AdicionarModal
           dataBalance={dataBalance}

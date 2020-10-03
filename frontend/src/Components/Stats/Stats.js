@@ -2,6 +2,7 @@ import React from 'react';
 import { getAllTransactions, getBalance } from '../../api';
 import useFetch from '../../Hooks/useFetch';
 import Error from '../Helper/Error';
+import Head from '../Helper/Head';
 import Loading from '../Helper/Loading';
 import SaldoEntrada from './SaldoEntrada';
 import SaldoSaida from './SaldoSaida';
@@ -42,19 +43,22 @@ const Stats = () => {
   if (error) return <Error />;
   if (data) {
     return (
-      <div className={styles.container}>
-        <ul className={styles.stats}>
-          <li className={styles.saldoTotal}>
-            <SaldoTotal data={data} />
-          </li>
-          <li className={styles.entrada}>
-            <SaldoEntrada data={history} />
-          </li>
-          <li className={styles.saida}>
-            <SaldoSaida data={history} />
-          </li>
-        </ul>
-      </div>
+      <>
+        <Head title="Estatísticas" description="Estatísticas" />;
+        <div className={styles.container}>
+          <ul className={styles.stats}>
+            <li className={styles.saldoTotal}>
+              <SaldoTotal data={data} />
+            </li>
+            <li className={styles.entrada}>
+              <SaldoEntrada data={history} />
+            </li>
+            <li className={styles.saida}>
+              <SaldoSaida data={history} />
+            </li>
+          </ul>
+        </div>
+      </>
     );
   } else return <Loading />;
 };
