@@ -36,7 +36,7 @@ const Header = () => {
     <header className={styles.header}>
       <div>
         <nav className={styles.nav}>
-          <Link to="/" aria-label="Dogs - Home">
+          <Link to="/" aria-label="JSBrakes">
             <Tool className={styles.logo} />
           </Link>
           {data ? (

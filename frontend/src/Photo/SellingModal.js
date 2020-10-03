@@ -19,8 +19,6 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
   const totalParcelado = total / parcelas;
   const navigate = useNavigate();
 
-  console.log(total);
-
   function handleOutside(event) {
     if (event.target === event.currentTarget) {
       setModal(null);
