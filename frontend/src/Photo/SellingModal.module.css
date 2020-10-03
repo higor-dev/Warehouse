@@ -12,6 +12,7 @@
 
 .sell {
   overflow: scroll;
+  margin: auto;
   border-radius: 0.2rem;
   padding: 1rem;
   width: 70rem;
