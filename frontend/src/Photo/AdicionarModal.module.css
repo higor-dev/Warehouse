@@ -12,16 +12,10 @@
 
 .sell {
   margin: auto;
-  /* overflow: scroll; */
   border-radius: 0.2rem;
   padding: 1rem;
-  height: 50%;
   width: 52rem;
   background: white;
-  /* display: grid; */
-  /* grid-template-columns: 1fr 1fr; */
-  /* grid-template-rows: 100px 100px 100px 100px; */
-  overflow: hidden;
   opacity: 0;
   transform: scale(0.8);
   animation: scaleUp 0.3s forwards;

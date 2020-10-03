@@ -62,6 +62,9 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
             <h1 className={`${styles.title} title3`}>
               Efetuar venda de produto:
             </h1>
+            <div className={styles.wrapper}>
+              <img className={styles.image} src={dataBalance.image} alt="" />
+            </div>
 
             <form className={styles.form} onSubmit={handleSubmit}>
               <Input
@@ -147,9 +150,6 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
 
               <Error error={error} />
             </form>
-            <div className={styles.wrapper}>
-              <img className={styles.image} src={dataBalance.image} alt="" />
-            </div>
           </div>
         </div>
         ;{' '}

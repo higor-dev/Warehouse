@@ -10,37 +10,28 @@
   padding: 2rem calc(4rem + 15px) 2rem 4rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
 .sell {
-  margin: auto;
-  /* overflow: scroll; */
+  overflow: scroll;
   border-radius: 0.2rem;
   padding: 1rem;
-  height: 80%;
   width: 70rem;
   background: white;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 100px 100px 100px 100px;
-  overflow: hidden;
   opacity: 0;
   transform: scale(0.8);
   animation: scaleUp 0.3s forwards;
 }
 .wrapper {
-  grid-row: 2 / 5;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 200px;
 }
 
 .image {
-  width: 300px;
+  height: 100%;
+  width: 100%;
   border-radius: 4px;
+  object-fit: contain;
 }
 
 .estoque {
@@ -50,10 +41,6 @@
 .flexWrap {
   display: flex;
   align-items: center;
-}
-
-.form {
-  grid-row: 2;
 }
 
 .form input {
@@ -102,5 +89,16 @@
   to {
     opacity: 1;
     transform: initial;
+  }
+}
+
+@media (max-width: 34rem) {
+  .sell {
+    display: block;
+    overflow: scroll;
+  }
+  .wrapper {
+    display: none;
+    margin: none;
   }
 }
