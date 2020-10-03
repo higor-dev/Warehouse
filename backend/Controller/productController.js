@@ -118,7 +118,7 @@ product.put('/buyProduct', verifyJWT, async (req, res) => {
     quantity: req.body.quantity,
     isApportioned: req.body.isApportioned,
     portion: req.body.portion,
-    received: (req.body.price * req.body.quantity) / req.body.portion,
+    received: (req.body.price * req.body.quantity * -1) / req.body.portion,
   });
 
   const difference = req.body.quantity * req.body.price;
