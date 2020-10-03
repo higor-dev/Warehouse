@@ -11,7 +11,7 @@ const UserProfile = ({ data }) => {
         <Head title={data.name} description={`${data.name} JSBrakes`} />
         <div className={`${styles.profile}`}>
           <div className={styles.foto}>
-            {data.name === 'Higor' && <img src={fotoSidnei} alt="" />}
+            {data.name === 'Sidnei' && <img src={fotoSidnei} alt="" />}
             {data.name === 'João' && <img src={fotoJoao} alt="" />}
           </div>
           <div className={styles.info}>
