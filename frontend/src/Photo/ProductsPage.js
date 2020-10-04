@@ -49,7 +49,16 @@ const ProductsPage = ({ dataBalance }) => {
             <h1 className="title">{dataBalance.productName}</h1>
             <span className={styles.id}>Product ID: {dataBalance.id}</span>
             <div>
-              <h2 className={styles.preco}>Preço: R${dataBalance.price}</h2>
+              <h2 className={styles.preco}>
+                Preço: R$
+                {Math.abs(
+                  (
+                    Math.round(
+                      (dataBalance.price + dataBalance.price * 0.4) * 100,
+                    ) / 100
+                  ).toFixed(2),
+                )}
+              </h2>
               <h2 className={styles.quantidade}>
                 Quantidade em estoque: {dataBalance.quantity}{' '}
               </h2>

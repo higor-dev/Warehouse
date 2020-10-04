@@ -22,7 +22,15 @@ const PhotoContent = ({ data }) => {
             <ul className={styles.attributes}>
               <li>
                 <h3>
-                  Preço: <span style={{ color: 'red' }}>R${data.price}</span>
+                  Preço:{' '}
+                  <span style={{ color: 'red' }}>
+                    R$
+                    {Math.abs(
+                      (
+                        Math.round((data.price + data.price * 0.4) * 100) / 100
+                      ).toFixed(2),
+                    )}
+                  </span>
                 </h3>{' '}
               </li>
               <li>

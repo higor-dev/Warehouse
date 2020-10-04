@@ -63,6 +63,18 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
             <div className={styles.wrapper}>
               <img className={styles.image} src={dataBalance.image} alt="" />
             </div>
+            <div className={styles.espaco}>
+              <span className={styles.calculado}>
+                Preço sugerido: R${' '}
+                {Math.abs(
+                  (
+                    Math.round(
+                      (dataBalance.price + dataBalance.price * 0.4) * 100,
+                    ) / 100
+                  ).toFixed(2),
+                )}
+              </span>
+            </div>
 
             <form className={styles.form} onSubmit={handleSubmit}>
               <Input

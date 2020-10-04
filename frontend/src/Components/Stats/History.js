@@ -45,7 +45,7 @@ const History = ({ dataBalance }) => {
                     <h4 style={{ color: '#ccc' }}>Tipo de transação</h4>
                     <span>
                       {data.price < 0 ? (
-                        <span>Compra</span>
+                        <span>Entrada</span>
                       ) : (
                         <span>Venda</span>
                       )}

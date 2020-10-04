@@ -19,7 +19,14 @@ const ProductFeed = ({ produto, setModalPhoto, filter }) => {
         <section className={styles.descricao}>
           <h3>{produto.productName}</h3>
           <h3>Disponíveis: {produto.quantity}</h3>
-          <h3>Preço de compra: R$: {produto.price}</h3>
+          <h3>
+            Preço para venda: R$:{' '}
+            {Math.abs(
+              (
+                Math.round((produto.price + produto.price * 0.4) * 100) / 100
+              ).toFixed(2),
+            )}
+          </h3>
         </section>
       </li>{' '}
     </>
