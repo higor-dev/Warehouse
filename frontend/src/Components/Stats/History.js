@@ -69,12 +69,18 @@ const History = ({ dataBalance }) => {
                     </span>
                   </div>
                 </li>
-                <li className={styles.ultimo}>
+                <li>
                   <div className={styles.wrap}>
                     <h4 style={{ color: '#ccc' }}>Parcelas</h4>
                     <span>
                       {contador} de {data.portion}
                     </span>
+                  </div>
+                </li>
+                <li className={styles.ultimo}>
+                  <div className={styles.wrap}>
+                    <h4 style={{ color: '#ccc' }}>Quantidade</h4>
+                    <span>{data.quantity}</span>
                   </div>
                 </li>
               </div>
