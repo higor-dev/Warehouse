@@ -13,14 +13,17 @@ const Login = () => {
     return <Navigate to="/conta" />;
   }
   return (
-    <section className={styles.login}>
+    <>
+      {' '}
       <Head title="Login" description="Login JSBrakes" />
-      <div className={styles.forms}>
-        <Routes>
-          <Route path="/" element={<LoginForm />} />
-        </Routes>
-      </div>
-    </section>
+      <section className={styles.login}>
+        <div className={styles.forms}>
+          <Routes>
+            <Route path="/" element={<LoginForm />} />
+          </Routes>
+        </div>
+      </section>
+    </>
   );
 };
 
