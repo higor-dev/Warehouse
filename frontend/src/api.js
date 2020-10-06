@@ -1,6 +1,6 @@
 export function LoginUser(body) {
   return {
-    url: 'http://localhost:8080/login',
+    url: 'http://solairedevelopment.com:8080/login',
     options: {
       method: 'POST',
       headers: {
