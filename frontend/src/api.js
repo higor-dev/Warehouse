@@ -13,7 +13,7 @@ export function LoginUser(body) {
 
 export function getUserByToken(token) {
   return {
-    url: 'http://localhost:8080/getUser',
+    url: 'http://solairedevelopment.com:8080/getUser',
     options: {
       method: 'GET',
       headers: {
@@ -25,7 +25,7 @@ export function getUserByToken(token) {
 
 export function createProduct(formData, token) {
   return {
-    url: 'http://localhost:8080/createProduct',
+    url: 'http://solairedevelopment.com:8080/createProduct',
     options: {
       method: 'POST',
       headers: {
@@ -39,7 +39,7 @@ export function createProduct(formData, token) {
 
 export function sellProduct(formData, token) {
   return {
-    url: 'http://localhost:8080/sellProduct',
+    url: 'http://solairedevelopment.com:8080/sellProduct',
     options: {
       method: 'PUT',
       headers: {
@@ -53,7 +53,7 @@ export function sellProduct(formData, token) {
 
 export function buyProduct(formData, token) {
   return {
-    url: 'http://localhost:8080/buyProduct',
+    url: 'http://solairedevelopment.com:8080/buyProduct',
     options: {
       method: 'PUT',
       headers: {
@@ -67,7 +67,7 @@ export function buyProduct(formData, token) {
 
 export function getProduct(id, token) {
   return {
-    url: `http://localhost:8080/getProduct/${id}`,
+    url: `http://solairedevelopment.com:8080/getProduct/${id}`,
     options: {
       method: 'GET',
       headers: {
@@ -79,7 +79,7 @@ export function getProduct(id, token) {
 
 export function getBalance(token) {
   return {
-    url: `http://localhost:8080/getBalance`,
+    url: `http://solairedevelopment.com:8080/getBalance`,
     options: {
       method: 'GET',
       headers: {
@@ -91,7 +91,7 @@ export function getBalance(token) {
 
 export function deleteProduct(id, token) {
   return {
-    url: `http://localhost:8080/deleteProduct/${id}`,
+    url: `http://solairedevelopment.com:8080/deleteProduct/${id}`,
     options: {
       method: 'DELETE',
       headers: {
@@ -103,7 +103,7 @@ export function deleteProduct(id, token) {
 
 export function getAllProducts(token) {
   return {
-    url: `http://localhost:8080/getAllProducts`,
+    url: `http://solairedevelopment.com:8080/getAllProducts`,
     options: {
       method: 'GET',
       headers: {
@@ -115,7 +115,7 @@ export function getAllProducts(token) {
 
 export function getStatistics(token) {
   return {
-    url: `http://localhost:8080/getStatistics`,
+    url: `http://solairedevelopment.com:8080/getStatistics`,
     options: {
       method: 'GET',
       headers: {
@@ -127,7 +127,7 @@ export function getStatistics(token) {
 
 export function getAllTransactions(token) {
   return {
-    url: `http://localhost:8080/getAllTransactions`,
+    url: `http://solairedevelopment.com:8080/getAllTransactions`,
     options: {
       method: 'GET',
       headers: {
