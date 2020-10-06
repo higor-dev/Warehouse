@@ -1,6 +1,8 @@
+const URL = process.env.REACT_APP_URL;
+
 export function LoginUser(body) {
   return {
-    url: 'http://solairedevelopment.com:8080/login',
+    url: URL + 'login',
     options: {
       method: 'POST',
       headers: {
@@ -13,7 +15,7 @@ export function LoginUser(body) {
 
 export function getUserByToken(token) {
   return {
-    url: 'http://solairedevelopment.com:8080/getUser',
+    url: URL + 'getUser',
     options: {
       method: 'GET',
       headers: {
@@ -25,7 +27,7 @@ export function getUserByToken(token) {
 
 export function createProduct(formData, token) {
   return {
-    url: 'http://solairedevelopment.com:8080/createProduct',
+    url: URL + 'createProduct',
     options: {
       method: 'POST',
       headers: {
@@ -39,7 +41,7 @@ export function createProduct(formData, token) {
 
 export function sellProduct(formData, token) {
   return {
-    url: 'http://solairedevelopment.com:8080/sellProduct',
+    url: URL + 'sellProduct',
     options: {
       method: 'PUT',
       headers: {
@@ -53,7 +55,7 @@ export function sellProduct(formData, token) {
 
 export function buyProduct(formData, token) {
   return {
-    url: 'http://solairedevelopment.com:8080/buyProduct',
+    url: URL + 'buyProduct',
     options: {
       method: 'PUT',
       headers: {
@@ -67,7 +69,7 @@ export function buyProduct(formData, token) {
 
 export function getProduct(id, token) {
   return {
-    url: `http://solairedevelopment.com:8080/getProduct/${id}`,
+    url: URL + `getProduct/${id}`,
     options: {
       method: 'GET',
       headers: {
@@ -79,7 +81,7 @@ export function getProduct(id, token) {
 
 export function getBalance(token) {
   return {
-    url: `http://solairedevelopment.com:8080/getBalance`,
+    url: URL + `getBalance`,
     options: {
       method: 'GET',
       headers: {
@@ -91,7 +93,7 @@ export function getBalance(token) {
 
 export function deleteProduct(id, token) {
   return {
-    url: `http://solairedevelopment.com:8080/deleteProduct/${id}`,
+    url: URL + `deleteProduct/${id}`,
     options: {
       method: 'DELETE',
       headers: {
@@ -103,7 +105,7 @@ export function deleteProduct(id, token) {
 
 export function getAllProducts(token) {
   return {
-    url: `http://solairedevelopment.com:8080/getAllProducts`,
+    url: URL + `getAllProducts`,
     options: {
       method: 'GET',
       headers: {
@@ -115,7 +117,7 @@ export function getAllProducts(token) {
 
 export function getStatistics(token) {
   return {
-    url: `http://solairedevelopment.com:8080/getStatistics`,
+    url: URL + `getStatistics`,
     options: {
       method: 'GET',
       headers: {
@@ -127,7 +129,7 @@ export function getStatistics(token) {
 
 export function getAllTransactions(token) {
   return {
-    url: `http://solairedevelopment.com:8080/getAllTransactions`,
+    url: URL + `getAllTransactions`,
     options: {
       method: 'GET',
       headers: {
