@@ -10,10 +10,13 @@ import { useNavigate } from 'react-router-dom';
 
 const SellingModal = ({ dataBalance, modal, setModal }) => {
   const { loading, error, request, data } = useFetch();
-  const valorVenda = useForm();
   const valorQuantidade = useForm();
+  const [valorPorcentagem, setValorPorcentagem] = React.useState('');
   const [parcelas, setParcelas] = React.useState('');
-  const formatarVenda = valorVenda.value.toString();
+  const formatarVenda = (
+    dataBalance.price +
+    dataBalance.price * +valorPorcentagem
+  ).toString();
   const corrigirVenda = Number(formatarVenda.replace(/[$,]/g, '.'));
   const total = +valorQuantidade.value * corrigirVenda;
   const totalParcelado = total / parcelas;
@@ -25,19 +28,21 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
     }
   }
 
+  console.log(corrigirVenda);
+
   React.useEffect(() => {
     if (data) navigate('/');
   }, [data, navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (valorVenda && valorQuantidade && parcelas) {
+    if (formatarVenda && valorQuantidade && parcelas) {
       //prettier-ignore
       const oi = JSON.stringify({
       'id': dataBalance.id,
       'productName': dataBalance.productName,
       'quantity': valorQuantidade.value,
-      'price': Number(valorVenda.value.replace(/[$,]/g, '.')),
+      'price': Number(corrigirVenda),
       'type': dataBalance.type,
       'companyId': 1,
       'image': dataBalance.image,
@@ -65,7 +70,13 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
             </div>
             <div className={styles.espaco}>
               <span className={styles.calculado}>
-                Preço sugerido: R${' '}
+                Preço unitário: R${' '}
+                {Math.abs(
+                  (Math.round(dataBalance.price * 100) / 100).toFixed(2),
+                )}
+              </span>
+              <span className={styles.calculado}>
+                Preço sugerido para venda: R${' '}
                 {Math.abs(
                   (
                     Math.round(
@@ -77,14 +88,59 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
             </div>
 
             <form className={styles.form} onSubmit={handleSubmit}>
-              <Input
-                label="Valor de venda:"
-                maxLength="20"
-                type="text"
-                name="valorVenda"
-                {...valorVenda}
-              />
-              {valorVenda.value ? (
+              <label htmlFor="porcentagem">Selecione o valor de venda:</label>
+              <select
+                id="porcentagem"
+                value={valorPorcentagem}
+                onChange={({ target }) => {
+                  setValorPorcentagem(target.value);
+                }}
+              >
+                <option disabled value=""></option>
+                <option value="0.1">
+                  {`10% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.1) / 1) * 100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
+                <option value="0.2">
+                  {`20% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.2) / 1) * 100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
+                <option value="0.3">
+                  {`30% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.3) / 1) * 100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
+                <option value="0.4">
+                  {`40% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.4) / 1) * 100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
+                <option value="0.5">
+                  {`50% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.5) / 1) * 100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
+                <option value="0.6">
+                  {`60% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.6) / 1) * 100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
+              </select>
+              {formatarVenda.value ? (
                 <Input
                   label="Quantidade:"
                   maxLength="20"
@@ -95,7 +151,6 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
               ) : (
                 <Input
                   label="Quantidade:"
-                  disabled
                   maxLength="20"
                   type="number"
                   name="quantidade"

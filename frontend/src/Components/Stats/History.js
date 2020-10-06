@@ -9,6 +9,7 @@ const History = ({ dataBalance }) => {
       <>
         <Head title="Histórico" description="Histórico" />;
         {dataBalance.reverse().map((data, index) => {
+          if (data.product === null) return null;
           let contador = 0;
 
           data.installments.map((value, index) => {
