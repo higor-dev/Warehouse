@@ -10,6 +10,7 @@ const Input = ({
   error,
   onBlur,
   maxLength,
+  disabled,
   max,
   pattern,
   placeholder,
@@ -21,6 +22,7 @@ const Input = ({
       </label>
       <input
         id={name}
+        disabled={disabled}
         name={name}
         className={styles.input}
         type={type}

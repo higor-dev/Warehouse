@@ -15,6 +15,7 @@
 }
 
 .calculado {
+  display: block;
   font-family: 'Poppins';
   font-size: 1.3rem;
 }
