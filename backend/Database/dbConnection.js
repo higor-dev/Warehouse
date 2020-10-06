@@ -1,7 +1,9 @@
 //Use .env props here
-
+require('dotenv/config');
 const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize('storage', 'root', 'solaire', {
+
+const user = process.env.USER
+const sequelize = new Sequelize(process.env.DATABASE, "root", process.env.PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
 });
