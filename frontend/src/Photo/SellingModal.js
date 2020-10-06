@@ -210,7 +210,14 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
                 ) : (
                   <Button>Finalizar</Button>
                 )}
-                {parcelas && <h3>Valor final: R${totalParcelado}</h3>}
+                {parcelas && (
+                  <h3>
+                    Valor final: R$
+                    {Math.abs(
+                      (Math.round(totalParcelado * 100) / 100).toFixed(2),
+                    )}
+                  </h3>
+                )}
               </div>
 
               <Error error={error} />
