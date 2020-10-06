@@ -28,7 +28,7 @@ const UserStats = () => {
 
   return (
     <section className="animeLeft">
-      <Head title="Estatísticas" description="Estatísticas" />;
+      <Head title="Estatísticas" description="Estatísticas" />
       <StatsHeader />
       <Routes>
         <Route path="/estatisticas" element={<Stats />}></Route>

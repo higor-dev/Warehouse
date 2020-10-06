@@ -16,7 +16,7 @@ const History = ({ dataBalance }) => {
             if (value.paid === true) {
               contador++;
             }
-            return null;
+            return 'a';
           });
 
           return (

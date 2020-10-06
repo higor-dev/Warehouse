@@ -68,7 +68,7 @@ const UserPhotoPost = () => {
 
   return (
     <>
-      <Head title="Postar" description="Postar" />;
+      <Head title="Postar" description="Postar" />
       <section className={`${styles.photoPost} animeLeft`}>
         <form onSubmit={handleSubmit}>
           <Input label="Produto" type="text" name="productName" {...product} />
