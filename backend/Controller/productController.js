@@ -141,6 +141,7 @@ product.delete('/deleteProduct/:id', verifyJWT, async (req, res) => {
     companyId: 1, //There is only one conpany
     price: fetchedProduct.price * fetchedProduct.quantity, //Transaction price, not product price
     quantity: -1 * fetchedProduct.quantity,
+    received: fetchedProduct.price * fetchedProduct.quantity
   });
   await updateBalance(fetchedProduct, { quantity: 0, price: 0 });
 
