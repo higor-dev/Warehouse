@@ -104,10 +104,26 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
                     ) / 100
                   ).toFixed(2)}`}{' '}
                 </option>
+                <option value="0.15">
+                  {`15% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.15) / 1) *
+                        100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
                 <option value="0.2">
                   {`20% do valor: R$${(
                     Math.round(
                       ((dataBalance.price + dataBalance.price * 0.2) / 1) * 100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
+                <option value="0.25">
+                  {`25% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.25) / 1) *
+                        100,
                     ) / 100
                   ).toFixed(2)}`}{' '}
                 </option>
@@ -118,6 +134,14 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
                     ) / 100
                   ).toFixed(2)}`}{' '}
                 </option>
+                <option value="0.35">
+                  {`35% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.35) / 1) *
+                        100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
                 <option value="0.4">
                   {`40% do valor: R$${(
                     Math.round(
@@ -125,10 +149,26 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
                     ) / 100
                   ).toFixed(2)}`}{' '}
                 </option>
+                <option value="0.45">
+                  {`45% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.45) / 1) *
+                        100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
                 <option value="0.5">
                   {`50% do valor: R$${(
                     Math.round(
                       ((dataBalance.price + dataBalance.price * 0.5) / 1) * 100,
+                    ) / 100
+                  ).toFixed(2)}`}{' '}
+                </option>
+                <option value="0.55">
+                  {`55% do valor: R$${(
+                    Math.round(
+                      ((dataBalance.price + dataBalance.price * 0.55) / 1) *
+                        100,
                     ) / 100
                   ).toFixed(2)}`}{' '}
                 </option>
