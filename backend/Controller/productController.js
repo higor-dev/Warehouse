@@ -42,7 +42,7 @@ product.post('/createProduct', verifyJWT, async (req, res) => {
   const user = await User.findOne({ where: { id: req.userId } });
   const product = await Product.create(req.body);
   createTransaction({
-    author: user.name,
+    author: `${user.name} ${user.lastName}`,
     productId: product.id,
     companyId: 1, //There is only one company
     price: product.price * product.quantity * -1, //Transaction price, not product price
