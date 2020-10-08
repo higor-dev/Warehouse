@@ -26,8 +26,6 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
     }
   }
 
-  console.log(corrigirVenda);
-
   React.useEffect(() => {
     if (data) navigate('/');
   }, [data, navigate]);
