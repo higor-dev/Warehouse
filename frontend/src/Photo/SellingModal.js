@@ -10,13 +10,11 @@ import { useNavigate } from 'react-router-dom';
 
 const SellingModal = ({ dataBalance, modal, setModal }) => {
   const { loading, error, request, data } = useFetch();
+  const valor = useForm();
   const valorQuantidade = useForm();
-  const [valorPorcentagem, setValorPorcentagem] = React.useState('');
+  const valorPorcentagem = useForm();
   const [parcelas, setParcelas] = React.useState('');
-  const formatarVenda = (
-    dataBalance.price +
-    dataBalance.price * +valorPorcentagem
-  ).toString();
+  const formatarVenda = (+valor.value).toString();
   const corrigirVenda = Number(formatarVenda.replace(/[$,]/g, '.'));
   const total = +valorQuantidade.value * corrigirVenda;
   const totalParcelado = total / parcelas;
@@ -75,111 +73,27 @@ const SellingModal = ({ dataBalance, modal, setModal }) => {
                   (Math.round(dataBalance.price * 100) / 100).toFixed(2),
                 )}
               </span>
-              <span className={styles.calculado}>
-                Preço sugerido para venda: R${' '}
-                {Math.abs(
-                  (
-                    Math.round(
-                      (dataBalance.price + dataBalance.price * 0.4) * 100,
-                    ) / 100
-                  ).toFixed(2),
-                )}
+              <span className={styles.calculado2}>
+                Calcular porcentagem: R$
+                {valorPorcentagem.value &&
+                  dataBalance.price +
+                    dataBalance.price * (+valorPorcentagem.value / 100)}
+                <Input
+                  type="number"
+                  name="porcentagem"
+                  {...valorPorcentagem}
+                ></Input>
               </span>
             </div>
 
             <form className={styles.form} onSubmit={handleSubmit}>
-              <label htmlFor="porcentagem">Selecione o valor de venda:</label>
-              <select
-                id="porcentagem"
-                value={valorPorcentagem}
-                onChange={({ target }) => {
-                  setValorPorcentagem(target.value);
-                }}
-              >
-                <option disabled value=""></option>
-                <option value="0.1">
-                  {`10% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.1) / 1) * 100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.15">
-                  {`15% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.15) / 1) *
-                        100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.2">
-                  {`20% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.2) / 1) * 100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.25">
-                  {`25% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.25) / 1) *
-                        100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.3">
-                  {`30% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.3) / 1) * 100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.35">
-                  {`35% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.35) / 1) *
-                        100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.4">
-                  {`40% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.4) / 1) * 100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.45">
-                  {`45% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.45) / 1) *
-                        100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.5">
-                  {`50% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.5) / 1) * 100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.55">
-                  {`55% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.55) / 1) *
-                        100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-                <option value="0.6">
-                  {`60% do valor: R$${(
-                    Math.round(
-                      ((dataBalance.price + dataBalance.price * 0.6) / 1) * 100,
-                    ) / 100
-                  ).toFixed(2)}`}{' '}
-                </option>
-              </select>
+              <Input
+                label="Valor de venda:"
+                maxLength="20"
+                type="number"
+                name="valor"
+                {...valor}
+              />
               {formatarVenda.value ? (
                 <Input
                   label="Quantidade:"

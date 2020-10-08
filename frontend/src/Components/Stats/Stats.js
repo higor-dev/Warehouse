@@ -44,7 +44,7 @@ const Stats = () => {
   if (data) {
     return (
       <>
-        <Head title="Estatísticas" description="Estatísticas" />;
+        <Head title="Estatísticas" description="Estatísticas" />
         <div className={styles.container}>
           <ul className={styles.stats}>
             <li className={styles.saldoTotal}>

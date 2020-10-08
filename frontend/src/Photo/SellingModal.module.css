@@ -9,6 +9,15 @@
   z-index: 1000;
   padding: 2rem calc(4rem + 15px) 2rem 4rem;
 }
+.calculado2 {
+  font-family: 'Poppins';
+  font-size: 1.3rem;
+}
+
+.calculado2 input {
+  padding: 0.1rem;
+  width: 10%;
+}
 
 .espaco {
   margin: 1rem 0;

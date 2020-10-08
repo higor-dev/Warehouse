@@ -25,7 +25,7 @@ const ProductsPage = ({ dataBalance }) => {
         title={dataBalance.productName}
         description={`${dataBalance.productName} JSBrakes`}
       />
-      ;
+
       {adicionarModal && (
         <AdicionarModal
           dataBalance={dataBalance}
