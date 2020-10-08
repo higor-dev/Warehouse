@@ -1,9 +1,9 @@
 import React from 'react';
-import { getBalance } from '../api';
-import useFetch from '../Hooks/useFetch';
+import { getBalance } from '../../api';
+import useFetch from '../../Hooks/useFetch';
 import styles from './Balance.module.css';
-import Error from './Helper/Error';
-import Loading from './Helper/Loading';
+import Error from '../Helper/Error';
+import Loading from '../Helper/Loading';
 
 const Balance = () => {
   const { data, loading, error, request } = useFetch();

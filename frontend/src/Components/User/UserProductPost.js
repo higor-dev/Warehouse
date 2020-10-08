@@ -4,7 +4,7 @@ import useFetch from '../../Hooks/useFetch';
 import useForm from '../../Hooks/useForm';
 import Button from '../Forms/Button';
 import Input from '../Forms/Input';
-import styles from './UserPhotoPost.module.css';
+import styles from './UserProductPost.module.css';
 import Error from '../Helper/Error';
 import { useNavigate } from 'react-router-dom';
 import Head from '../Helper/Head';

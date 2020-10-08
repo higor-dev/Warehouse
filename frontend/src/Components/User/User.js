@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import UserHeader from './UserHeader';
-import UserPhotoPost from './UserPhotoPost';
+import UserProductPost from './UserProductPost';
 import UserStats from '../Stats/UserStats';
 import { UserContext } from '../../UserContext';
 import UserProfile from './UserProfile';
-import NavList from '../NavList';
+import NavList from '../../Home/NavList';
 
 const User = () => {
   const { data } = React.useContext(UserContext);
@@ -18,7 +18,7 @@ const User = () => {
           <UserHeader />
           <Routes>
             <Route path="/" element={<UserProfile data={data} />}></Route>
-            <Route path="postar" element={<UserPhotoPost />}></Route>
+            <Route path="postar" element={<UserProductPost />}></Route>
             <Route path="estatisticas/*" element={<UserStats />}></Route>
           </Routes>
         </section>
