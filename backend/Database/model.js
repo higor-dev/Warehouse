@@ -13,6 +13,7 @@ const Product = sequelize.define("product", {
   quantity: DataTypes.INTEGER,
   price: DataTypes.DOUBLE,
   type: DataTypes.TEXT,
+  sellPrice: DataTypes.DOUBLE,
   image: DataTypes.TEXT('long')
 })
 
