@@ -22,20 +22,20 @@ router.get("/getUser", verifyJWT,(req,res)=>{
         .catch(err => res.json(err));
 })
 
-router.post("/createUser",(req,res) => {
-    bcrypt.hash(req.body.password, 10, function(err, hash) {
-        const hashedUser = {
-            name: req.body.name,
-            lastName: req.body.lastName,
-            password: hash,
-            email: req.body.email
-        }
-        const user = service.createdUser(hashedUser);
-        user
-            .then(data => res.json(data))
-            .catch(err => res.json(err));
-    });
-})
+// router.post("/createUser",(req,res) => {
+//     bcrypt.hash(req.body.password, 10, function(err, hash) {
+//         const hashedUser = {
+//             name: req.body.name,
+//             lastName: req.body.lastName,
+//             password: hash,
+//             email: req.body.email
+//         }
+//         const user = service.createdUser(hashedUser);
+//         user
+//             .then(data => res.json(data))
+//             .catch(err => res.json(err));
+//     });
+// })
 
 router.put("/updateUser", verifyJWT,(req,res) => {
     const user = service.updatedUser(req.body);
