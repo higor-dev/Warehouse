@@ -32,9 +32,7 @@ const PhotoContent = ({ data }) => {
                   <span style={{ color: 'red' }}>
                     R$
                     {Math.abs(
-                      (
-                        Math.round((data.price + data.price * 0.4) * 100) / 100
-                      ).toFixed(2),
+                      (Math.round(data.sellPrice * 100) / 100).toFixed(2),
                     )}
                   </span>
                 </h3>{' '}

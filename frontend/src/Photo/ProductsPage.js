@@ -52,11 +52,7 @@ const ProductsPage = ({ dataBalance }) => {
               <h2 className={styles.preco}>
                 Preço: R$
                 {Math.abs(
-                  (
-                    Math.round(
-                      (dataBalance.price + dataBalance.price * 0.4) * 100,
-                    ) / 100
-                  ).toFixed(2),
+                  (Math.round(dataBalance.sellPrice * 100) / 100).toFixed(2),
                 )}
               </h2>
               <h2 className={styles.quantidade}>

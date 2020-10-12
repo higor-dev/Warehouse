@@ -12,6 +12,7 @@ import Head from '../Helper/Head';
 const UserPhotoPost = () => {
   const product = useForm();
   const type = useForm();
+  const sellingPrice = useForm();
   const quantity = useForm('number');
   const price = useForm('money');
   // const [img, setImg] = React.useState({});
@@ -33,6 +34,7 @@ const UserPhotoPost = () => {
       type: type.value,
       companyId: 1,
       image: image.value,
+      sellPrice: +sellingPrice.value,
     });
 
     const token = window.localStorage.getItem('token');
@@ -101,6 +103,13 @@ const UserPhotoPost = () => {
             type="text"
             name="price"
             {...price}
+          />
+          <Input
+            label="Preço para venda"
+            placeholder="Ex.: 1500,99"
+            type="text"
+            name="price"
+            {...sellingPrice}
           />
           {/* <input
             className={styles.file}
