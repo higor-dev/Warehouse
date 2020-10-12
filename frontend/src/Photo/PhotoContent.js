@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './PhotoContent.module.css';
 import PhotoDelete from './PhotoDelete';
 import ImageModal from '../Components/Helper/ImageModal';
+import PhotoEdit from './PhotoEdit';
 
 const PhotoContent = ({ data }) => {
   return (
@@ -13,9 +14,14 @@ const PhotoContent = ({ data }) => {
         </div>
         <div className={styles.details}>
           <div className={styles.flexSla}>
-            <p className={styles.author}>
-              <PhotoDelete id={data.id} />
-            </p>
+            <div className={styles.flexOi}>
+              <p className={styles.author}>
+                <PhotoDelete data={data} id={data.id} />
+              </p>
+              <p className={styles.author}>
+                <PhotoEdit id={data.id} />
+              </p>
+            </div>
             <h1 className={`${styles.titleNovo} title4`}>
               <Link to={`/produto/${data.id}`}>{data.productName}</Link>
             </h1>

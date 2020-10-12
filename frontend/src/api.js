@@ -53,6 +53,20 @@ export function sellProduct(formData, token) {
   };
 }
 
+export function updateProduct(formData, token) {
+  return {
+    url: URL + 'updateProduct',
+    options: {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+      },
+      body: formData,
+    },
+  };
+}
+
 export function buyProduct(formData, token) {
   return {
     url: URL + 'buyProduct',

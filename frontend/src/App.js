@@ -8,7 +8,7 @@ import Login from './Components/Login/Login';
 import { UserStorage } from './UserContext';
 import User from './Components/User/User';
 import ProtectedRouter from './Components/Helper/ProtectedRouter';
-import Photo from './Photo/Photo';
+import Products from './Photo/Products';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
                 <ProtectedRouter path="/" element={<Home />} />
                 <ProtectedRouter path="/react-store" element={<Login />} />
                 <Route path="/login/*" element={<Login />} />
-                <ProtectedRouter path="produto/:id" element={<Photo />} />
+                <ProtectedRouter path="/produto/*" element={<Products />} />
                 <ProtectedRouter path="/conta/*" element={<User />} />
               </Routes>
             </main>
