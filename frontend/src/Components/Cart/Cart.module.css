@@ -1,0 +1,22 @@
+.vazio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.title {
+  font-family: 'Poppins';
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  font-family: 'Poppins';
+}
+
+.subtotal {
+  margin-top: 1rem;
+  font-family: 'Poppins';
+}

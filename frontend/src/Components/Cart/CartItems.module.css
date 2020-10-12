@@ -1,0 +1,17 @@
+.items {
+  margin-top: 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  padding: 2rem 0.5rem;
+  font-family: 'Poppins';
+  font-size: 1rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex span {
+  width: 10rem;
+}

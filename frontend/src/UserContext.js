@@ -10,6 +10,7 @@ export const UserStorage = ({ children }) => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   const [active, setActive] = React.useState(false);
+  const [cart, setCart] = React.useState([]);
   const navigate = useNavigate();
 
   const userLogout = React.useCallback(
@@ -85,6 +86,8 @@ export const UserStorage = ({ children }) => {
         login,
         active,
         setActive,
+        cart,
+        setCart,
       }}
     >
       {children}

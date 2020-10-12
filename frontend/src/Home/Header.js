@@ -41,6 +41,9 @@ const Header = () => {
           </Link>
           {data ? (
             <div className={styles.wrapper}>
+              <Link to="/carrinho" aria-label="JSBrakes">
+                oi
+              </Link>
               <Link className={styles.login} to="/conta">
                 <p className={styles.nome}>{data.name}</p>
               </Link>

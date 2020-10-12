@@ -9,6 +9,7 @@ import { UserStorage } from './UserContext';
 import User from './Components/User/User';
 import ProtectedRouter from './Components/Helper/ProtectedRouter';
 import Products from './Photo/Products';
+import Cart from './Components/Cart/Cart';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
 
               <Routes>
                 <ProtectedRouter path="/" element={<Home />} />
+                <ProtectedRouter path="/carrinho" element={<Cart />} />
                 <ProtectedRouter path="/react-store" element={<Login />} />
                 <Route path="/login/*" element={<Login />} />
                 <ProtectedRouter path="/produto/*" element={<Products />} />
