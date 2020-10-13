@@ -5,11 +5,17 @@ import { ReactComponent as User } from '../Assets/usuario.svg';
 import { ReactComponent as Tool } from '../Assets/tool.svg';
 import { UserContext } from '../UserContext';
 import Button from '../Components/Forms/Button';
+import { connect } from 'react-redux';
+import { getNumbers } from '../Actions/getAction';
 
-const Header = () => {
+const Header = ({ basketProps }) => {
   const { data, userLogout, login } = React.useContext(UserContext);
   const [active, setActive] = React.useState(false);
   const dropdownRef = React.useRef(null);
+
+  React.useEffect(() => {
+    getNumbers();
+  }, []);
 
   React.useEffect(() => {
     const pageClickEvent = (e) => {
@@ -42,7 +48,7 @@ const Header = () => {
           {data ? (
             <div className={styles.wrapper}>
               <Link to="/carrinho" aria-label="JSBrakes">
-                oi
+                {basketProps.basketNumbers}
               </Link>
               <Link className={styles.login} to="/conta">
                 <p className={styles.nome}>{data.name}</p>
@@ -81,4 +87,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  basketProps: state.basketState,
+});
+
+export default connect(mapStateToProps, { getNumbers })(Header);

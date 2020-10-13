@@ -1,18 +1,12 @@
 import React from 'react';
 import styles from './ProductFeed.module.css';
 import Image from '../Helper/Image';
-import { UserContext } from '../../UserContext';
+import { connect } from 'react-redux';
+import { addBasket } from '../../Actions/addAction';
 
-const ProductFeed = ({ produto, setModalPhoto, filter }) => {
-  const { cart, setCart } = React.useContext(UserContext);
+const ProductFeed = ({ produto, setModalPhoto, addBasket }) => {
   function handleClick() {
     setModalPhoto(produto);
-  }
-
-  function addToCart(e) {
-    e.preventDefault();
-    console.log('Adicionado');
-    setCart((current) => [...current, produto]);
   }
 
   return (
@@ -35,7 +29,7 @@ const ProductFeed = ({ produto, setModalPhoto, filter }) => {
             Preço para venda: R$:{' '}
             {Math.abs((Math.round(produto.sellPrice * 100) / 100).toFixed(2))}
           </h3>
-          <button onClick={addToCart}>Adicionar ao carrinho</button>
+          <button onClick={addBasket}>Adicionar ao carrinho</button>
         </section>
       </li>{' '}
     </>
@@ -43,4 +37,4 @@ const ProductFeed = ({ produto, setModalPhoto, filter }) => {
   // } else return null;
 };
 
-export default ProductFeed;
+export default connect(null, { addBasket })(ProductFeed);

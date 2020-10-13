@@ -2,14 +2,14 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/../Home/Header';
-
 import Home from './Components/../Home/Home';
 import Login from './Components/Login/Login';
 import { UserStorage } from './UserContext';
 import User from './Components/User/User';
 import ProtectedRouter from './Components/Helper/ProtectedRouter';
 import Products from './Photo/Products';
-import Cart from './Components/Cart/Cart';
+import { Provider } from 'react-redux';
+import store from './Store';
 
 function App() {
   return (
@@ -17,18 +17,19 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <UserStorage>
-            <main className="appBody">
-              <Header />
+            <Provider store={store}>
+              <main className="appBody">
+                <Header />
 
-              <Routes>
-                <ProtectedRouter path="/" element={<Home />} />
-                <ProtectedRouter path="/carrinho" element={<Cart />} />
-                <ProtectedRouter path="/react-store" element={<Login />} />
-                <Route path="/login/*" element={<Login />} />
-                <ProtectedRouter path="/produto/*" element={<Products />} />
-                <ProtectedRouter path="/conta/*" element={<User />} />
-              </Routes>
-            </main>
+                <Routes>
+                  <ProtectedRouter path="/" element={<Home />} />
+                  <ProtectedRouter path="/react-store" element={<Login />} />
+                  <Route path="/login/*" element={<Login />} />
+                  <ProtectedRouter path="/produto/*" element={<Products />} />
+                  <ProtectedRouter path="/conta/*" element={<User />} />
+                </Routes>
+              </main>
+            </Provider>
           </UserStorage>
         </BrowserRouter>
       </div>
