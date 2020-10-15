@@ -1,20 +1,31 @@
 .items {
-  margin-top: 2rem;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 0.2rem;
-  padding: 0 0 3rem 0.5rem;
   font-family: 'Poppins';
   font-size: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
-.flex {
-  display: flex;
-  justify-content: space-between;
+.productContainer {
+  padding: 1rem;
 }
 
-.flex span {
-  width: 10rem;
-  margin-top: 2rem;
+.gap {
+  display: inline-block;
+  margin-right: 10rem;
+  width: 5.3rem;
+}
+.errado {
+  padding-bottom: 4px;
+}
+
+.gap input {
+  outline: none;
+  border: none;
+  text-align: center;
+  width: 30px;
+  font-size: 1rem;
+  font-family: 'Poppins';
 }
 
 .exclude {
@@ -24,15 +35,24 @@
 
 .quantidade {
   display: flex;
+  position: relative;
+  justify-content: center;
   align-self: center;
   margin-top: 2rem;
+}
+
+.quantidade input {
+  width: 30%;
+  border: none;
+  border-bottom: 1px solid silver;
+  outline: none;
+  text-align: center;
 }
 
 .exclude h3 {
   border: 2px solid red;
   border-radius: 2px;
   font-size: 0.75rem;
-  width: 1.5rem;
   text-align: center;
   cursor: pointer;
 }

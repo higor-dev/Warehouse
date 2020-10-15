@@ -15,6 +15,29 @@
   height: 4rem;
 }
 
+.cart {
+  position: relative;
+}
+
+.cartNumber {
+  position: absolute;
+  bottom: 30px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  font-family: 'Poppins';
+  border-radius: 50%;
+  background: white;
+  color: black;
+  border: 1px solid silver;
+  font-size: 1rem;
+  right: 6.9rem;
+}
+
+.margin {
+  margin-right: 1rem;
+}
+
 .logo {
   width: 35px;
   height: 35px;

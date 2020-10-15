@@ -8,12 +8,12 @@
   max-width: 20rem;
   min-width: 20rem;
   overflow: hidden;
-  cursor: pointer;
   /* max-height: 31.25rem; */
 }
 
 .product > div {
   grid-area: 1 / 1;
+  cursor: pointer;
 }
 
 .span {
@@ -45,4 +45,16 @@
 .descricao h3 {
   margin: 0.5rem 1rem;
   font-family: 'Poppins';
+}
+
+.descricao button {
+  border-radius: 4px;
+  margin: 0.5rem 1rem;
+  background: teal;
+  color: white;
+  font-family: 'Poppins';
+  border: none;
+  padding: 0.3rem;
+  cursor: pointer;
+  outline: none;
 }

@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/../Home/Header';
 import Home from './Components/../Home/Home';
+import Cart from './Components/Cart/Cart';
 import Login from './Components/Login/Login';
 import { UserStorage } from './UserContext';
 import User from './Components/User/User';
@@ -23,6 +24,7 @@ function App() {
 
                 <Routes>
                   <ProtectedRouter path="/" element={<Home />} />
+                  <ProtectedRouter path="/carrinho" element={<Cart />} />
                   <ProtectedRouter path="/react-store" element={<Login />} />
                   <Route path="/login/*" element={<Login />} />
                   <ProtectedRouter path="/produto/*" element={<Products />} />

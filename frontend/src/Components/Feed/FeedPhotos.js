@@ -6,8 +6,10 @@ import Loading from '../Helper/Loading';
 import styles from './FeedPhotos.module.css';
 import Search from '../Helper/Search';
 import ProductFeed from './ProductFeed';
+import { connect } from 'react-redux';
+import { addProducts } from '../../Actions/addProducts';
 
-const FeedPhotos = ({ user, setModalPhoto }) => {
+const FeedPhotos = ({ user, setModalPhoto, addProducts }) => {
   const { data, loading, error, request } = useFetch();
   const [search, setSearch] = React.useState('');
 
@@ -19,6 +21,12 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
     }
     fetchPhotos();
   }, [request, user]);
+
+  React.useEffect(() => {
+    if (data) {
+      addProducts(data);
+    }
+  }, [addProducts, data]);
 
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;
@@ -55,4 +63,4 @@ const FeedPhotos = ({ user, setModalPhoto }) => {
   } else return null;
 };
 
-export default FeedPhotos;
+export default connect(null, { addProducts })(FeedPhotos);

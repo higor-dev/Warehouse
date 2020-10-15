@@ -3,8 +3,16 @@ import styles from './ProductFeed.module.css';
 import Image from '../Helper/Image';
 import { connect } from 'react-redux';
 import { addBasket } from '../../Actions/addAction';
+import { addCart } from '../../Actions/addCart';
+import { removeCart } from '../../Actions/removeCart';
 
-const ProductFeed = ({ produto, setModalPhoto, addBasket }) => {
+const ProductFeed = ({
+  produto,
+  setModalPhoto,
+  addBasket,
+  addCart,
+  removeCart,
+}) => {
   function handleClick() {
     setModalPhoto(produto);
   }
@@ -29,7 +37,9 @@ const ProductFeed = ({ produto, setModalPhoto, addBasket }) => {
             Preço para venda: R$:{' '}
             {Math.abs((Math.round(produto.sellPrice * 100) / 100).toFixed(2))}
           </h3>
-          <button onClick={addBasket}>Adicionar ao carrinho</button>
+          <button onClick={() => addCart(produto)}>
+            Adicionar ao carrinho
+          </button>
         </section>
       </li>{' '}
     </>
@@ -37,4 +47,4 @@ const ProductFeed = ({ produto, setModalPhoto, addBasket }) => {
   // } else return null;
 };
 
-export default connect(null, { addBasket })(ProductFeed);
+export default connect(null, { addBasket, addCart, removeCart })(ProductFeed);

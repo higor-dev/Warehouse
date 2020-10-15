@@ -6,16 +6,21 @@ import { ReactComponent as Tool } from '../Assets/tool.svg';
 import { UserContext } from '../UserContext';
 import Button from '../Components/Forms/Button';
 import { connect } from 'react-redux';
-import { getNumbers } from '../Actions/getAction';
+import cart from '../Assets/cart.png';
 
 const Header = ({ basketProps }) => {
   const { data, userLogout, login } = React.useContext(UserContext);
   const [active, setActive] = React.useState(false);
   const dropdownRef = React.useRef(null);
+  const [cartCount, setCartCount] = React.useState(0);
 
   React.useEffect(() => {
-    getNumbers();
-  }, []);
+    let count = 0;
+    basketProps.cart.forEach((item) => {
+      count += item.qty;
+    });
+    setCartCount(count);
+  }, [basketProps.cart, cartCount]);
 
   React.useEffect(() => {
     const pageClickEvent = (e) => {
@@ -47,8 +52,24 @@ const Header = ({ basketProps }) => {
           </Link>
           {data ? (
             <div className={styles.wrapper}>
-              <Link to="/carrinho" aria-label="JSBrakes">
-                {basketProps.basketNumbers}
+              <Link
+                className={styles.margin}
+                to="/carrinho"
+                aria-label="JSBrakes"
+              >
+                <div className={cart}>
+                  <img src={cart} />
+                  <span
+                    style={
+                      cartCount === 0
+                        ? { display: 'none' }
+                        : { display: 'block' }
+                    }
+                    className={styles.cartNumber}
+                  >
+                    {cartCount}
+                  </span>
+                </div>
               </Link>
               <Link className={styles.login} to="/conta">
                 <p className={styles.nome}>{data.name}</p>
@@ -87,8 +108,10 @@ const Header = ({ basketProps }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  basketProps: state.basketState,
-});
+const mapStateToProps = (state) => {
+  return {
+    basketProps: state.basketState,
+  };
+};
 
-export default connect(mapStateToProps, { getNumbers })(Header);
+export default connect(mapStateToProps)(Header);
