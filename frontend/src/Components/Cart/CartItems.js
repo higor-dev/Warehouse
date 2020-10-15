@@ -7,7 +7,7 @@ import { adjustPrice } from '../../Actions/adjustPrice';
 
 const CartItems = ({ itemData, removeCart, adjustQty, adjustPrice }) => {
   const [input, setInput] = React.useState(itemData.qty);
-  const [inputPrice, setInputPrice] = React.useState(0);
+  const [inputPrice, setInputPrice] = React.useState(itemData.sellPrice);
 
   const onChangeHandler = (e) => {
     setInput(e.target.value);

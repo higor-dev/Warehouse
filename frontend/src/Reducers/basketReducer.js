@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
                 ? { ...item, qty: item.qty + 1 }
                 : item,
             )
-          : [...state.cart, { ...item, qty: 1, sellingPrice: 0 }],
+          : [...state.cart, { ...item, qty: 1, sellingPrice: item.sellPrice }],
       };
     case REMOVE_CART:
       return {
