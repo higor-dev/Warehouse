@@ -8,24 +8,29 @@
 
 .productContainer {
   padding: 1rem;
+  text-align: center;
 }
 
 .gap {
   display: inline-block;
   margin-right: 10rem;
-  width: 5.3rem;
+  width: 5.2rem;
 }
+
 .errado {
   padding-bottom: 4px;
 }
 
-.gap input {
+.inputNew {
+  display: block;
+  margin: auto;
   outline: none;
   border: none;
   text-align: center;
-  width: 30px;
+  align-items: center;
   font-size: 1rem;
   font-family: 'Poppins';
+  width: 60%;
 }
 
 .exclude {
@@ -42,7 +47,7 @@
 }
 
 .quantidade input {
-  width: 30%;
+  width: 40%;
   border: none;
   border-bottom: 1px solid silver;
   outline: none;

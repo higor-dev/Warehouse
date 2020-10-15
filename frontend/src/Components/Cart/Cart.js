@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Cart.module.css';
 import { connect } from 'react-redux';
 import CartItems from './CartItems';
@@ -16,6 +16,7 @@ const Cart = ({ basketProps, emptyCart }) => {
   const [totalItems, setTotalItems] = React.useState(0);
   const parcelas = useForm();
   const { request, loading } = useFetch();
+  const navigate = useNavigate();
 
   console.log(basketProps.cart);
 
@@ -25,7 +26,7 @@ const Cart = ({ basketProps, emptyCart }) => {
 
     basketProps.cart.forEach((item) => {
       items += item.qty;
-      price += item.qty * item.sellPrice;
+      price += item.qty * +item.sellingPrice;
     });
 
     setTotalItems(items);
@@ -38,21 +39,31 @@ const Cart = ({ basketProps, emptyCart }) => {
 
   function handleSelling() {
     basketProps.cart.map((item) => {
-      const oi = JSON.stringify({
-        id: item.id,
-        productName: item.productName,
-        quantity: item.qty,
-        price: Number(item.sellPrice),
-        type: item.type,
-        companyId: 1,
-        image: item.image,
-        isApportioned: Number(`${+parcelas.value === 1 ? 0 : 1}`),
-        portion: +parcelas.value,
-      });
-      const token = window.localStorage.getItem('token');
-      const { url, options } = sellProduct(oi, token);
-      request(url, options);
-      emptyCart();
+      if (item.sellingPrice && item.qty && parcelas.value) {
+        if (item.qty <= item.quantity) {
+          const oi = JSON.stringify({
+            id: item.id,
+            productName: item.productName,
+            quantity: item.qty,
+            price: Number(item.sellingPrice),
+            type: item.type,
+            companyId: 1,
+            image: item.image,
+            isApportioned: Number(`${+parcelas.value === 1 ? 0 : 1}`),
+            portion: +parcelas.value,
+          });
+          const token = window.localStorage.getItem('token');
+          const { url, options } = sellProduct(oi, token);
+          request(url, options);
+          emptyCart();
+          navigate('/');
+        } else {
+          alert('Quantidade insuficiente no estoque.');
+        }
+      } else {
+        alert('Preencha todos os valores.');
+      }
+      return '';
     });
   }
 
@@ -75,10 +86,14 @@ const Cart = ({ basketProps, emptyCart }) => {
           return <CartItems key={item.id} itemData={item} />;
         })}
       </ul>
-      <Input label="Parcelar" type="text" {...parcelas} />
+      <div className={styles.divDivisora}>
+        <Input label="Parcelar" type="text" {...parcelas} />
+      </div>
       <h2 className={styles.subtotal}>
-        Total: R${parcelas.value ? totalPrice / +parcelas.value : totalPrice}
+        Total: R$
+        {parcelas.value ? totalPrice / +parcelas.value : +totalPrice}
       </h2>
+
       {loading ? (
         <button className={styles.button} disabled>
           Carregando...

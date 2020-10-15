@@ -5,6 +5,7 @@ import {
   LOAD_CART,
   ADD_PRODUCTS,
   EMPTY_CART,
+  ADJUST_PRICE,
 } from '../Actions/Types';
 
 const initialState = {
@@ -33,7 +34,7 @@ export default (state = initialState, action) => {
                 ? { ...item, qty: item.qty + 1 }
                 : item,
             )
-          : [...state.cart, { ...item, qty: 1 }],
+          : [...state.cart, { ...item, qty: 1, sellingPrice: 0 }],
       };
     case REMOVE_CART:
       return {
@@ -46,6 +47,15 @@ export default (state = initialState, action) => {
         cart: state.cart.map((item) =>
           item.id === action.payload.id
             ? { ...item, qty: +action.payload.qty }
+            : item,
+        ),
+      };
+    case ADJUST_PRICE:
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, sellingPrice: +action.payload.price }
             : item,
         ),
       };

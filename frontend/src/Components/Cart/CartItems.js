@@ -3,12 +3,20 @@ import styles from './CartItems.module.css';
 import { connect } from 'react-redux';
 import { removeCart } from '../../Actions/removeCart';
 import { adjustQty } from '../../Actions/adjustQty';
+import { adjustPrice } from '../../Actions/adjustPrice';
 
-const CartItems = ({ itemData, removeCart, adjustQty }) => {
+const CartItems = ({ itemData, removeCart, adjustQty, adjustPrice }) => {
   const [input, setInput] = React.useState(itemData.qty);
+  const [inputPrice, setInputPrice] = React.useState(0);
+
   const onChangeHandler = (e) => {
     setInput(e.target.value);
     adjustQty(itemData, e.target.value);
+  };
+
+  const handlePriceChange = (e) => {
+    setInputPrice(e.target.value);
+    adjustPrice(itemData, +e.target.value);
   };
 
   return (
@@ -27,7 +35,13 @@ const CartItems = ({ itemData, removeCart, adjustQty }) => {
           <h4 className={styles.errado} style={{ color: '#ccc' }}>
             Preço:
           </h4>
-          <span>R${itemData.sellPrice}</span>
+          <input
+            style={{ borderBottom: '1px solid silver' }}
+            value={inputPrice}
+            onChange={handlePriceChange}
+            type="text"
+            className={styles.inputNew}
+          ></input>
         </div>
         <div className={styles.gap}>
           <h4 style={{ color: '#ccc' }}>Qtd:</h4>
@@ -39,7 +53,7 @@ const CartItems = ({ itemData, removeCart, adjustQty }) => {
             }
             value={input}
             onChange={onChangeHandler}
-            className={styles.inputzinho}
+            className={styles.inputNew}
             type="text"
           ></input>
         </div>
@@ -48,4 +62,4 @@ const CartItems = ({ itemData, removeCart, adjustQty }) => {
   );
 };
 
-export default connect(null, { removeCart, adjustQty })(CartItems);
+export default connect(null, { removeCart, adjustQty, adjustPrice })(CartItems);

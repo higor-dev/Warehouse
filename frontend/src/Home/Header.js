@@ -58,7 +58,7 @@ const Header = ({ basketProps }) => {
                 aria-label="JSBrakes"
               >
                 <div className={cart}>
-                  <img src={cart} />
+                  <img src={cart} alt="cart" />
                   <span
                     style={
                       cartCount === 0

@@ -6,3 +6,4 @@ export const ADJ_QTY = 'ADJ_QTY';
 export const LOAD_CART = 'LOAD_CART';
 export const ADD_PRODUCTS = 'ADD_PRODUCTS';
 export const EMPTY_CART = 'EMPTY_CART';
+export const ADJUST_PRICE = 'ADJUST_PRICE';
