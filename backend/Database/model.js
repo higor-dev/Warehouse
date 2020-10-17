@@ -14,6 +14,7 @@ const Product = sequelize.define("product", {
   price: DataTypes.DOUBLE,
   type: DataTypes.TEXT,
   sellPrice: DataTypes.DOUBLE,
+  isValid: DataTypes.BOOLEAN,
   image: DataTypes.TEXT('long')
 })
 
@@ -23,6 +24,7 @@ const Transaction = sequelize.define("transaction", {
   price: DataTypes.DOUBLE,
   received: DataTypes.DOUBLE,
   isApportioned: DataTypes.BOOLEAN,
+  isValid: DataTypes.BOOLEAN,
   portion: DataTypes.INTEGER
 })
 
@@ -34,7 +36,8 @@ const Company = sequelize.define("company", {
 const Installment = sequelize.define("installment", {
   price: DataTypes.DOUBLE,
   paymentDay: DataTypes.DATE,
-  paid: DataTypes.BOOLEAN
+  paid: DataTypes.BOOLEAN,
+  isValid: DataTypes.BOOLEAN
 })
 
 // paidAlready = Campo em transaction do quanto foi pago até agora

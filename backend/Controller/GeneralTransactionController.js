@@ -21,10 +21,10 @@ function verifyJWT(req, res, next){
 }
 
 
-General.get("/getAllTransactions", verifyJWT, (req,res)=>{
-    const allTransactions = Transaction.findAll();
+General.get("/getAllTransactions",verifyJWT, (req,res)=>{
+    const allTransactions = sequelize.query("select * from storage.transactions t where t.isValid = 1")
     allTransactions
-        .then(data => res.json(data))
+        .then(data => res.json(data[0]))
         .catch(err => res.json(err));
 })
 
@@ -54,45 +54,16 @@ General.get("/getProductByType/:type", verifyJWT, async (req,res) => {
 
 
 General.get("/getStatistics", verifyJWT, async (req, res) => {
-    // const transaction= await sequelize.query("select * from storage.transactions t");
-    // const installment = await sequelize.query("select * from storage.installments i");
-    // const products = await sequelize.query("select p.id, p.productName, p.quantity, p.price, p.`type` , p.image from storage.products p, storage.transactions t where t.productId = p.id")
-    
-    // transaction[0].map((value,index)=> {
-    //     value.installments = []; 
-    //     if(products[0][index].id == value.productId){
-    //         value.product = products[0][index];
-    //     }
-    // })
-
-    // //Sempre terá installment >= transaction
-
-    // installment[0].map((value,index) => {
-        
-    //     for(i=0;i<transaction[0].length;i++){
-            
-    //         if(installment[0][index].transactionId == transaction[0][i].id){
-                
-    //             transaction[0][i].installments.push(installment[0][index]);
-    //             break
-                
-    //         }
-    //     }
-    
-    // })
-
-// HASH MAP DE ID PRA TRANSACTION 
-//     AI EU POSSO USAR O ID DA INSTALLMENT COMO CHAVE PARA ACHAR A TRANSACTION
-//     transaction_hash_map[installment.transaction_id].installmentList.push(installment);
-
-
 
     const transaction = await Transaction.findAll({
 
         include: {
             all:true,
             nested:true
-          }
+          },
+        where: {
+            isValid: 1
+        }
 
 
     });

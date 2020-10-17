@@ -7,20 +7,20 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 
-router.get("/", verifyJWT,(req,res)=>{
-    const allUsers = service.getAllUsers();
-    allUsers
-        .then(data => res.json(data))
-        .catch(err => res.json(err));
-})
+// router.get("/", verifyJWT,(req,res)=>{
+//     const allUsers = service.getAllUsers();
+//     allUsers
+//         .then(data => res.json(data))
+//         .catch(err => res.json(err));
+// })
 
-router.get("/getUser", verifyJWT,(req,res)=>{
+// router.get("/getUser", verifyJWT,(req,res)=>{
 
-    const user = service.getUserById({id:req.userId});
-    user
-        .then(data => res.json(data))
-        .catch(err => res.json(err));
-})
+//     const user = service.getUserById({id:req.userId});
+//     user
+//         .then(data => res.json(data))
+//         .catch(err => res.json(err));
+// })
 
 // router.post("/createUser",(req,res) => {
 //     bcrypt.hash(req.body.password, 10, function(err, hash) {
@@ -44,13 +44,13 @@ router.put("/updateUser", verifyJWT,(req,res) => {
         .catch(err => res.json(err));
 })
 
-router.delete("/deleteUser", verifyJWT,(req,res)=>{
-    const user = service.deleteUser(req.body);
-    user
-        .then(data => res.json(data))
-        .catch(err => res.json(err));
+// router.delete("/deleteUser", verifyJWT,(req,res)=>{
+//     const user = service.deleteUser(req.body);
+//     user
+//         .then(data => res.json(data))
+//         .catch(err => res.json(err));
     
-})
+// })
 
 
 function verifyJWT(req, res, next){

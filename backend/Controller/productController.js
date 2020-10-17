@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv/config');
 const product = express.Router();
-const { Product, User } = require('../Database/model');
+const { Product, User, Installment, Transaction } = require('../Database/model');
 const { sequelize } = require('../Database/dbConnection');
 const {
   getBalance,
@@ -28,9 +28,9 @@ function verifyJWT(req, res, next) {
   });
 }
 
-product.get('/getAllProducts', verifyJWT, (req, res) => {
-  const allproducts = Product.findAll();
-  allproducts.then((data) => res.json(data)).catch((err) => res.json(err));
+product.get('/getAllProducts', verifyJWT,(req, res) => {
+  const allproducts = sequelize.query(`select * from storage.products p where p.isValid = true`) 
+  allproducts.then((data) => res.json(data[0])).catch((err) => res.json(err));
 });
 
 product.get('/getProduct/:id', verifyJWT, async (req, res) => {
@@ -125,6 +125,7 @@ product.put('/buyProduct', verifyJWT, async (req, res) => {
     quantity: req.body.quantity,
     isApportioned: req.body.isApportioned,
     portion: req.body.portion,
+    isValid: true,
     received: (req.body.price * req.body.quantity * -1) / req.body.portion,
   });
 
@@ -138,22 +139,25 @@ product.put('/buyProduct', verifyJWT, async (req, res) => {
   res.json(await Product.findOne({ where: { id: req.body.id } }));
 });
 
-product.delete('/deleteProduct/:id', verifyJWT, async (req, res) => {
+product.delete('/deleteProduct/:id',verifyJWT, async (req, res) => {
+  
+  //Arruma o balance
   const fetchedProduct = await Product.findOne({
     where: { id: req.params.id },
   });
-  await createTransaction({
-    author: fetchedProduct.productName, //Change to user name of a session
-    productId: fetchedProduct.id,
-    companyId: 1, //There is only one conpany
-    price: fetchedProduct.price * fetchedProduct.quantity, //Transaction price, not product price
-    quantity: -1 * fetchedProduct.quantity,
-    received: fetchedProduct.price * fetchedProduct.quantity
-  });
   await updateBalance(fetchedProduct, { quantity: 0, price: 0 });
 
-  const product = await Product.destroy({ where: { id: req.params.id } });
-  res.json(product);
+  //Torna inválida todas as transactions e installments com relação a esse objeto.
+  const transactionsToInvalidade = await sequelize.query(`select * from storage.transactions t where t.productId = ${fetchedProduct.id}`);
+  
+  transactionsToInvalidade[0].map((value,index) => {
+    Installment.update({isValid: false} , {where: {transactionId: value.id}});
+    Transaction.update({isValid:false}, {where: {id: value.id}});
+  })
+
+  Product.update({isValid: false} , {where: {id: fetchedProduct.id}})
+
+  res.json({message: `Todas as ocorrências em relação ao produto com id: ${fetchedProduct.id} foram invalidadas.`});
 });
 
 module.exports = product;
