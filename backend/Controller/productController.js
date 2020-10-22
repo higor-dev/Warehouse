@@ -1,7 +1,12 @@
 const express = require('express');
 require('dotenv/config');
 const product = express.Router();
-const { Product, User, Installment, Transaction } = require('../Database/model');
+const {
+  Product,
+  User,
+  Installment,
+  Transaction,
+} = require('../Database/model');
 const { sequelize } = require('../Database/dbConnection');
 const {
   getBalance,
@@ -28,8 +33,10 @@ function verifyJWT(req, res, next) {
   });
 }
 
-product.get('/getAllProducts', verifyJWT,(req, res) => {
-  const allproducts = sequelize.query(`select * from storage.products p where p.isValid = true`) 
+product.get('/getAllProducts', verifyJWT, (req, res) => {
+  const allproducts = sequelize.query(
+    `select * from storage.products p where p.isValid = true`
+  );
   allproducts.then((data) => res.json(data[0])).catch((err) => res.json(err));
 });
 
@@ -48,6 +55,7 @@ product.post('/createProduct', verifyJWT, async (req, res) => {
     price: product.price * product.quantity * -1, //Transaction price, not product price
     quantity: product.quantity,
     isApportioned: false,
+    isValid: 1,
     portion: 1,
     received: req.body.price * req.body.quantity * -1,
   });
@@ -55,12 +63,13 @@ product.post('/createProduct', verifyJWT, async (req, res) => {
   res.json(product);
 });
 
-
-product.put('/updateProduct', verifyJWT, async (req,res) => res.json( await Product.update(req.body, {
-  where: { id: req.body.id },
-})));
-
-
+product.put('/updateProduct', verifyJWT, async (req, res) =>
+  res.json(
+    await Product.update(req.body, {
+      where: { id: req.body.id },
+    })
+  )
+);
 
 product.put('/sellProduct', verifyJWT, async (req, res) => {
   const user = await User.findOne({ where: { id: req.userId } }); //Find author
@@ -85,6 +94,7 @@ product.put('/sellProduct', verifyJWT, async (req, res) => {
     companyId: 1, //There is only one company
     price: req.body.quantity * req.body.price, //Transaction price, not product price
     quantity: req.body.quantity,
+    isValid: 1,
     isApportioned: req.body.isApportioned,
     portion: req.body.portion,
     received: (req.body.price * req.body.quantity) / req.body.portion,
@@ -94,7 +104,7 @@ product.put('/sellProduct', verifyJWT, async (req, res) => {
   const value = await getBalance(1);
   const balance = value[0][0].balance + difference;
   const users = await sequelize.query(
-    `UPDATE storage.companies SET balance = ${balance} WHERE id = 1`,
+    `UPDATE storage.companies SET balance = ${balance} WHERE id = 1`
   );
 
   res.json(await Product.findOne({ where: { id: req.body.id } }));
@@ -133,14 +143,13 @@ product.put('/buyProduct', verifyJWT, async (req, res) => {
   const value = await getBalance(1);
   const balance = value[0][0].balance - difference;
   const users = await sequelize.query(
-    `UPDATE storage.companies SET balance = ${balance} WHERE id = 1`,
+    `UPDATE storage.companies SET balance = ${balance} WHERE id = 1`
   );
 
   res.json(await Product.findOne({ where: { id: req.body.id } }));
 });
 
-product.delete('/deleteProduct/:id',verifyJWT, async (req, res) => {
-  
+product.delete('/deleteProduct/:id', verifyJWT, async (req, res) => {
   //Arruma o balance
   const fetchedProduct = await Product.findOne({
     where: { id: req.params.id },
@@ -148,16 +157,23 @@ product.delete('/deleteProduct/:id',verifyJWT, async (req, res) => {
   await updateBalance(fetchedProduct, { quantity: 0, price: 0 });
 
   //Torna inválida todas as transactions e installments com relação a esse objeto.
-  const transactionsToInvalidade = await sequelize.query(`select * from storage.transactions t where t.productId = ${fetchedProduct.id}`);
-  
-  transactionsToInvalidade[0].map((value,index) => {
-    Installment.update({isValid: false} , {where: {transactionId: value.id}});
-    Transaction.update({isValid:false}, {where: {id: value.id}});
-  })
+  const transactionsToInvalidade = await sequelize.query(
+    `select * from storage.transactions t where t.productId = ${fetchedProduct.id}`
+  );
 
-  Product.update({isValid: false} , {where: {id: fetchedProduct.id}})
+  transactionsToInvalidade[0].map((value, index) => {
+    Installment.update(
+      { isValid: false },
+      { where: { transactionId: value.id } }
+    );
+    Transaction.update({ isValid: false }, { where: { id: value.id } });
+  });
 
-  res.json({message: `Todas as ocorrências em relação ao produto com id: ${fetchedProduct.id} foram invalidadas.`});
+  Product.update({ isValid: false }, { where: { id: fetchedProduct.id } });
+
+  res.json({
+    message: `Todas as ocorrências em relação ao produto com id: ${fetchedProduct.id} foram invalidadas.`,
+  });
 });
 
 module.exports = product;
