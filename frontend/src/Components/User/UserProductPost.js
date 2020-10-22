@@ -33,6 +33,7 @@ const UserPhotoPost = () => {
       price: Number(price.value.replace(/[$,]/g, '.')),
       type: type.value,
       companyId: 1,
+      isValid: 1,
       image: image.value,
       sellPrice: +sellingPrice.value,
     });
@@ -70,45 +71,45 @@ const UserPhotoPost = () => {
 
   return (
     <>
-      <Head title="Postar" description="Postar" />
+      <Head title='Postar' description='Postar' />
       <section className={`${styles.photoPost} animeLeft`}>
         <form onSubmit={handleSubmit}>
           <Input
-            placeholder="Ex.: Axial TR4"
-            label="Produto"
-            type="text"
-            name="productName"
+            placeholder='Ex.: Axial TR4'
+            label='Produto'
+            type='text'
+            name='productName'
             {...product}
           />
-          <Input label="Imagem" type="text" name="image" {...image} />
+          <Input label='Imagem' type='text' name='image' {...image} />
           <Input
-            label="Categoria"
-            placeholder="Ex.: Suspensão"
-            type="text"
-            name="type"
+            label='Categoria'
+            placeholder='Ex.: Suspensão'
+            type='text'
+            name='type'
             {...type}
           />
           <Input
-            label="Quantidade"
-            type="number"
-            placeholder="Ex.: 5"
-            pattern="\d*"
-            maxLength="4"
-            name="quantity"
+            label='Quantidade'
+            type='number'
+            placeholder='Ex.: 5'
+            pattern='\d*'
+            maxLength='4'
+            name='quantity'
             {...quantity}
           />
           <Input
-            label="Preço"
-            placeholder="Ex.: 1000,99"
-            type="text"
-            name="price"
+            label='Preço'
+            placeholder='Ex.: 1000,99'
+            type='text'
+            name='price'
             {...price}
           />
           <Input
-            label="Preço para venda"
-            placeholder="Ex.: 1500,99"
-            type="text"
-            name="price"
+            label='Preço para venda'
+            placeholder='Ex.: 1500,99'
+            type='text'
+            name='price'
             {...sellingPrice}
           />
           {/* <input
