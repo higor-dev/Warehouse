@@ -1,7 +1,7 @@
-<h1 align="center"> Stock Management </h1>
+<h1 align="center"> Warehouse </h1>
 
 <h3 align="center">
-   V1 Working
+   Fully functional Stock Manager
 </h3>
 
 <div align="center">
