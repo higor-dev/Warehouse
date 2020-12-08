@@ -32,7 +32,7 @@ The following technologies were used throughout the project
 - [x] User create
 - [x] User login
 - [x] User logout
-- [x] JWT auth <br /
+- [x] JWT auth <br />
 
 
 - [x] Company Balance, fully functional and adaptative within product methods
