@@ -15,7 +15,7 @@
 
 
 
-## Overview
+## :book: Overview
 
 Stock Management, as the name suggests, is a fully functional Stock Manager made for a company called JS Brakes.
 
@@ -27,7 +27,7 @@ The following technologies were used throughout the project
 - [React](https://pt-br.reactjs.org/)
 - [Redux](https://redux.js.org/)
 
-### Features
+### :pencil2: &nbsp; Features
 
 #### user
 
@@ -49,7 +49,7 @@ The following technologies were used throughout the project
 - [x] Delete product from stock 
 - [x] Sell product
 
-### Contribuitors
+### :curly_haired_man: &nbsp; Contribuitors
 
 <table>
   <tr>
