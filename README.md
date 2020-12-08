@@ -29,19 +29,14 @@ The following technologies were used throughout the project
 
 ### :pencil2: &nbsp; Features
 
-#### user
-
 - [x] User create
 - [x] User login
 - [x] User logout
-- [x] JWT auth
+- [x] JWT auth <br /
 
-#### company
 
 - [x] Company Balance, fully functional and adaptative within product methods
-- [x] CRON for portioned sales;
-
-#### products
+- [x] CRON for portioned sales; <br />
 
 - [x] Product create
 - [x] Add product to stock
